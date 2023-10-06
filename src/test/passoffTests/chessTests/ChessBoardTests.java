@@ -55,7 +55,6 @@ public class ChessBoardTests {
         //set board to default
         board.resetBoard();
 
-        //back row pieces
         //white
         Assertions.assertEquals(ChessPiece.PieceType.ROOK,
                 board.getPiece(TestFactory.getNewPosition(1, 1)).getPieceType(),
@@ -81,6 +80,7 @@ public class ChessBoardTests {
         Assertions.assertEquals(ChessPiece.PieceType.ROOK,
                 board.getPiece(TestFactory.getNewPosition(1, 8)).getPieceType(),
                 "Piece at rook starting position was not a rook");
+
 
         //black
         Assertions.assertEquals(ChessPiece.PieceType.ROOK,
@@ -136,6 +136,7 @@ public class ChessBoardTests {
                     board.getPiece(TestFactory.getNewPosition(8, column)).getTeamColor(),
                     "Piece at starting position was incorrect color");
         }
+
 
         //check nullity
         ChessPosition pawnPosition = TestFactory.getNewPosition(3, 3);

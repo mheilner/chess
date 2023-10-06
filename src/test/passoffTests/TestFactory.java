@@ -24,12 +24,27 @@ public class TestFactory {
 
     public static ChessPiece getNewPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type){
         // FIXME
-		return null;
+        switch (type) {
+            case KING:
+                return new King(pieceColor); // Create a new King piece
+            case QUEEN:
+                return new Queen(pieceColor); // Create a new Queen piece
+            case BISHOP:
+                return new Bishop(pieceColor); // Create a new Bishop piece
+            case KNIGHT:
+                return new Knight(pieceColor); // Create a new Knight piece
+            case ROOK:
+                return new Rook(pieceColor); // Create a new Rook piece
+            case PAWN:
+                return new Pawn(pieceColor); // Create a new Pawn piece
+            default:
+                throw new IllegalArgumentException("Invalid PieceType: " + type);
+        }
     }
 
     public static ChessPosition getNewPosition(Integer row, Integer col){
         // FIXME
-		return null;
+		return new CPosition(row, col);
     }
 
     public static ChessMove getNewMove(ChessPosition startPosition, ChessPosition endPosition, ChessPiece.PieceType promotionPiece){
