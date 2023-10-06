@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chessPkg/CBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/TestFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/TestFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/chessTests/ChessBoardTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/chessTests/ChessBoardTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +66,23 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.BishopMoveTests.bishopEmptyBoard">
+    <configuration name="BishopMoveTests.bishopEmptyBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.BishopMoveTests" />
+      <option name="METHOD_NAME" value="bishopEmptyBoard" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ChessBoardTests.defaultGameBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
@@ -104,6 +117,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BishopMoveTests.bishopEmptyBoard" />
         <item itemvalue="JUnit.ChessBoardTests.defaultGameBoard" />
         <item itemvalue="JUnit.ChessBoardTests.getAddPiece" />
       </list>
@@ -118,7 +132,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696548882022</updated>
       <workItem from="1696548882933" duration="12805000" />
-      <workItem from="1696603484578" duration="3048000" />
+      <workItem from="1696603484578" duration="3612000" />
     </task>
     <servers />
   </component>

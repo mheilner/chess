@@ -3,6 +3,8 @@ package chessPkg;
 import chess.ChessPiece;
 import chess.ChessPosition;
 
+import java.util.Objects;
+
 public class CMove implements chess.ChessMove {
 
     // Instance Variables
@@ -42,18 +44,15 @@ public class CMove implements chess.ChessMove {
 
     //TODO: Implement .equals() and .hashcode()
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CMove cMove = (CMove) o;
+        return Objects.equals(startPosition, cMove.startPosition) && Objects.equals(endPosition, cMove.endPosition) && promotionPiece == cMove.promotionPiece;
+    }
+
+    @Override
     public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    //It is helpful but not necessary to implement this
-    @Override
-    public String toString() {
-        return super.toString();
+        return Objects.hash(startPosition, endPosition, promotionPiece);
     }
 }
