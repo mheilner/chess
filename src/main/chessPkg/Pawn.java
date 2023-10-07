@@ -35,16 +35,27 @@ public class Pawn implements ChessPiece {
         // Check one square forward
         int newRow = myRow + forwardDirection;
         if (isValidPosition(newRow, myColumn) && board.getPiece(new CPosition(newRow, myColumn)) == null) {
-            validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn)));
+            if((newRow == 8 && teamColor == ChessGame.TeamColor.WHITE) || (newRow == 1 && teamColor == ChessGame.TeamColor.BLACK)) {
+                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.KNIGHT));
+                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.BISHOP));
+                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.ROOK));
+                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.QUEEN));
+            }else {
+                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn)));
+            }
         }
 
         // Check two squares forward if it's the pawn's first move
         if ((teamColor == ChessGame.TeamColor.WHITE && myRow == 2) || (teamColor == ChessGame.TeamColor.BLACK && myRow == 7)) {
             newRow = myRow + 2 * forwardDirection;
-            if (isValidPosition(newRow, myColumn) && board.getPiece(new CPosition(newRow, myColumn)) == null) {
+            int oneAhead = myRow + forwardDirection;
+            if (isValidPosition(newRow, myColumn) && board.getPiece(new CPosition(newRow, myColumn)) == null && board.getPiece(new CPosition(oneAhead, myColumn)) == null) {
                 validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn)));
             }
         }
+
+
+
 
         // Check diagonal captures
         int[] captureColumns = {myColumn - 1, myColumn + 1};
@@ -53,10 +64,30 @@ public class Pawn implements ChessPiece {
                 ChessPosition capturePosition = new CPosition(newRow, col);
                 ChessPiece capturedPiece = board.getPiece(capturePosition);
                 if (capturedPiece != null && capturedPiece.getTeamColor() != teamColor) {
-                    validMoves.add(new CMove(myPosition, capturePosition));
+                    //Add Logic for the Diagonal Capture if Piece Upgrade
+                    if((newRow == 8 && teamColor == ChessGame.TeamColor.WHITE) || (newRow == 1 && teamColor == ChessGame.TeamColor.BLACK)){
+                        validMoves.add(new CMove(myPosition, capturePosition, PieceType.KNIGHT));
+                        validMoves.add(new CMove(myPosition, capturePosition, PieceType.BISHOP));
+                        validMoves.add(new CMove(myPosition, capturePosition, PieceType.ROOK));
+                        validMoves.add(new CMove(myPosition, capturePosition, PieceType.QUEEN));
+                    }else {
+                        validMoves.add(new CMove(myPosition, capturePosition));
+                    }
                 }
             }
         }
+
+
+//        //Checking Upgrading Pawn
+//        if ((teamColor == ChessGame.TeamColor.WHITE && myRow == 7) || (teamColor == ChessGame.TeamColor.BLACK && myRow == 2)) {
+//            newRow = myRow +  forwardDirection;
+//            if (isValidPosition(newRow, myColumn) && board.getPiece(new CPosition(newRow, myColumn)) == null) {
+//                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.KNIGHT));
+//                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.KING));
+//                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.ROOK));
+//                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.QUEEN));
+//            }
+//        }
 
         return validMoves;
     }

@@ -4,6 +4,7 @@ import chess.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 public class King implements ChessPiece {
@@ -52,6 +53,9 @@ public class King implements ChessPiece {
                 }
             }
         }
+
+        // Sort the validMoves list to ensure consistent ordering
+//        validMoves.sort(Comparator.comparing(Object::toString));
 
         return validMoves;
     }

@@ -43,6 +43,7 @@ public class CMove implements chess.ChessMove {
     }
 
     //TODO: Implement .equals() and .hashcode()
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,5 +55,28 @@ public class CMove implements chess.ChessMove {
     @Override
     public int hashCode() {
         return Objects.hash(startPosition, endPosition, promotionPiece);
+    }
+
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        CMove cMove = (CMove) o;
+//        return Objects.equals(startPosition, cMove.startPosition) && Objects.equals(endPosition, cMove.endPosition) && promotionPiece == cMove.promotionPiece;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(startPosition, endPosition, promotionPiece);
+//    }
+
+    @Override
+    public String toString() {
+        return "CMove{" +
+                "startPosition=" + startPosition +
+                ", endPosition=" + endPosition +
+                ", promotionPiece=" + promotionPiece +
+                '}';
     }
 }
