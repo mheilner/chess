@@ -72,4 +72,21 @@ public class CBoard implements ChessBoard {
         }
     }
 
+//    public CBoard copyBoard(CBoard board) {
+//        CBoard copiedBoard = new CBoard();
+//
+//        for (int row = 1; row <= 8; row++) {
+//            for (int col = 1; col <= 8; col++) {
+//                ChessPosition position = new CPosition(row, col);
+//                ChessPiece originalPiece = board.getPiece(position);
+//                if (originalPiece != null) {
+//                    // Instead of copying the piece, reference the same piece in the new board
+//                    copiedBoard.addPiece(position, originalPiece);
+//                }
+//            }
+//        }
+//        return copiedBoard;
+//    }
+
+
 }

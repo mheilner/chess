@@ -47,10 +47,10 @@ public class Pawn implements ChessPiece {
 
         // Check two squares forward if it's the pawn's first move
         if ((teamColor == ChessGame.TeamColor.WHITE && myRow == 2) || (teamColor == ChessGame.TeamColor.BLACK && myRow == 7)) {
-            newRow = myRow + 2 * forwardDirection;
+            int twoAhead = myRow + 2 * forwardDirection;
             int oneAhead = myRow + forwardDirection;
-            if (isValidPosition(newRow, myColumn) && board.getPiece(new CPosition(newRow, myColumn)) == null && board.getPiece(new CPosition(oneAhead, myColumn)) == null) {
-                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn)));
+            if (isValidPosition(twoAhead, myColumn) && board.getPiece(new CPosition(twoAhead, myColumn)) == null && board.getPiece(new CPosition(oneAhead, myColumn)) == null) {
+                validMoves.add(new CMove(myPosition, new CPosition(twoAhead, myColumn)));
             }
         }
 

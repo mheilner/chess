@@ -367,7 +367,7 @@ public class ChessGameTests {
 		|R|P|P| | |P|P|P|
 		| |N|B|Q|K| |R| |
          */
-
+        System.out.println("bombom");
         //try not getting out of check
         Assertions.assertThrows(InvalidMoveException.class, () -> game.makeMove(
                 TestFactory.getNewMove(TestFactory.getNewPosition(1, 7), TestFactory.getNewPosition(1, 8), null)));
@@ -384,7 +384,7 @@ public class ChessGameTests {
 		|R|P|P| | |P| |P|
 		| |N|B|Q|K| |R| |
          */
-
+        System.out.println("hello");
         //try double-moving moved pawn
         Assertions.assertThrows(InvalidMoveException.class, () -> game.makeMove(
                 TestFactory.getNewMove(TestFactory.getNewPosition(6, 2), TestFactory.getNewPosition(4, 2), null)));

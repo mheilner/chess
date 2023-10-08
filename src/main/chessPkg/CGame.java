@@ -41,32 +41,34 @@ public class CGame implements ChessGame {
 
     @Override
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        // Implement the logic to make a move on the game board
         ChessPiece piece = board.getPiece(move.getStartPosition());
-        boolean check = false;
-
 
         if (piece != null && piece.getTeamColor() == currentTurn) {
-            //Get the moves
             Collection<ChessMove> validMoves = validMoves(move.getStartPosition());
 
-            //Adding Check Logic //TODO Ok so It has the logic of the king but not if the pawn removes the isincheck kinda thing
-            if(isInCheck(currentTurn) && piece.getPieceType() != ChessPiece.PieceType.KING){
-                throw new InvalidMoveException("Invalid moves");
-            }
+
             if (validMoves != null && validMoves.contains(move)) {
                 // The move is valid, update the board
                 board.addPiece(move.getEndPosition(), piece);
                 board.addPiece(move.getStartPosition(), null);
+
+                //After making the move, is it still in check, if it is revert
+                if(isInCheck(currentTurn)){
+                    board.addPiece(move.getStartPosition(), piece);
+                    board.addPiece(move.getEndPosition(), null);
+                    throw new InvalidMoveException("Invalid moves");
+                }
+
                 // Switch the turn to the other team
                 currentTurn = (currentTurn == TeamColor.WHITE) ? TeamColor.BLACK : TeamColor.WHITE;
             } else {
-                throw new InvalidMoveException("Invalid moves");
+                throw new InvalidMoveException("Invalid moveie");
             }
         } else {
             throw new InvalidMoveException("Invalid move");
         }
     }
+
 
 
     @Override
@@ -97,44 +99,47 @@ public class CGame implements ChessGame {
                     return true; // King is in check
                 }
             }
-
         }
         return false;
     } //TODO
-
-    @Override
-//    public boolean isInCheckmate(TeamColor teamColor) {
-//        // Check if the current player is in check
-//        if (isInCheck(teamColor)) {
-//            // Iterate through all the player's pieces
-//            for (int r = 1; r <= 8; r++) {
-//                for (int c = 1; c <= 8; c++) {
-//                    ChessPosition startPosition = new CPosition(r, c);
-//                    ChessPiece piece = board.getPiece(startPosition);
-//
-//                    // Check if the piece belongs to the current player
-//                    if (piece != null && piece.getTeamColor() == teamColor) {
-//                        // Iterate through the valid moves of the piece
-//                        Collection<ChessMove> validMoves = validMoves(startPosition);
-//                        for (ChessMove move : validMoves) {
-//                            // Simulate the move on a temporary board
-//                            CBoard tempBoard = new CBoard();
-//                            tempBoard.copyBoard(board); // Implement a method to copy the board state
-//                            tempBoard.addPiece(move.getEndPosition(), piece);
-//                            tempBoard.addPiece(move.getStartPosition(), null);
-//
-//                            // Check if the move removes the king from check
-//                            if (!isInCheck(teamColor, tempBoard)) {
-//                                return false; // The player is not in checkmate
-//                            }
+//    // Overloaded isincheck so that we can see if the temp board is in check
+//    public boolean isInCheck(TeamColor teamColor, CBoard tempBoard) {
+//        CPosition kingPosition = null;
+//        HashMap<ChessPiece, CPosition> otherTeam = new HashMap<>();
+//        for (int r = 1; r < 9; r++) {
+//            for (int c = 1; c < 9; c++) {
+//                if (tempBoard.getPiece(new CPosition(r, c)) != null) {
+//                    if (tempBoard.getPiece(new CPosition(r, c)).getTeamColor() != teamColor) {
+//                        otherTeam.put(tempBoard.getPiece(new CPosition(r, c)), new CPosition(r, c));
+//                    } else {
+//                        if (tempBoard.getPiece(new CPosition(r, c)).getPieceType() == ChessPiece.PieceType.KING) {
+//                            kingPosition = new CPosition(r, c);
 //                        }
 //                    }
 //                }
 //            }
-//            return true; // No valid moves can remove the king from check (checkmate)
 //        }
-//        return false; // The player is not in check, cannot be in checkmate
+//        for (Map.Entry<ChessPiece, CPosition> entry : otherTeam.entrySet()) {
+//            ChessPiece opponentPiece = entry.getKey();
+//            CPosition opponentPosition = entry.getValue();
+//
+//            Collection<ChessMove> validMoves = opponentPiece.pieceMoves(tempBoard, opponentPosition);
+//
+//            for (ChessMove move : validMoves) {
+//                if (move.getEndPosition().equals(kingPosition)) {
+//                    return true; // King is in check
+//                }
+//            }
+//        }
+//        return false;
 //    }
+
+
+    @Override
+    public boolean isInCheckmate(TeamColor teamColor) {
+        return false; // The player is not in check, cannot be in checkmate
+    }
+
 
     @Override
     public boolean isInStalemate(TeamColor teamColor) {
@@ -161,23 +166,7 @@ public class CGame implements ChessGame {
         return false; // The player is in check, cannot be in stalemate
     }
 
-//    // Add this method to your CBoard class
-//    public void copyBoard(CBoard destination) {
-//        // Iterate over all positions on the board
-//        for (int row = 1; row <= 8; row++) {
-//            for (int col = 1; col <= 8; col++) {
-//                ChessPosition position = new CPosition(row, col);
-//                ChessPiece piece = board.getPiece(position);
-//
-//                // Copy the piece to the destination board
-//                if (piece != null) {
-//                    destination.addPiece(position, piece.copy()); // Assuming ChessPiece has a copy method
-//                } else {
-//                    destination.addPiece(position, null);
-//                }
-//            }
-//        }
-//    }
+
 
     @Override
     public void setBoard(ChessBoard board) {
