@@ -2,7 +2,6 @@ package chessPkg;
 
 import chess.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +32,7 @@ public class CGame implements ChessGame {
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
         // Implement the logic to calculate valid moves for the piece at the given position
         ChessPiece piece = board.getPiece(startPosition);
-        if (piece != null && piece.getTeamColor() == currentTurn) {
+        if (piece != null) { // Removed && piece.getTeamColor() == currentTurn
             return piece.pieceMoves(board, startPosition);
         }
         return null;
@@ -49,8 +48,16 @@ public class CGame implements ChessGame {
 
             if (validMoves != null && validMoves.contains(move)) {
                 // The move is valid, update the board
-                board.addPiece(move.getEndPosition(), piece);
-                board.addPiece(move.getStartPosition(), null);
+
+                //If it is a pawn and promotion
+                if(piece.getPieceType()== ChessPiece.PieceType.PAWN &&
+                    ((move.getEndPosition().getRow()==8 && currentTurn == TeamColor.WHITE)||
+                            (move.getEndPosition().getRow()==1 && currentTurn == TeamColor.BLACK))){
+                    updatePositionPromotion(move);
+                }else{
+                    board.addPiece(move.getEndPosition(), piece);
+                    board.addPiece(move.getStartPosition(), null);
+                }
 
                 //After making the move, is it still in check, if it is revert
                 if(isInCheck(currentTurn)){
@@ -102,43 +109,45 @@ public class CGame implements ChessGame {
         }
         return false;
     } //TODO
-//    // Overloaded isincheck so that we can see if the temp board is in check
-//    public boolean isInCheck(TeamColor teamColor, CBoard tempBoard) {
-//        CPosition kingPosition = null;
-//        HashMap<ChessPiece, CPosition> otherTeam = new HashMap<>();
-//        for (int r = 1; r < 9; r++) {
-//            for (int c = 1; c < 9; c++) {
-//                if (tempBoard.getPiece(new CPosition(r, c)) != null) {
-//                    if (tempBoard.getPiece(new CPosition(r, c)).getTeamColor() != teamColor) {
-//                        otherTeam.put(tempBoard.getPiece(new CPosition(r, c)), new CPosition(r, c));
-//                    } else {
-//                        if (tempBoard.getPiece(new CPosition(r, c)).getPieceType() == ChessPiece.PieceType.KING) {
-//                            kingPosition = new CPosition(r, c);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        for (Map.Entry<ChessPiece, CPosition> entry : otherTeam.entrySet()) {
-//            ChessPiece opponentPiece = entry.getKey();
-//            CPosition opponentPosition = entry.getValue();
-//
-//            Collection<ChessMove> validMoves = opponentPiece.pieceMoves(tempBoard, opponentPosition);
-//
-//            for (ChessMove move : validMoves) {
-//                if (move.getEndPosition().equals(kingPosition)) {
-//                    return true; // King is in check
-//                }
-//            }
-//        }
-//        return false;
-//    }
 
 
     @Override
     public boolean isInCheckmate(TeamColor teamColor) {
-        return false; // The player is not in check, cannot be in checkmate
+        // Check if the current player is in check
+        if (isInCheck(teamColor)) {
+            // Iterate through all the player's pieces
+            for (int r = 1; r <= 8; r++) {
+                for (int c = 1; c <= 8; c++) {
+                    ChessPosition startPosition = new CPosition(r, c);
+                    ChessPiece piece = board.getPiece(startPosition);
+
+                    // Check if the piece belongs to the current player
+                    if (piece != null && piece.getTeamColor() == teamColor) {
+                        // Iterate through the valid moves of the piece
+                        Collection<ChessMove> validMoves = validMoves(startPosition);
+                        for (ChessMove move : validMoves) {
+                            board.addPiece(move.getEndPosition(), piece);
+                            board.addPiece(move.getStartPosition(), null);
+                            //After making the move, is it still in check, if it is revert
+                            if(isInCheck(teamColor)){
+                                board.addPiece(move.getStartPosition(), piece);
+                                board.addPiece(move.getEndPosition(), null);
+                                return true;
+                            }else{
+                                board.addPiece(move.getStartPosition(), piece);
+                                board.addPiece(move.getEndPosition(), null);
+                            }
+                        }
+                    }
+                }
+            }
+            // If no move gets the player out of check, it's checkmate
+            return true;
+        }
+        // Player is not in check, so it's not checkmate
+        return false;
     }
+
 
 
     @Override
@@ -166,6 +175,21 @@ public class CGame implements ChessGame {
         return false; // The player is in check, cannot be in stalemate
     }
 
+
+    private void updatePositionPromotion(ChessMove move){
+        ChessPiece.PieceType prom = move.getPromotionPiece();
+        ChessPiece piece;
+        switch (prom) {
+            case ROOK -> piece = new Rook(currentTurn);
+            case KNIGHT -> piece = new Knight(currentTurn);
+            case BISHOP -> piece = new Bishop(currentTurn);
+            case QUEEN -> piece = new Queen(currentTurn);
+            default ->
+                    throw new UnsupportedOperationException("Unsupported piece type");
+        }
+        board.addPiece(move.getEndPosition(), piece);
+        board.addPiece(move.getStartPosition(), null);
+    }
 
 
     @Override
