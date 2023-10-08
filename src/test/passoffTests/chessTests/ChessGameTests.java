@@ -61,7 +61,7 @@ public class ChessGameTests {
 
         game.setBoard(board);
         game.setTeamTurn(ChessGame.TeamColor.WHITE);
-        
+
         //king
         ChessPosition kingEndPosition = TestFactory.getNewPosition(1, 1);
         game.makeMove(TestFactory.getNewMove(kingStartPosition, kingEndPosition, null));

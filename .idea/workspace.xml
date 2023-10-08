@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chessPkg/CBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chessPkg/CGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chessPkg/CMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chessPkg/CPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chessPkg/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chessPkg/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/passoffTests/TestFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/TestFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/chessTests/ChessGameTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/chessTests/ChessGameTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,49 +71,49 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoffTests.chessTests.chessPieceTests in chess">
-    <configuration name="KingMoveTests.kingEmptyBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ChessGameTests.invalidMoves">
+    <configuration name="ChessGameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.KingMoveTests" />
-      <option name="METHOD_NAME" value="kingEmptyBoard" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PawnMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.PawnMoveTests" />
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PawnMoveTests.edgePromotionWhite" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ChessGameTests.invalidMoves" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.PawnMoveTests" />
-      <option name="METHOD_NAME" value="edgePromotionWhite" />
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
+      <option name="METHOD_NAME" value="invalidMoves" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChessGameTests.validMoves" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
+      <option name="METHOD_NAME" value="validMoves" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -149,11 +149,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ChessGameTests.invalidMoves" />
+        <item itemvalue="JUnit.ChessGameTests.validMoves" />
+        <item itemvalue="JUnit.ChessGameTests" />
         <item itemvalue="JUnit.passoffTests.chessTests.chessPieceTests in chess" />
         <item itemvalue="JUnit.passoffTests in chess" />
-        <item itemvalue="JUnit.PawnMoveTests.edgePromotionWhite" />
-        <item itemvalue="JUnit.PawnMoveTests" />
-        <item itemvalue="JUnit.KingMoveTests.kingEmptyBoard" />
       </list>
     </recent_temporary>
   </component>
@@ -166,7 +166,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696548882022</updated>
       <workItem from="1696548882933" duration="12805000" />
-      <workItem from="1696603484578" duration="10045000" />
+      <workItem from="1696603484578" duration="22442000" />
     </task>
     <servers />
   </component>

@@ -45,14 +45,10 @@ public class CBoard implements ChessBoard {
         addPiece(new CPosition(1, 6), new Bishop(ChessGame.TeamColor.WHITE));
         addPiece(new CPosition(1, 7), new Knight(ChessGame.TeamColor.WHITE));
         addPiece(new CPosition(1, 8), new Rook(ChessGame.TeamColor.WHITE));
-
-
         // Place white pawns
         for (int column = 1; column <= 8; ++column) {
             addPiece(new CPosition(2, column), new Pawn(ChessGame.TeamColor.WHITE));
         }
-
-
         // Place black pieces
         addPiece(new CPosition(8, 1), new Rook(ChessGame.TeamColor.BLACK));
         addPiece(new CPosition(8, 2), new Knight(ChessGame.TeamColor.BLACK));
@@ -68,18 +64,12 @@ public class CBoard implements ChessBoard {
             addPiece(new CPosition(7, column), new Pawn(ChessGame.TeamColor.BLACK));
         }
 
-
-
         // Clear the rest of the board
         for (int row = 2; row < 6; ++row) {
             for (int column = 0; column <= 7; ++column) {
                 pArr[row][column] = null;
             }
         }
-
-//        for(int i = 0; i < pArr.length;i++){
-//            System.out.println(Arrays.toString(pArr[i]));
-//        }
     }
 
 }
