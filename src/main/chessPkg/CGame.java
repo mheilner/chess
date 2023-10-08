@@ -2,9 +2,7 @@ package chessPkg;
 
 import chess.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CGame implements ChessGame {
 
@@ -33,10 +31,33 @@ public class CGame implements ChessGame {
         // Implement the logic to calculate valid moves for the piece at the given position
         ChessPiece piece = board.getPiece(startPosition);
         if (piece != null) { // Removed && piece.getTeamColor() == currentTurn
-            return piece.pieceMoves(board, startPosition);
+            Collection<ChessMove> moves = piece.pieceMoves(board, startPosition);
+            List<ChessMove> valids = new ArrayList<>();
+            for(ChessMove move : moves){
+                System.out.println(move);
+                ChessPiece potentiallyCapturedPiece = board.getPiece(move.getEndPosition());
+
+                board.addPiece(move.getEndPosition(), piece);
+                board.addPiece(move.getStartPosition(), null);
+                //After making the move, is it still in check, if it is revert
+                if(isInCheck(piece.getTeamColor())){
+                    board.addPiece(move.getStartPosition(), piece);
+                    board.addPiece(move.getEndPosition(), potentiallyCapturedPiece);
+                }else{
+                    board.addPiece(move.getStartPosition(), piece);
+                    board.addPiece(move.getEndPosition(), potentiallyCapturedPiece);
+
+                    valids.add(move);
+                }
+            }
+
+
+            System.out.println(valids);
+            return valids;
         }
         return null;
     }
+
 
     @Override
     public void makeMove(ChessMove move) throws InvalidMoveException {
@@ -126,16 +147,18 @@ public class CGame implements ChessGame {
                         // Iterate through the valid moves of the piece
                         Collection<ChessMove> validMoves = validMoves(startPosition);
                         for (ChessMove move : validMoves) {
+                            ChessPiece potentiallyCapturedPiece = board.getPiece(move.getEndPosition());
+
                             board.addPiece(move.getEndPosition(), piece);
                             board.addPiece(move.getStartPosition(), null);
                             //After making the move, is it still in check, if it is revert
                             if(isInCheck(teamColor)){
                                 board.addPiece(move.getStartPosition(), piece);
-                                board.addPiece(move.getEndPosition(), null);
+                                board.addPiece(move.getEndPosition(), potentiallyCapturedPiece);
                                 return true;
                             }else{
                                 board.addPiece(move.getStartPosition(), piece);
-                                board.addPiece(move.getEndPosition(), null);
+                                board.addPiece(move.getEndPosition(), potentiallyCapturedPiece);
                             }
                         }
                     }
@@ -164,8 +187,23 @@ public class CGame implements ChessGame {
                     if (piece != null && piece.getTeamColor() == teamColor) {
                         // Iterate through the valid moves of the piece
                         Collection<ChessMove> validMoves = validMoves(startPosition);
-                        if (!validMoves.isEmpty()) {
-                            return false; // The player has at least one valid move
+                        if (validMoves.isEmpty()) {
+                            return true; //If no valid moves, then return false
+                        }
+                        for(ChessMove move : validMoves){
+                            ChessPiece potentiallyCapturedPiece = board.getPiece(move.getEndPosition());
+
+                            board.addPiece(move.getEndPosition(), piece);
+                            board.addPiece(move.getStartPosition(), null);
+                            //After making the move, is it still in check, if it is revert
+                            if(isInCheck(teamColor)){
+                                board.addPiece(move.getStartPosition(), piece);
+                                board.addPiece(move.getEndPosition(), potentiallyCapturedPiece);
+                            }else {
+                                board.addPiece(move.getStartPosition(), piece);
+                                board.addPiece(move.getEndPosition(), potentiallyCapturedPiece);
+                                return false;
+                            }
                         }
                     }
                 }
