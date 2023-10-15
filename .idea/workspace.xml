@@ -5,8 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/AuthToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/requests/CreateGameRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/requests/JoinGameRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/requests/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/requests/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/results/CreateGameResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/results/GeneralResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/results/JoinGameResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/results/ListGamesResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/results/LoginResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/results/RegisterResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/ClearService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/ListGamesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/LogoutService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/starter/dataAccess/DataAccessException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chessPkg/CGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,11 +86,14 @@
       <recent name="$PROJECT_DIR$/src/test" />
       <recent name="$PROJECT_DIR$/src/starter" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/starter/dataAccess" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoffTests in chess">
+  <component name="RunManager" selected="JUnit.passoffTests.chessTests in chess">
     <configuration name="ChessGameTests$ValidMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
@@ -115,22 +141,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChessGameTests.whiteTeamCheckmate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
-      <option name="METHOD_NAME" value="whiteTeamCheckmate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="passoffTests in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
@@ -145,13 +155,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="passoffTests.chessTests in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.passoffTests.chessTests in chess" />
         <item itemvalue="JUnit.passoffTests in chess" />
         <item itemvalue="JUnit.ChessGameTests$ValidMoveTests.forcedMove" />
         <item itemvalue="JUnit.ChessGameTests$ValidMoveTests" />
         <item itemvalue="JUnit.ChessGameTests.stalemate" />
-        <item itemvalue="JUnit.ChessGameTests.whiteTeamCheckmate" />
       </list>
     </recent_temporary>
   </component>
@@ -164,7 +188,9 @@
       <option name="presentableId" value="Default" />
       <updated>1696548882022</updated>
       <workItem from="1696548882933" duration="12805000" />
-      <workItem from="1696603484578" duration="39825000" />
+      <workItem from="1696603484578" duration="40113000" />
+      <workItem from="1696866862147" duration="504000" />
+      <workItem from="1697298402170" duration="5427000" />
     </task>
     <servers />
   </component>
