@@ -5,30 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/AuthToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/requests/CreateGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/requests/JoinGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/requests/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/requests/RegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/results/CreateGameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/results/GeneralResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/results/JoinGameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/results/ListGamesResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/results/LoginResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/results/RegisterResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/ClearService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/ListGamesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/LogoutService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/starter/dataAccess/DataAccessException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +166,7 @@
       <workItem from="1696548882933" duration="12805000" />
       <workItem from="1696603484578" duration="40113000" />
       <workItem from="1696866862147" duration="504000" />
-      <workItem from="1697298402170" duration="5427000" />
+      <workItem from="1697298402170" duration="6384000" />
     </task>
     <servers />
   </component>
