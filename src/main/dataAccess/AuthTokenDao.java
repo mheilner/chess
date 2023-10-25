@@ -35,6 +35,28 @@ public class AuthTokenDao {
     }
 
     /**
+     * Check if an authToken exists.
+     * @param token The authToken to check.
+     * @return true if the token exists, false otherwise.
+     */
+    public boolean tokenExists(String token) {
+        for (AuthToken authToken : authTokens) {
+            if (authToken.getAuthToken().equals(token)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Remove a specific authToken.
+     * @param token The authToken to remove.
+     */
+    public void removeToken(String token) {
+        authTokens.removeIf(authToken -> authToken.getAuthToken().equals(token));
+    }
+
+    /**
      * Clear all authTokens.
      */
     public void clear() {

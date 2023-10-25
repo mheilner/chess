@@ -73,4 +73,44 @@ public class GameDao {
         games.set(index, updatedGame);
     }
 
+    /**
+     * Remove a game by its ID.
+     * @param gameID The gameID to remove.
+     * @throws DataAccessException if the game doesn't exist.
+     */
+    public void remove(int gameID) throws DataAccessException {
+        Game game = find(gameID);
+        if (game == null) {
+            throw new DataAccessException("Game with ID " + gameID + " not found.");
+        }
+        games.remove(game);
+    }
+
+    /**
+     * Claim a spot in a game.
+     * @param gameID The game ID.
+     * @param username The player's username.
+     * @param color "WHITE" or "BLACK".
+     * @throws DataAccessException if the game doesn't exist or the spot is taken.
+     */
+    public void claimSpot(int gameID, String username, String color) throws DataAccessException {
+        Game game = find(gameID);
+        if (game == null) {
+            throw new DataAccessException("Game with ID " + gameID + " not found.");
+        }
+
+        if ("WHITE".equalsIgnoreCase(color)) {
+            if (game.getWhiteUsername() != null) {
+                throw new DataAccessException("White spot is already taken.");
+            }
+            game.setWhiteUsername(username);
+        } else if ("BLACK".equalsIgnoreCase(color)) {
+            if (game.getBlackUsername() != null) {
+                throw new DataAccessException("Black spot is already taken.");
+            }
+            game.setBlackUsername(username);
+        } else {
+            throw new DataAccessException("Invalid color specified.");
+        }
+    }
 }
