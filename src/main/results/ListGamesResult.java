@@ -10,5 +10,24 @@ public class ListGamesResult {
     private List<Game> games;
     private String message;
 
-    // Constructors for success and failure, getters and setters...
+    public ListGamesResult(List<Game> games, String message) {
+        this.games = games;
+        this.message = message;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
