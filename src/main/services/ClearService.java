@@ -1,16 +1,30 @@
 package services;
 
-/**
- * Service responsible for clearing the database.
- */
+import dataAccess.AuthTokenDao;
+import dataAccess.DataAccessException;
+import dataAccess.GameDao;
+import dataAccess.UserDao;
+
 public class ClearService {
 
     /**
-     * Clears the database.
-     * @return True if successfully cleared, else false.
+     * Clears all the data in the database.
+     * @return True if the operation was successful, false otherwise.
      */
     public boolean clear() {
-        // TODO: Implementation here
-        return false;
+        try {
+            UserDao userDao = new UserDao();
+            GameDao gameDao = new GameDao();
+            AuthTokenDao authTokenDao = new AuthTokenDao();
+
+            userDao.clear();
+            gameDao.clear();
+            authTokenDao.clear();
+
+            return true;
+        } catch (DataAccessException e) {
+            // Handle exception, perhaps log it
+            return false;
+        }
     }
 }
