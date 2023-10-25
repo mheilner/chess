@@ -53,4 +53,24 @@ public class GameDao {
         games.clear();
         nextGameID = 1;
     }
+
+    /**
+     * Update an existing game's details.
+     * @param updatedGame The game with updated details.
+     * @throws DataAccessException if the game doesn't exist.
+     */
+    public void updateGame(Game updatedGame) throws DataAccessException {
+        int index = -1;
+        for (int i = 0; i < games.size(); i++) {
+            if (games.get(i).getGameID() == updatedGame.getGameID()) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            throw new DataAccessException("Game with ID " + updatedGame.getGameID() + " not found.");
+        }
+        games.set(index, updatedGame);
+    }
+
 }
