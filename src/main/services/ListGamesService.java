@@ -10,7 +10,7 @@ import java.util.List;
 public class ListGamesService {
 
     private GameDao gameDao = new GameDao();
-    private AuthTokenDao authTokenDao = new AuthTokenDao();
+    private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
     /**
      * Lists all games.

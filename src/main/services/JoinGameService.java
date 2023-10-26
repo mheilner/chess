@@ -8,7 +8,7 @@ import requests.JoinGameRequest;
 public class JoinGameService {
 
     private GameDao gameDao = new GameDao();
-    private AuthTokenDao authTokenDao = new AuthTokenDao();
+    private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
     public boolean joinGame(JoinGameRequest request, String authToken) {
         try {

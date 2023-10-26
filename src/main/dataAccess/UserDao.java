@@ -7,7 +7,18 @@ import java.util.List;
  * Data Access Object for User operations.
  */
 public class UserDao {
+    private static UserDao instance; // Singleton instance
     private List<User> users = new ArrayList<>();
+
+    private UserDao() {} // Private constructor to prevent direct instantiation
+
+    // Public method to get the Singleton instance
+    public static UserDao getInstance() {
+        if (instance == null) {
+            instance = new UserDao();
+        }
+        return instance;
+    }
     /**
      * Insert a new user into the database.
      * @param user The user to insert.

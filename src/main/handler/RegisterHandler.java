@@ -52,7 +52,7 @@ public class RegisterHandler implements Route {
                 registerResult.setMessage("Error: bad request");
             }
         } else {
-            response.status(200); // This line may be redundant as 200 is the default, but it's clear.
+            response.status(200);
         }
 
         // Serialize the RegisterResult into the response body

@@ -4,7 +4,7 @@ import dataAccess.AuthTokenDao;
 
 public class LogoutService {
 
-    private AuthTokenDao authTokenDao = new AuthTokenDao();
+    private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
     public boolean logout(String authToken) {
         try {

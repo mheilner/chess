@@ -12,9 +12,9 @@ public class ClearService {
      * @return True if the operation was successful, false otherwise.
      */
     public boolean clear() {
-        UserDao userDao = new UserDao();
+        UserDao userDao = UserDao.getInstance();
         GameDao gameDao = new GameDao();
-        AuthTokenDao authTokenDao = new AuthTokenDao();
+        AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
         userDao.clear();
         gameDao.clear();

@@ -7,7 +7,18 @@ import java.util.List;
  * Data Access Object for AuthToken operations.
  */
 public class AuthTokenDao {
+    private static AuthTokenDao instance; // Singleton instance
     private List<AuthToken> authTokens = new ArrayList<>();
+
+    private AuthTokenDao() {} // Private constructor to prevent direct instantiation
+
+    // Public method to get the Singleton instance
+    public static AuthTokenDao getInstance() {
+        if (instance == null) {
+            instance = new AuthTokenDao();
+        }
+        return instance;
+    }
     /**
      * Insert a new authToken into the database.
      * @param authToken The authToken to insert.

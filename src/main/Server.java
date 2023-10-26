@@ -1,5 +1,4 @@
-import handler.LoginHandler;
-import handler.RegisterHandler;
+import handler.*;
 
 import static spark.Spark.*;
 
@@ -34,6 +33,8 @@ public class Server {
         post("/user", RegisterHandler.getInstance());
 
         post("/session", LoginHandler.getInstance());
+
+        delete("/session", LogoutHandler.getInstance());
 
         //        post("/register", (req, res) -> {
 //            // TODO: Handle register request

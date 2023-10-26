@@ -11,9 +11,9 @@ import results.RegisterResult;
 import java.util.UUID;
 
 public class RegisterService {
+    private UserDao userDao = UserDao.getInstance();
+    private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
-    private UserDao userDao = new UserDao();
-    private AuthTokenDao authTokenDao = new AuthTokenDao();
 
     public RegisterResult register(RegisterRequest request) {
         try {
