@@ -46,7 +46,7 @@ public class LoginTest {
         LoginResult result = loginService.login(request);
 
         assertNull(result.getAuthToken());
-        assertEquals("Invalid username or password.", result.getMessage());
+        assertEquals("Error: Invalid username or password.", result.getMessage());
     }
 
     @Test
@@ -63,6 +63,6 @@ public class LoginTest {
         LoginResult result = loginService.login(request);
 
         assertNull(result.getAuthToken());
-        assertEquals("Invalid username or password.", result.getMessage());
+        assertEquals("Error: Invalid username or password.", result.getMessage());
     }
 }

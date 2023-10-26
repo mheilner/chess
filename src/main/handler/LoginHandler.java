@@ -40,7 +40,7 @@ public class LoginHandler implements Route {
 
         // Check for errors
         if (loginResult.getMessage() != null) {
-            if ("Invalid username or password.".equals(loginResult.getMessage())) {
+            if ("Error: Invalid username or password.".equals(loginResult.getMessage())) {
                 response.status(401);
             } else {
                 response.status(500);

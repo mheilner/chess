@@ -23,14 +23,14 @@ public class LoginService {
 
             if (user == null) {
                 System.out.println("No user found with username: " + request.getUsername());
-                return new LoginResult("Invalid username or password.");
+                return new LoginResult("Error: Invalid username or password.");
             } else {
                 System.out.println("User found with username: " + user.getUsername());
             }
 
             if (!user.getPassword().equals(request.getPassword())) {
                 System.out.println("Provided password does not match stored password for user: " + request.getUsername());
-                return new LoginResult("Invalid username or password.");
+                return new LoginResult("Error: Invalid username or password.");
             } else {
                 System.out.println("Password matches for user: " + request.getUsername());
             }
