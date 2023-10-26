@@ -7,6 +7,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+import java.util.Objects;
+
 public class ListGamesHandler implements Route {
 
     private static ListGamesHandler instance;
@@ -42,7 +44,7 @@ public class ListGamesHandler implements Route {
         // Set the response type to JSON
         response.type("application/json");
 
-        if (result.getMessage() == null) {
+        if (result.getMessage() == null || Objects.equals(result.getMessage(), "No games available.")) {
             response.status(200);
         } else if ("Invalid authentication token.".equals(result.getMessage())) {
             response.status(401);
