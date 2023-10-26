@@ -40,15 +40,10 @@ public class Server {
 
         post("/game", CreateGameHandler.getInstance());
 
+        put("/game", new JoinGameHandler());
 
+        delete("/db", ClearHandler.getInstance());
 
-        //        post("/register", (req, res) -> {
-//            // TODO: Handle register request
-//            return "Register response"; // Placeholder
-//        });
-//
-//        // ... Add other routes as needed ...
 
     }
-
 }

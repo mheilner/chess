@@ -93,13 +93,22 @@ public class GameDao {
      * Claim a spot in a game.
      * @param gameID The game ID.
      * @param username The player's username.
-     * @param color "WHITE" or "BLACK".
+     * @param color "WHITE", "BLACK", or null.
      * @throws DataAccessException if the game doesn't exist or the spot is taken.
      */
     public void claimSpot(int gameID, String username, String color) throws DataAccessException {
         Game game = find(gameID);
         if (game == null) {
             throw new DataAccessException("Game with ID " + gameID + " not found.");
+        }
+
+        if (username.equals(game.getWhiteUsername()) || username.equals(game.getBlackUsername())) {
+            throw new DataAccessException("User is already part of the game.");
+        }
+
+        if (color == null) {
+            // User joins as an observer, so we don't need to do anything further
+            return;
         }
 
         if ("WHITE".equalsIgnoreCase(color)) {
@@ -116,7 +125,6 @@ public class GameDao {
             throw new DataAccessException("Invalid color specified.");
         }
     }
-
     /**
      * Check if a game with the specified name already exists.
      * @param gameName The name of the game.
