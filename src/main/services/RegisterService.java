@@ -17,13 +17,13 @@ public class RegisterService {
 
     public RegisterResult register(RegisterRequest request) {
         try {
-            System.out.println("Starting registration for user: " + request.getUsername());
-
             // Check if user with given username already exists
             User existingUser = userDao.find(request.getUsername());
             if (existingUser != null) {
                 System.out.println("User with username " + request.getUsername() + " already exists.");
                 return new RegisterResult("Username already exists.");
+            } else if (request.getPassword() == null) {
+                return new RegisterResult("No password entered.");
             }
             System.out.println("No existing user found with username " + request.getUsername() + ". Proceeding with registration.");
 
