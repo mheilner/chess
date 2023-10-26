@@ -17,18 +17,28 @@ public class JoinGameService {
             if (username == null) {
                 return new JoinGameResult("Invalid authentication token.");
             }
+
+            // Check if user is already part of the game
+            if (username.equals(gameDao.getWhitePlayer(request.getGameID())) ||
+                    username.equals(gameDao.getBlackPlayer(request.getGameID()))) {
+                return new JoinGameResult("User is already part of the game.");
+            }
+
+            // Check if the spot user wants to claim is already taken
+            if ("WHITE".equalsIgnoreCase(request.getPlayerColor()) &&
+                    gameDao.getWhitePlayer(request.getGameID()) != null) {
+                return new JoinGameResult("White spot is already taken.");
+            }
+            if ("BLACK".equalsIgnoreCase(request.getPlayerColor()) &&
+                    gameDao.getBlackPlayer(request.getGameID()) != null) {
+                return new JoinGameResult("Black spot is already taken.");
+            }
+
             gameDao.claimSpot(request.getGameID(), username, request.getPlayerColor());
             return new JoinGameResult(); // Success
         } catch (DataAccessException e) {
             // Depending on the error message you can return different results
-            if ("Invalid authentication token.".equals(e.getMessage())) {
-                return new JoinGameResult("Error: unauthorized");
-            } else if ("White spot is already taken.".equals(e.getMessage())
-                    || "Black spot is already taken.".equals(e.getMessage())) {
-                return new JoinGameResult("Error: already taken");
-            } else {
-                return new JoinGameResult("Error: " + e.getMessage());
-            }
+            return new JoinGameResult("Error: " + e.getMessage());
         }
     }
 }

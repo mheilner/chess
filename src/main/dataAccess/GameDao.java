@@ -138,4 +138,34 @@ public class GameDao {
         }
         return false;
     }
+
+    /**
+     * Get the username of the player who claimed the white spot in a game.
+     * @param gameID The ID of the game.
+     * @return The username of the white player if found; null otherwise.
+     * @throws DataAccessException if the game doesn't exist.
+     */
+    public String getWhitePlayer(int gameID) throws DataAccessException {
+        Game game = find(gameID);
+        if (game == null) {
+            throw new DataAccessException("Game with ID " + gameID + " not found.");
+        }
+        return game.getWhiteUsername();
+    }
+
+    /**
+     * Get the username of the player who claimed the black spot in a game.
+     * @param gameID The ID of the game.
+     * @return The username of the black player if found; null otherwise.
+     * @throws DataAccessException if the game doesn't exist.
+     */
+    public String getBlackPlayer(int gameID) throws DataAccessException {
+        Game game = find(gameID);
+        if (game == null) {
+            throw new DataAccessException("Game with ID " + gameID + " not found.");
+        }
+        return game.getBlackUsername();
+    }
+
+
 }
