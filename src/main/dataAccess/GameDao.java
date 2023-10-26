@@ -9,10 +9,8 @@ import java.util.List;
  * Data Access Object for Game operations.
  */
 public class GameDao {
-
     private List<Game> games = new ArrayList<>();
     private int nextGameID = 1;
-
     /**
      * Insert a new game into the database.
      * @param game The game to insert.
@@ -23,7 +21,6 @@ public class GameDao {
         games.add(game);
         return game.getGameID();
     }
-
     /**
      * Find a game by its ID.
      * @param gameID The ID to search for.
@@ -37,7 +34,6 @@ public class GameDao {
         }
         return null;
     }
-
     /**
      * Retrieve all games.
      * @return List of all games.
@@ -45,7 +41,6 @@ public class GameDao {
     public List<Game> findAll() {
         return new ArrayList<>(games);
     }
-
     /**
      * Clear all games.
      */
@@ -53,7 +48,6 @@ public class GameDao {
         games.clear();
         nextGameID = 1;
     }
-
     /**
      * Update an existing game's details.
      * @param updatedGame The game with updated details.
@@ -72,7 +66,6 @@ public class GameDao {
         }
         games.set(index, updatedGame);
     }
-
     /**
      * Remove a game by its ID.
      * @param gameID The gameID to remove.
@@ -85,7 +78,6 @@ public class GameDao {
         }
         games.remove(game);
     }
-
     /**
      * Claim a spot in a game.
      * @param gameID The game ID.

@@ -12,7 +12,7 @@ public class ClearService {
      * @return True if the operation was successful, false otherwise.
      */
     public boolean clear() {
-        try {
+//        try {
             UserDao userDao = new UserDao();
             GameDao gameDao = new GameDao();
             AuthTokenDao authTokenDao = new AuthTokenDao();
@@ -22,9 +22,9 @@ public class ClearService {
             authTokenDao.clear();
 
             return true;
-        } catch (DataAccessException e) {
-            // Handle exception, perhaps log it
-            return false;
-        }
+//        } catch (DataAccessException e) {
+//            // Handle exception, perhaps log it
+//            return false;
+//        }
     }
 }

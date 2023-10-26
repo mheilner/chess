@@ -1,17 +1,13 @@
 package dataAccess;
 
 import model.User;
-
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Data Access Object for User operations.
  */
 public class UserDao {
-
     private List<User> users = new ArrayList<>();
-
     /**
      * Insert a new user into the database.
      * @param user The user to insert.
@@ -24,7 +20,6 @@ public class UserDao {
         }
         users.add(user);
     }
-
     /**
      * Find a user by their username.
      * @param username The username to search for.
@@ -38,11 +33,8 @@ public class UserDao {
         }
         return null;
     }
-
     /**
      * Clear all users.
      */
-    public void clear() {
-        users.clear();
-    }
+    public void clear() {users.clear();}
 }

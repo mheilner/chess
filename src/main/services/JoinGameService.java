@@ -1,19 +1,26 @@
 package services;
 
+import dataAccess.GameDao;
+import dataAccess.AuthTokenDao;
+import dataAccess.DataAccessException;
 import requests.JoinGameRequest;
 
-/**
- * Service responsible for joining a game.
- */
 public class JoinGameService {
 
-    /**
-     * Allows a user to join a game.
-     * @param request Contains details of the game and the player's desired color.
-     * @return True if successfully joined, else false.
-     */
-    public boolean joinGame(JoinGameRequest request) {
-        // TODO: Implementation here
-        return false;
+    private GameDao gameDao = new GameDao();
+    private AuthTokenDao authTokenDao = new AuthTokenDao();
+
+    public boolean joinGame(JoinGameRequest request, String authToken) {
+        try {
+            String username = authTokenDao.findUserByToken(authToken);
+            if(username == null) {
+                throw new DataAccessException("Invalid authentication token.");
+            }
+            gameDao.claimSpot(request.getGameID(), username, request.getPlayerColor());
+            return true;
+        } catch (DataAccessException e) {
+            // Log the error if needed
+            return false;
+        }
     }
 }

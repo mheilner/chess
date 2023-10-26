@@ -1,25 +1,18 @@
 package dataAccess;
 
 import model.AuthToken;
-
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Data Access Object for AuthToken operations.
  */
 public class AuthTokenDao {
-
     private List<AuthToken> authTokens = new ArrayList<>();
-
     /**
      * Insert a new authToken into the database.
      * @param authToken The authToken to insert.
      */
-    public void insert(AuthToken authToken) {
-        authTokens.add(authToken);
-    }
-
+    public void insert(AuthToken authToken) {authTokens.add(authToken);}
     /**
      * Find a user by their authToken.
      * @param token The authToken to search for.
@@ -52,10 +45,7 @@ public class AuthTokenDao {
      * Remove a specific authToken.
      * @param token The authToken to remove.
      */
-    public void removeToken(String token) {
-        authTokens.removeIf(authToken -> authToken.getAuthToken().equals(token));
-    }
-
+    public void removeToken(String token) {authTokens.removeIf(authToken -> authToken.getAuthToken().equals(token));}
     /**
      * Clear all authTokens.
      */

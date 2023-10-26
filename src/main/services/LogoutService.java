@@ -1,17 +1,24 @@
 package services;
 
-/**
- * Service responsible for logging out a user.
- */
+import dataAccess.AuthTokenDao;
+
 public class LogoutService {
 
-    /**
-     * Logs out a user based on authToken.
-     * @param authToken Token of the user to be logged out.
-     * @return True if successfully logged out, else false.
-     */
+    private AuthTokenDao authTokenDao = new AuthTokenDao();
+
     public boolean logout(String authToken) {
-        // TODO: Implementation here
-        return false;
+        try {
+            // Check if the authToken exists
+            if (!authTokenDao.tokenExists(authToken)) {
+                return false;
+            }
+
+            // Remove the authToken
+            authTokenDao.removeToken(authToken);
+            return true;
+        } catch (Exception e) {
+            // Log the error if needed
+            return false;
+        }
     }
 }
