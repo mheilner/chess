@@ -8,21 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/Server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handler/LoginHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handler/RegisterHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/AuthToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/CreateGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/requests/CreateGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/JoinGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/requests/JoinGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/requests/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/requests/RegisterRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/services/ClearService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ClearService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/ListGamesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ListGamesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,22 +82,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoffTests.chessTests in chess">
-    <configuration name="ChessGameTests$ValidMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.ChessGameTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests$ValidMoveTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="ChessGameTests$ValidMoveTests.forcedMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
@@ -121,17 +99,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChessGameTests.stalemate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
-      <option name="METHOD_NAME" value="stalemate" />
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests.successLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="METHOD_NAME" value="successLogin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -167,11 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StandardAPITests.successLogin" />
+        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="JUnit.passoffTests.chessTests in chess" />
         <item itemvalue="JUnit.passoffTests in chess" />
         <item itemvalue="JUnit.ChessGameTests$ValidMoveTests.forcedMove" />
-        <item itemvalue="JUnit.ChessGameTests$ValidMoveTests" />
-        <item itemvalue="JUnit.ChessGameTests.stalemate" />
       </list>
     </recent_temporary>
   </component>
@@ -190,12 +183,23 @@
       <workItem from="1697559634828" duration="267000" />
       <workItem from="1698118267700" duration="3338000" />
       <workItem from="1698208152986" duration="3426000" />
-      <workItem from="1698288223624" duration="2485000" />
+      <workItem from="1698288223624" duration="12128000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -17,6 +17,9 @@ public class LoginService {
     public LoginResult login(LoginRequest request) {
         try {
             User user = userDao.find(request.getUsername());
+            System.out.println("User retrieved: " + (user != null ? user.getUsername() : "No user found"));
+
+            System.out.println("Provided password: " + request.getPassword());
 
             if (user == null || !user.getPassword().equals(request.getPassword())) {
                 return new LoginResult("Invalid username or password.");

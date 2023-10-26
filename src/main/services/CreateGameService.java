@@ -14,16 +14,11 @@ public class CreateGameService {
      * @return CreateGameResult containing the gameID of the created game.
      */
     public CreateGameResult createGame(CreateGameRequest request) {
-//        try {
-            GameDao gameDao = new GameDao();
+        GameDao gameDao = new GameDao();
 
-            Game newGame = new Game(0, null, null, request.getGameName(), null);  // gameID and players will be set later
-            int gameID = gameDao.insert(newGame);
+        Game newGame = new Game(0, null, null, request.getGameName(), null);  // gameID and players will be set later
+        int gameID = gameDao.insert(newGame);
 
-            return new CreateGameResult(gameID);
-//        } catch (DataAccessException e) {
-//            // Handle exception, perhaps log it and return an error result
-//            return new CreateGameResult(e.getMessage());
-//        }
+        return new CreateGameResult(gameID);
     }
 }
