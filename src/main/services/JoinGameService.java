@@ -13,11 +13,13 @@ public class JoinGameService {
 
     public JoinGameResult joinGame(JoinGameRequest request, String authToken) {
         try {
+            if (gameDao.find(request.getGameID())==null){
+                return  new JoinGameResult("Invalid GameID Error");
+            }
             String username = authTokenDao.findUserByToken(authToken);
             if (username == null) {
                 return new JoinGameResult("Error: Invalid authentication token.");
             }
-
             // Check if user is already part of the game
             if (username.equals(gameDao.getWhitePlayer(request.getGameID())) ||
                     username.equals(gameDao.getBlackPlayer(request.getGameID()))) {

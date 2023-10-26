@@ -28,9 +28,12 @@ public class JoinGameHandler implements Route {
         response.type("application/json");
 
         // Check for errors
+        // Check for errors
         if (joinGameResult.getMessage() != null) {
             if ("Error: Invalid authentication token.".equals(joinGameResult.getMessage())) {
                 response.status(401);  // Unauthorized
+            } else if ("Invalid GameID Error".equals(joinGameResult.getMessage())) {
+                response.status(400);  // Bad request
             } else if (joinGameResult.getMessage().startsWith("Error: ")) {
                 if ("Error: unauthorized".equals(joinGameResult.getMessage())) {
                     response.status(401);
@@ -45,6 +48,7 @@ public class JoinGameHandler implements Route {
         } else {
             response.status(200);  // Success
         }
+
 
         return gson.toJson(joinGameResult);
     }
