@@ -78,19 +78,10 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.unitTests in chess">
-    <configuration name="JoinGameTest.testJoinGameFailInvalidAuthToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StandardAPITests">
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Server" />
       <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="unitTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.JoinGameTest" />
-      <option name="METHOD_NAME" value="testJoinGameFailInvalidAuthToken" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -110,7 +101,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.badAuthWatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests.badColorJoin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
@@ -120,13 +111,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="badAuthWatch" />
+      <option name="METHOD_NAME" value="badColorJoin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.badGameIDWatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests.goodWatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
@@ -136,7 +127,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="badGameIDWatch" />
+      <option name="METHOD_NAME" value="goodWatch" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,11 +149,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.unitTests in chess" />
         <item itemvalue="JUnit.StandardAPITests" />
-        <item itemvalue="JUnit.StandardAPITests.badGameIDWatch" />
-        <item itemvalue="JUnit.JoinGameTest.testJoinGameFailInvalidAuthToken" />
-        <item itemvalue="JUnit.StandardAPITests.badAuthWatch" />
+        <item itemvalue="JUnit.StandardAPITests.badColorJoin" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.StandardAPITests.goodWatch" />
+        <item itemvalue="JUnit.unitTests in chess" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +172,7 @@
       <workItem from="1697559634828" duration="267000" />
       <workItem from="1698118267700" duration="3338000" />
       <workItem from="1698208152986" duration="3426000" />
-      <workItem from="1698288223624" duration="32629000" />
+      <workItem from="1698288223624" duration="35129000" />
     </task>
     <servers />
   </component>

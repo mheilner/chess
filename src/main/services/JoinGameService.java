@@ -29,11 +29,11 @@ public class JoinGameService {
             // Check if the spot user wants to claim is already taken
             if ("WHITE".equalsIgnoreCase(request.getPlayerColor()) &&
                     gameDao.getWhitePlayer(request.getGameID()) != null) {
-                return new JoinGameResult("White spot is already taken.");
+                return new JoinGameResult("Error: White spot is already taken.");
             }
             if ("BLACK".equalsIgnoreCase(request.getPlayerColor()) &&
                     gameDao.getBlackPlayer(request.getGameID()) != null) {
-                return new JoinGameResult("Black spot is already taken.");
+                return new JoinGameResult("Error: Black spot is already taken.");
             }
 
             gameDao.claimSpot(request.getGameID(), username, request.getPlayerColor());
