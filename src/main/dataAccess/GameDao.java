@@ -9,8 +9,19 @@ import java.util.List;
  * Data Access Object for Game operations.
  */
 public class GameDao {
+    private static GameDao instance; // Singleton instance
     private List<Game> games = new ArrayList<>();
     private int nextGameID = 1;
+
+    private GameDao() {} // Private constructor to prevent direct instantiation
+
+    // Public method to get the Singleton instance
+    public static GameDao getInstance() {
+        if (instance == null) {
+            instance = new GameDao();
+        }
+        return instance;
+    }
     /**
      * Insert a new game into the database.
      * @param game The game to insert.
@@ -104,5 +115,19 @@ public class GameDao {
         } else {
             throw new DataAccessException("Invalid color specified.");
         }
+    }
+
+    /**
+     * Check if a game with the specified name already exists.
+     * @param gameName The name of the game.
+     * @return true if the game exists, false otherwise.
+     */
+    public boolean gameNameExists(String gameName) {
+        for (Game game : games) {
+            if (game.getGameName().equals(gameName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

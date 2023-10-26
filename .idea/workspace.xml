@@ -8,20 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/handler/LogoutHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/requests/LogoutRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/results/LogoutResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handler/CreateGameHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handler/ListGamesHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/handler/RegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/RegisterHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/services/ClearService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ClearService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/services/ListGamesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ListGamesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/LogoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LogoutService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +184,7 @@
       <workItem from="1697559634828" duration="267000" />
       <workItem from="1698118267700" duration="3338000" />
       <workItem from="1698208152986" duration="3426000" />
-      <workItem from="1698288223624" duration="13517000" />
+      <workItem from="1698288223624" duration="14441000" />
     </task>
     <servers />
   </component>

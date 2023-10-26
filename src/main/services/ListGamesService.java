@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ListGamesService {
 
-    private GameDao gameDao = new GameDao();
+    private GameDao gameDao = GameDao.getInstance();
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
     /**

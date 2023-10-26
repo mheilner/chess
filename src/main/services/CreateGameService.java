@@ -14,7 +14,12 @@ public class CreateGameService {
      * @return CreateGameResult containing the gameID of the created game.
      */
     public CreateGameResult createGame(CreateGameRequest request) {
-        GameDao gameDao = new GameDao();
+        GameDao gameDao = GameDao.getInstance();
+
+        // Check if a game with the given name already exists
+        if (gameDao.gameNameExists(request.getGameName())) {
+            return new CreateGameResult("A game with this name already exists. Please choose another name.");
+        }
 
         Game newGame = new Game(0, null, null, request.getGameName(), null);  // gameID and players will be set later
         int gameID = gameDao.insert(newGame);

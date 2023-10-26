@@ -13,7 +13,7 @@ public class ClearService {
      */
     public boolean clear() {
         UserDao userDao = UserDao.getInstance();
-        GameDao gameDao = new GameDao();
+        GameDao gameDao = GameDao.getInstance();
         AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
         userDao.clear();

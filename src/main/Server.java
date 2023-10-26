@@ -36,6 +36,12 @@ public class Server {
 
         delete("/session", LogoutHandler.getInstance());
 
+        get("/game", ListGamesHandler.getInstance());
+
+        post("/game", CreateGameHandler.getInstance());
+
+
+
         //        post("/register", (req, res) -> {
 //            // TODO: Handle register request
 //            return "Register response"; // Placeholder
