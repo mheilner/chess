@@ -26,4 +26,5 @@ public class CreateGameService {
 
         return new CreateGameResult(gameID);
     }
+
 }

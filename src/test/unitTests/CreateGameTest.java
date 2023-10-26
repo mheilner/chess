@@ -42,7 +42,7 @@ public class CreateGameTest {
         CreateGameRequest request2 = new CreateGameRequest("ChessMatch2");
         CreateGameResult result = createGameService.createGame(request2);
 
-        assertEquals(0, result.getGameID());  // Assuming 0 indicates no game was created.
+        assertEquals(null, result.getGameID());  // Assuming 0 indicates no game was created.
         assertEquals("A game with this name already exists. Please choose another name.", result.getMessage());
     }
 }

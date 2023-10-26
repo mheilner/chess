@@ -4,14 +4,14 @@ package results;
  * Represents the result of creating a game.
  */
 public class CreateGameResult {
-    private int gameID;
+    private Integer gameID;
     private String message;
 
     /**
      * Constructor for a successful game creation.
      * @param gameID The ID of the created game.
      */
-    public CreateGameResult(int gameID) {
+    public CreateGameResult(Integer gameID) {
         this.gameID = gameID;
     }
 
@@ -27,7 +27,7 @@ public class CreateGameResult {
      * Gets the game ID.
      * @return The game ID.
      */
-    public int getGameID() {
+    public Integer getGameID() {
         return gameID;
     }
 
@@ -35,7 +35,7 @@ public class CreateGameResult {
      * Sets the game ID.
      * @param gameID The game ID to set.
      */
-    public void setGameID(int gameID) {
+    public void setGameID(Integer gameID) {
         this.gameID = gameID;
     }
 

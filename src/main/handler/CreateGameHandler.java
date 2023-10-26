@@ -7,6 +7,7 @@ import services.CreateGameService;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+import dataAccess.AuthTokenDao;
 
 public class CreateGameHandler implements Route {
 
@@ -35,7 +36,11 @@ public class CreateGameHandler implements Route {
         // Extract the authToken from the header
         String authToken = request.headers("authorization");
 
-        // TODO: Validate the authToken and check if the user is authorized to create a game
+        // Validate the authToken
+        if (!AuthTokenDao.getInstance().tokenExists(authToken)) {
+            response.status(401);  // Unauthorized
+            return gson.toJson(new CreateGameResult("Error: unauthorized"));
+        }
 
         // Deserialize the request body
         CreateGameRequest createGameRequest = gson.fromJson(request.body(), CreateGameRequest.class);
@@ -45,7 +50,14 @@ public class CreateGameHandler implements Route {
 
         // Check for errors
         if (createGameResult.getMessage() != null) {
-            response.status(400);  // Bad Request
+            // Determine the appropriate error code based on the message
+            if (createGameResult.getMessage().equals("Error: unauthorized")) {
+                response.status(401);
+            } else if (createGameResult.getMessage().startsWith("Error:")) {
+                response.status(500);
+            } else {
+                response.status(400);
+            }
             return gson.toJson(createGameResult);
         }
 
@@ -53,4 +65,5 @@ public class CreateGameHandler implements Route {
         response.status(200);  // OK
         return gson.toJson(createGameResult);
     }
+
 }
