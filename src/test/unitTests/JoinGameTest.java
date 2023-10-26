@@ -75,7 +75,7 @@ public class JoinGameTest {
         JoinGameRequest request = new JoinGameRequest("WHITE", 1);
 
         JoinGameResult result = joinGameService.joinGame(request, invalidAuthToken);
-        assertEquals("Invalid authentication token.", result.getMessage());
+        assertEquals("Error: Invalid authentication token.", result.getMessage());
     }
 
     @Test

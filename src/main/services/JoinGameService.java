@@ -15,7 +15,7 @@ public class JoinGameService {
         try {
             String username = authTokenDao.findUserByToken(authToken);
             if (username == null) {
-                return new JoinGameResult("Invalid authentication token.");
+                return new JoinGameResult("Error: Invalid authentication token.");
             }
 
             // Check if user is already part of the game

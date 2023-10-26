@@ -29,7 +29,9 @@ public class JoinGameHandler implements Route {
 
         // Check for errors
         if (joinGameResult.getMessage() != null) {
-            if (joinGameResult.getMessage().startsWith("Error: ")) {
+            if ("Error: Invalid authentication token.".equals(joinGameResult.getMessage())) {
+                response.status(401);  // Unauthorized
+            } else if (joinGameResult.getMessage().startsWith("Error: ")) {
                 if ("Error: unauthorized".equals(joinGameResult.getMessage())) {
                     response.status(401);
                 } else if ("Error: already taken".equals(joinGameResult.getMessage())) {
@@ -46,4 +48,5 @@ public class JoinGameHandler implements Route {
 
         return gson.toJson(joinGameResult);
     }
+
 }
