@@ -1,6 +1,7 @@
 package unitTests;
 
 import dataAccess.GameDao;
+import dataAccess.UserDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,11 +17,10 @@ public class ListGamesTest {
 
     @BeforeEach
     public void setUp() {
-        GameDao.getInstance().clear(); // Clear any existing data
-
+        GameDao.getInstance().clear();
+        UserDao.getInstance().clear();
     }
 
-    // Add this method to your JoinGameTest class
     private String registerUserAndGetAuthToken(String user, String pw, String email) {
         // Use your registration service to register a user and get an auth token
         // Replace the following lines with your actual registration code
