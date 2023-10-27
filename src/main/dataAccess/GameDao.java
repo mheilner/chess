@@ -112,10 +112,6 @@ public class GameDao {
             throw new DataAccessException("Game with ID " + gameID + " not found.");
         }
 
-        if (username.equals(game.getWhiteUsername()) || username.equals(game.getBlackUsername())) {
-            throw new DataAccessException("User is already part of the game.");
-        }
-
         if (color == null) {
             // User joins as an observer, so we don't need to do anything further
             return;
@@ -138,6 +134,7 @@ public class GameDao {
             throw new DataAccessException("Invalid color specified.");
         }
     }
+
     /**
      * Check if a game with the specified name already exists.
      * @param gameName The name of the game.
@@ -190,6 +187,7 @@ public class GameDao {
 
     @Override
     public int hashCode() {
-        return Objects.hash(games, nextGameID);
+        return Objects.hash(games);
     }
+
 }

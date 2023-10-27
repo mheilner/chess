@@ -33,4 +33,5 @@ public class ListGamesResult {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }

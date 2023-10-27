@@ -11,9 +11,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/results/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/results/ListGamesResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,30 +39,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/markheilner/Desktop/BYU F23/CS240/chess/src/test",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/markheilner/Desktop/BYU F23/CS240/chess/src/test&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test" />
@@ -82,14 +79,43 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.unitTests in chess">
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Server" />
+    <configuration name="All in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="passoffTests in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="passoffTests.chessTests in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="passoffTests.serverTests in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
@@ -98,40 +124,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StandardAPITests.clearData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="clearData" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StandardAPITests.gamesList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="gamesList" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -153,10 +146,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.unitTests in chess" />
-        <item itemvalue="JUnit.StandardAPITests" />
-        <item itemvalue="JUnit.StandardAPITests.gamesList" />
-        <item itemvalue="JUnit.StandardAPITests.clearData" />
-        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.All in chess" />
+        <item itemvalue="JUnit.passoffTests in chess" />
+        <item itemvalue="JUnit.passoffTests.chessTests in chess" />
+        <item itemvalue="JUnit.passoffTests.serverTests in chess" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +168,8 @@
       <workItem from="1697559634828" duration="267000" />
       <workItem from="1698118267700" duration="3338000" />
       <workItem from="1698208152986" duration="3426000" />
-      <workItem from="1698288223624" duration="44049000" />
+      <workItem from="1698288223624" duration="47192000" />
+      <workItem from="1698394006332" duration="1190000" />
     </task>
     <servers />
   </component>
@@ -201,7 +195,22 @@
           <line>850</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java</url>
+          <line>572</line>
+          <properties class="passoffTests.serverTests.StandardAPITests" method="gamesList">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="existingAuth" language="JAVA" />
+        <watch expression="expectedList" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
