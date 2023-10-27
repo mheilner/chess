@@ -12,7 +12,6 @@ public class LogoutService {
             if (!authTokenDao.tokenExists(authToken)) {
                 return false;
             }
-
             // Remove the authToken
             authTokenDao.removeToken(authToken);
             return true;

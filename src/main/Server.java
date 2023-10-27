@@ -9,7 +9,7 @@ public class Server {
         port(8080);
 
         // Set up static file handling
-        externalStaticFileLocation("web"); // Assuming "web" is the directory containing your assets
+        externalStaticFileLocation("web");
 
 
         createRoutes();
