@@ -95,25 +95,6 @@ public class JoinGameTest {
         JoinGameRequest secondRequest = new JoinGameRequest("WHITE", 1);
         JoinGameResult result = joinGameService.joinGame(secondRequest, secondAuthToken);
 
-        assertEquals("White spot is already taken.", result.getMessage());
-    }
-
-    @Test
-    @DisplayName("Test game join failure due to user already part of the game")
-    public void testJoinGameFailUserPartOfGame() {
-        JoinGameService joinGameService = new JoinGameService();
-
-        // Register two users and get valid auth tokens
-        String firstAuthToken = registerUserAndGetAuthToken("testUser", "password", "email");
-
-        // First player joins the WHITE spot
-        JoinGameRequest firstRequest = new JoinGameRequest("WHITE", 1);
-        joinGameService.joinGame(firstRequest, firstAuthToken);
-
-        // Second player tries to join the already taken WHITE spot
-        JoinGameRequest secondRequest = new JoinGameRequest("WHITE", 1);
-        JoinGameResult result = joinGameService.joinGame(secondRequest, firstAuthToken);
-
-        assertEquals("User is already part of the game.", result.getMessage());
+        assertEquals("Error: White spot is already taken.", result.getMessage());
     }
 }

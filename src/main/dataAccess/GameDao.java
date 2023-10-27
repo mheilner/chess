@@ -1,4 +1,6 @@
 package dataAccess;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 import model.Game;
 
@@ -9,6 +11,8 @@ import java.util.List;
  * Data Access Object for Game operations.
  */
 public class GameDao {
+    private static final Logger LOGGER = Logger.getLogger(GameDao.class.getName());
+
     private static GameDao instance; // Singleton instance
     private List<Game> games = new ArrayList<>();
     private int nextGameID = 1;
@@ -30,6 +34,7 @@ public class GameDao {
     public int insert(Game game) {
         game.setGameID(nextGameID++);
         games.add(game);
+        LOGGER.info("Game inserted with ID: " + game.getGameID());
         return game.getGameID();
     }
     /**
@@ -50,6 +55,7 @@ public class GameDao {
      * @return List of all games.
      */
     public List<Game> findAll() {
+        LOGGER.info("Fetching all games. Current count: " + games.size());
         return new ArrayList<>(games);
     }
     /**
@@ -76,6 +82,7 @@ public class GameDao {
             throw new DataAccessException("Game with ID " + updatedGame.getGameID() + " not found.");
         }
         games.set(index, updatedGame);
+        LOGGER.info("Game with ID: " + updatedGame.getGameID() + " updated.");
     }
     /**
      * Remove a game by its ID.
@@ -88,6 +95,7 @@ public class GameDao {
             throw new DataAccessException("Game with ID " + gameID + " not found.");
         }
         games.remove(game);
+        LOGGER.info("Game with ID: " + gameID + " removed.");
     }
     /**
      * Claim a spot in a game.
@@ -97,6 +105,8 @@ public class GameDao {
      * @throws DataAccessException if the game doesn't exist or the spot is taken.
      */
     public void claimSpot(int gameID, String username, String color) throws DataAccessException {
+        LOGGER.info("Attempting to claim a spot in game with ID: " + gameID + " for user: " + username + " with color: " + color);
+
         Game game = find(gameID);
         if (game == null) {
             throw new DataAccessException("Game with ID " + gameID + " not found.");
@@ -116,11 +126,14 @@ public class GameDao {
                 throw new DataAccessException("White spot is already taken.");
             }
             game.setWhiteUsername(username);
+            LOGGER.info("White spot claimed in game with ID: " + gameID);
         } else if ("BLACK".equalsIgnoreCase(color)) {
             if (game.getBlackUsername() != null) {
                 throw new DataAccessException("Black spot is already taken.");
             }
             game.setBlackUsername(username);
+            LOGGER.info("Black spot claimed in game with ID: " + gameID);
+
         } else {
             throw new DataAccessException("Invalid color specified.");
         }
@@ -167,5 +180,16 @@ public class GameDao {
         return game.getBlackUsername();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameDao gameDao = (GameDao) o;
+        return nextGameID == gameDao.nextGameID && Objects.equals(games, gameDao.games);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(games, nextGameID);
+    }
 }

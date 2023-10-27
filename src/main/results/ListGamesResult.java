@@ -1,6 +1,8 @@
 package results;
 
 import model.Game;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,8 +13,9 @@ public class ListGamesResult {
     private String message;
 
     public ListGamesResult(List<Game> games, String message) {
-        this.games = games;
+        this.games = (games != null) ? games : new ArrayList<Game>();
         this.message = message;
+
     }
 
     public List<Game> getGames() {

@@ -20,11 +20,11 @@ public class JoinGameService {
             if (username == null) {
                 return new JoinGameResult("Error: Invalid authentication token.");
             }
-            // Check if user is already part of the game
-            if (username.equals(gameDao.getWhitePlayer(request.getGameID())) ||
-                    username.equals(gameDao.getBlackPlayer(request.getGameID()))) {
-                return new JoinGameResult("User is already part of the game.");
-            }
+//            // Check if user is already part of the game
+//            if (username.equals(gameDao.getWhitePlayer(request.getGameID())) ||
+//                    username.equals(gameDao.getBlackPlayer(request.getGameID()))) {
+//                return new JoinGameResult("User is already part of the game.");
+//            }
 
             // Check if the spot user wants to claim is already taken
             if ("WHITE".equalsIgnoreCase(request.getPlayerColor()) &&

@@ -1,6 +1,7 @@
 package passoffTests.serverTests;
 
 import chess.ChessGame;
+import model.Game;
 import org.junit.jupiter.api.*;
 import passoffTests.TestFactory;
 import passoffTests.obfuscatedTestClasses.TestServerFacade;
@@ -608,6 +609,7 @@ public class StandardAPITests {
         joinRequest.playerColor = ChessGame.TeamColor.BLACK;
         joinRequest.gameID = game1.gameID;
         serverFacade.verifyJoinPlayer(joinRequest, userA.authToken);
+
 
         //B join game 2 as white
         joinRequest.playerColor = ChessGame.TeamColor.WHITE;
