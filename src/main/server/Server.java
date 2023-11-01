@@ -1,9 +1,14 @@
+package server;
+
+import dataAccess.Database;
 import handler.*;
+
+import javax.xml.crypto.Data;
 
 import static spark.Spark.*;
 
 public class Server {
-
+    public static Database db = new Database();
     public static void main(String[] args) {
         // Set the port number
         port(8080);
@@ -19,7 +24,7 @@ public class Server {
             // Log the exception (using SLF4J or any other logger)
             // Send a 500 response
             response.status(500);
-            response.body("Server error: " + exception.getMessage());
+            response.body("server.Server error: " + exception.getMessage());
         });
         // If no routes match, it's a 404
         notFound((req, res) -> {

@@ -1,5 +1,6 @@
 package unitTests;
 
+import dataAccess.DataAccessException;
 import dataAccess.UserDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +18,7 @@ public class LogoutTest {
     private final String validAuthToken = "validToken";
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws DataAccessException {
         AuthTokenDao.getInstance().clear(); // Clear any existing data
         UserDao.getInstance().clear();
 

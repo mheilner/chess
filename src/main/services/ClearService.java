@@ -11,7 +11,7 @@ public class ClearService {
      * Clears all the data in the database.
      * @return True if the operation was successful, false otherwise.
      */
-    public boolean clear() {
+    public boolean clear() throws DataAccessException {
         UserDao userDao = UserDao.getInstance();
         GameDao gameDao = GameDao.getInstance();
         AuthTokenDao authTokenDao = AuthTokenDao.getInstance();

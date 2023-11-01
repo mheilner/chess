@@ -1,6 +1,7 @@
 package handler;
 
 import com.google.gson.Gson;
+import dataAccess.DataAccessException;
 import services.ClearService;
 import results.ClearResult;
 import spark.Request;
@@ -27,7 +28,7 @@ public class ClearHandler implements Route {
     }
 
     @Override
-    public Object handle(Request request, Response response) {
+    public Object handle(Request request, Response response) throws DataAccessException {
         // Clear the database
         boolean success = clearService.clear();
 

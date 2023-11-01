@@ -35,7 +35,7 @@ public class JoinGameTest {
 
     }
     @AfterEach
-    public void tearDown() {
+    public void tearDown() throws DataAccessException {
         // Clear game data after each test
         GameDao.getInstance().clear();
         AuthTokenDao.getInstance().clear();

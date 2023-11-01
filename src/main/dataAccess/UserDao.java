@@ -6,12 +6,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
+
+import static server.Server.db;
+
 /**
  * Data Access Object for User operations.
  */
 public class UserDao {
     private static UserDao instance; // Singleton instance
-    private List<User> users = new ArrayList<>();
 
     private UserDao() {} // Private constructor to prevent direct instantiation
 
@@ -27,28 +29,18 @@ public class UserDao {
      * @param user The user to insert.
      */
     public void insert(User user) throws DataAccessException {
-        Database db = new Database();
-        try (Connection conn = db.getConnection()) {
-            String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?);";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, user.getUsername());
-                stmt.setString(2, user.getPassword());
-                stmt.setString(3, user.getEmail());
-                stmt.executeUpdate();
-            }
+        Connection conn = db.getConnection();
+        String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?);";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getEmail());
+            stmt.executeUpdate();
         } catch (SQLException e) {
-            if (e instanceof SQLIntegrityConstraintViolationException) {
-                // Handle the integrity constraint violation
-            } else {
-                // Handle other SQL exceptions
-            }
-            // You can also check the SQL state or error code if needed
-            String sqlState = e.getSQLState();
-            if ("23000".equals(sqlState)) {
-                // Handle integrity constraint violation
-            }
-            // Rethrow or handle the exception as necessary
+            System.out.println(e);
             throw new DataAccessException("Database access error");
+        }finally {
+            db.returnConnection(conn);
         }
     }
 
@@ -58,24 +50,26 @@ public class UserDao {
      * @return The user if found; null otherwise.
      */
     public User find(String username) throws DataAccessException {
-        Database db = new Database();
         User user = null;
-        try (Connection conn = db.getConnection()) {
-            String sql = "SELECT * FROM users WHERE username = ?;";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, username);
-                try (ResultSet rs = stmt.executeQuery()) {
-                    if (rs.next()) {
-                        user = new User(
-                                rs.getString("username"),
-                                rs.getString("password"),
-                                rs.getString("email")
-                        );
-                    }
+        Connection conn = db.getConnection();
+        String sql = "SELECT * FROM users WHERE username = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    user = new User(
+                            rs.getString("username"),
+                            rs.getString("password"),
+                            rs.getString("email")
+                    );
                 }
             }
+
         } catch (SQLException e) {
-            throw new DataAccessException("Error encountered while finding the user", e);
+            System.out.println(e);
+            throw new DataAccessException("Error encountered while finding the user");
+        }finally {
+            db.returnConnection(conn);
         }
         return user;
     }
@@ -83,5 +77,17 @@ public class UserDao {
     /**
      * Clear all users.
      */
-    public void clear() {users.clear();}
+    public void clear() throws DataAccessException {
+        Connection conn = db.getConnection();
+        String sql = "DELETE FROM users;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            throw new DataAccessException("Error encountered while clearing users");
+        } finally {
+            db.returnConnection(conn);
+        }
+    }
+
 }

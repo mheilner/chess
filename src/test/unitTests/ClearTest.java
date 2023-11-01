@@ -1,5 +1,6 @@
 package unitTests;
 
+import dataAccess.DataAccessException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class ClearTest {
 
     @Test
     @DisplayName("Test successful clearing of database")
-    public void testClearDatabaseSuccess() {
+    public void testClearDatabaseSuccess() throws DataAccessException {
         assertTrue(clearService.clear(), "Failed to clear the database.");
     }
 }

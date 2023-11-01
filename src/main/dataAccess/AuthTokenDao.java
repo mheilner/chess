@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static server.Server.db;
+
 /**
  * Data Access Object for AuthToken operations.
  */
@@ -91,14 +94,13 @@ public class AuthTokenDao {
      * @param token The authToken to remove.
      */
     public void removeToken(String token) throws DataAccessException {
-        Database db = new Database();
-        try (Connection conn = db.getConnection()) {
-            String sql = "DELETE FROM auth_tokens WHERE auth_token = ?;";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, token);
-                stmt.executeUpdate();
-            }
-        } catch (SQLException e) {
+        Connection conn = db.getConnection()
+        String sql = "DELETE FROM auth_tokens WHERE auth_token = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, token);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
             throw new DataAccessException("Error encountered while removing the auth token");
         }
     }
