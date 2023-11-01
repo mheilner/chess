@@ -9,12 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/handler/ClearHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/ClearHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/ClearService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ClearService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/unitTests/ClearTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/ClearTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/unitTests/LogoutTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/LogoutTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +80,7 @@
   </component>
   <component name="RunManager" selected="JUnit.CreateGameTest.testCreateGameSuccess">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Server" />
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="chess" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -153,9 +149,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.CreateGameTest.testCreateGameSuccess" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.CreateGameTest" />
         <item itemvalue="JUnit.ClearTest" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.unitTests in chess" />
       </list>
     </recent_temporary>
@@ -183,7 +179,7 @@
       <workItem from="1698723551969" duration="1222000" />
       <workItem from="1698762085392" duration="720000" />
       <workItem from="1698864425217" duration="6815000" />
-      <workItem from="1698871393296" duration="752000" />
+      <workItem from="1698871393296" duration="3305000" />
     </task>
     <servers />
   </component>

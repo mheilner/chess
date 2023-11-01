@@ -32,6 +32,36 @@ public class GameDao {
         return instance;
     }
     /**
+     * Insert a new game into the database.
+     * @param game The game to insert.
+     * @return The assigned gameID.
+     */
+    public int insert(Game game) throws DataAccessException {
+        Connection conn = db.getConnection();
+        String gameStateJSON = serializeCGame(game.getGame()); // Serialize the CGame object
+        String sql = "INSERT INTO games (game_name, white_username, black_username, game_state) VALUES (?, ?, ?, ?);";
+        try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, game.getGameName());
+            stmt.setString(2, game.getWhiteUsername());
+            stmt.setString(3, game.getBlackUsername());
+            stmt.setString(4, gameStateJSON); // Use the serialized game state
+            stmt.executeUpdate();
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    game.setGameID(generatedKeys.getInt(1)); // Set the game ID from the generated keys
+                } else {
+                    throw new DataAccessException("Creating game failed, no ID obtained.");
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while inserting into the database: " + e.getMessage());
+        } finally {
+            db.returnConnection(conn);
+        }
+        return game.getGameID(); // Return the new game ID
+    }
+
+    /**
      * Find a game by its ID.
      * @param gameID The ID to search for.
      * @return The game if found; null otherwise.

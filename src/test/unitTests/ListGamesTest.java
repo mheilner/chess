@@ -1,5 +1,6 @@
 package unitTests;
 
+import dataAccess.DataAccessException;
 import dataAccess.GameDao;
 import dataAccess.UserDao;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ListGamesTest {
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws DataAccessException {
         GameDao.getInstance().clear();
         UserDao.getInstance().clear();
     }
