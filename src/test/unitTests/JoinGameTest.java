@@ -1,6 +1,7 @@
 package unitTests;
 
 import dataAccess.AuthTokenDao;
+import dataAccess.DataAccessException;
 import dataAccess.UserDao;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +25,7 @@ public class JoinGameTest {
     private final String invalidAuthToken = "invalidToken";
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws DataAccessException {
         GameDao.getInstance().clear(); // Clear any existing data
 
         // Setup a test game for use in the tests

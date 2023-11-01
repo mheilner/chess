@@ -14,5 +14,6 @@
     <orderEntry type="library" name="sparkjava.spark.core" level="project" />
     <orderEntry type="library" name="google.code.gson" level="project" />
     <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="mysql.connector.java" level="project" />
   </component>
 </module>

@@ -14,7 +14,11 @@ public class RegisterService {
     private UserDao userDao = UserDao.getInstance();
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
-
+    /**
+     * The {@code RegisterService} class is responsible for handling the registration process.
+     * It communicates with the {@code UserDao} and {@code AuthTokenDao} to perform user registration,
+     * including user creation and authentication token generation.
+     */
     public RegisterResult register(RegisterRequest request) {
         try {
             // Check if user with given username already exists

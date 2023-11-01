@@ -7,7 +7,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="" />
+    <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sql/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/starter/dataAccess/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/PersistenceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chess.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/handler/CreateGameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/CreateGameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/unitTests/CreateGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/CreateGameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,7 +68,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
@@ -65,16 +81,16 @@
       <recent name="$PROJECT_DIR$/src/starter" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web" />
       <recent name="$PROJECT_DIR$/src/test/passoffTests/serverTests" />
-      <recent name="$PROJECT_DIR$/libs" />
       <recent name="$PROJECT_DIR$/src/starter/dataAccess" />
+      <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/libs" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StandardAPITests">
+  <component name="RunManager">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Server" />
       <module name="chess" />
@@ -90,21 +106,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClearTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="unitTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.ClearTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ListGamesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
@@ -115,6 +116,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="unitTests" />
       <option name="MAIN_CLASS_NAME" value="unitTests.ListGamesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersistenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.PersistenceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -137,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.PersistenceTest" />
         <item itemvalue="JUnit.All in chess" />
+        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="JUnit.ListGamesTest" />
-        <item itemvalue="JUnit.ClearTest" />
       </list>
     </recent_temporary>
   </component>
@@ -162,7 +178,12 @@
       <workItem from="1698208152986" duration="3426000" />
       <workItem from="1698288223624" duration="47192000" />
       <workItem from="1698394006332" duration="1408000" />
-      <workItem from="1698424043339" duration="1467000" />
+      <workItem from="1698424043339" duration="2176000" />
+      <workItem from="1698722713289" duration="633000" />
+      <workItem from="1698723350540" duration="191000" />
+      <workItem from="1698723551969" duration="1222000" />
+      <workItem from="1698762085392" duration="720000" />
+      <workItem from="1698864425217" duration="5807000" />
     </task>
     <servers />
   </component>
@@ -187,15 +208,6 @@
           <url>file://$PROJECT_DIR$/src/test/passoffTests/chessTests/ChessGameTests.java</url>
           <line>850</line>
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java</url>
-          <line>572</line>
-          <properties class="passoffTests.serverTests.StandardAPITests" method="gamesList">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

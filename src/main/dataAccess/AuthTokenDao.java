@@ -1,6 +1,11 @@
 package dataAccess;
 
 import model.AuthToken;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -8,7 +13,6 @@ import java.util.List;
  */
 public class AuthTokenDao {
     private static AuthTokenDao instance; // Singleton instance
-    private List<AuthToken> authTokens = new ArrayList<>();
 
     private AuthTokenDao() {} // Private constructor to prevent direct instantiation
 
@@ -23,17 +27,38 @@ public class AuthTokenDao {
      * Insert a new authToken into the database.
      * @param authToken The authToken to insert.
      */
-    public void insert(AuthToken authToken) {authTokens.add(authToken);}
+    public void insert(AuthToken authToken) throws DataAccessException {
+        Database db = new Database();
+        try (Connection conn = db.getConnection()) {
+            String sql = "INSERT INTO auth_tokens (auth_token, username) VALUES (?, ?);";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, authToken.getAuthToken());
+                stmt.setString(2, authToken.getUsername());
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while inserting the auth token");
+        }
+    }
     /**
-     * Find a user by their authToken.
+     * Find a username by their authToken.
      * @param token The authToken to search for.
      * @return The username associated with the authToken if found; null otherwise.
      */
-    public String findUserByToken(String token) {
-        for (AuthToken authToken : authTokens) {
-            if (authToken.getAuthToken().equals(token)) {
-                return authToken.getUsername();
+    public String findUserByToken(String token) throws DataAccessException {
+        Database db = new Database();
+        try (Connection conn = db.getConnection()) {
+            String sql = "SELECT username FROM auth_tokens WHERE auth_token = ?;";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, token);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getString("username");
+                    }
+                }
             }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while finding user by token");
         }
         return null;
     }
@@ -43,11 +68,20 @@ public class AuthTokenDao {
      * @param token The authToken to check.
      * @return true if the token exists, false otherwise.
      */
-    public boolean tokenExists(String token) {
-        for (AuthToken authToken : authTokens) {
-            if (authToken.getAuthToken().equals(token)) {
-                return true;
+    public boolean tokenExists(String token) throws DataAccessException {
+        Database db = new Database();
+        try (Connection conn = db.getConnection()) {
+            String sql = "SELECT COUNT(*) FROM auth_tokens WHERE auth_token = ?;";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, token);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getInt(1) > 0;
+                    }
+                }
             }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while checking if token exists");
         }
         return false;
     }
@@ -56,11 +90,30 @@ public class AuthTokenDao {
      * Remove a specific authToken.
      * @param token The authToken to remove.
      */
-    public void removeToken(String token) {authTokens.removeIf(authToken -> authToken.getAuthToken().equals(token));}
+    public void removeToken(String token) throws DataAccessException {
+        Database db = new Database();
+        try (Connection conn = db.getConnection()) {
+            String sql = "DELETE FROM auth_tokens WHERE auth_token = ?;";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, token);
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while removing the auth token");
+        }
+    }
     /**
      * Clear all authTokens.
      */
-    public void clear() {
-        authTokens.clear();
+    public void clear() throws DataAccessException {
+        Database db = new Database();
+        try (Connection conn = db.getConnection()) {
+            String sql = "DELETE FROM auth_tokens;";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while clearing auth tokens");
+        }
     }
 }

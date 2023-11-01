@@ -5,12 +5,25 @@ import dataAccess.AuthTokenDao;
 import dataAccess.DataAccessException;
 import requests.JoinGameRequest;
 import results.JoinGameResult;
-
+/**
+ * The {@code JoinGameService} class handles the operation of a user attempting to join a game.
+ * It interacts with the {@code GameDao} to find game details and update them as well as
+ * the {@code AuthTokenDao} to validate the user's authentication token.
+ */
 public class JoinGameService {
 
     private GameDao gameDao = GameDao.getInstance();
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
+    /**
+     * Attempts to add a user to a game based on the provided game ID and desired player color.
+     * The user must have a valid authentication token to join a game.
+     *
+     * @param request The {@code JoinGameRequest} containing the game ID and player color that the user wishes to join as.
+     * @param authToken The authentication token of the user attempting to join the game.
+     * @return A {@code JoinGameResult} object containing the outcome of the join request, either success or a descriptive error message.
+     * @throws DataAccessException If there is an error accessing the database during the join game operation.
+     */
     public JoinGameResult joinGame(JoinGameRequest request, String authToken) {
         try {
             if (gameDao.find(request.getGameID())==null){

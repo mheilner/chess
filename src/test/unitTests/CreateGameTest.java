@@ -1,5 +1,6 @@
 package unitTests;
 
+import dataAccess.DataAccessException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ public class CreateGameTest {
 
     @Test
     @DisplayName("Test successful game creation")
-    public void testCreateGameSuccess() {
+    public void testCreateGameSuccess() throws DataAccessException {
         CreateGameService createGameService = new CreateGameService();
         CreateGameRequest request = new CreateGameRequest("ChessMatch1");
         CreateGameResult result = createGameService.createGame(request);
@@ -31,7 +32,7 @@ public class CreateGameTest {
 
     @Test
     @DisplayName("Test game creation failure due to existing game name")
-    public void testCreateGameFailGameNameExists() {
+    public void testCreateGameFailGameNameExists() throws DataAccessException {
         CreateGameService createGameService = new CreateGameService();
 
         // Create a game first

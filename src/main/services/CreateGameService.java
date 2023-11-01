@@ -13,7 +13,7 @@ public class CreateGameService {
      * @param request Contains details for the game to be created.
      * @return CreateGameResult containing the gameID of the created game.
      */
-    public CreateGameResult createGame(CreateGameRequest request) {
+    public CreateGameResult createGame(CreateGameRequest request) throws DataAccessException {
         GameDao gameDao = GameDao.getInstance();
 
         // Check if a game with the given name already exists

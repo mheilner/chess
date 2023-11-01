@@ -1,6 +1,7 @@
 package handler;
 
 import com.google.gson.Gson;
+import dataAccess.DataAccessException;
 import requests.CreateGameRequest;
 import results.CreateGameResult;
 import services.CreateGameService;
@@ -29,7 +30,7 @@ public class CreateGameHandler implements Route {
     }
 
     @Override
-    public Object handle(Request request, Response response) {
+    public Object handle(Request request, Response response) throws DataAccessException {
         // Set the response type to JSON
         response.type("application/json");
 

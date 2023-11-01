@@ -1,7 +1,11 @@
 package dataAccess;
+import java.sql.*;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import chess.ChessGame;
+import chessPkg.CGame;
+import com.google.gson.Gson;
 import model.Game;
 
 import java.util.ArrayList;
@@ -16,6 +20,7 @@ public class GameDao {
     private static GameDao instance; // Singleton instance
     private List<Game> games = new ArrayList<>();
     private int nextGameID = 1;
+    private final Gson gson = new Gson();
 
     private GameDao() {} // Private constructor to prevent direct instantiation
 
@@ -31,12 +36,37 @@ public class GameDao {
      * @param game The game to insert.
      * @return The assigned gameID.
      */
-    public int insert(Game game) {
-        game.setGameID(nextGameID++);
-        games.add(game);
+    public int insert(Game game) throws DataAccessException {
+        Database db = new Database();
+        Connection conn = db.getConnection();
+        String gameStateJSON = serializeCGame(game.getGame()); // Serialize the CGame object
+        try {
+            String sql = "INSERT INTO games (game_name, white_username, black_username, game_state) VALUES (?, ?, ?, ?);";
+            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setString(1, game.getGameName());
+                stmt.setString(2, game.getWhiteUsername());
+                stmt.setString(3, game.getBlackUsername());
+                stmt.setString(4, gameStateJSON); // Use the serialized game state
+                stmt.executeUpdate();
+
+                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        game.setGameID(generatedKeys.getInt(1));
+                    } else {
+                        throw new DataAccessException("Creating game failed, no ID obtained.");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while inserting into the database");
+        } finally {
+            db.returnConnection(conn);
+        }
         LOGGER.info("Game inserted with ID: " + game.getGameID());
         return game.getGameID();
     }
+
+
     /**
      * Find a game by its ID.
      * @param gameID The ID to search for.
@@ -176,6 +206,15 @@ public class GameDao {
         }
         return game.getBlackUsername();
     }
+
+    private String serializeCGame(CGame cGame) {
+        return gson.toJson(cGame);
+    }
+
+    private CGame deserializeCGame(String json) {
+        return gson.fromJson(json, CGame.class);
+    }
+
 
     @Override
     public boolean equals(Object o) {
