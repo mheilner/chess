@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 CREATE TABLE IF NOT EXISTS `games` (
    `game_id` INT NOT NULL AUTO_INCREMENT,
    `game_name` VARCHAR(255) NOT NULL,
-    `white_user_id` INT,
-    `black_user_id` INT,
+    `white_username` INT,
+    `black_username` INT,
     `game_state` TEXT NOT NULL,
     PRIMARY KEY (`game_id`));
 
