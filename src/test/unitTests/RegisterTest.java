@@ -1,21 +1,24 @@
 package unitTests;
 
+import dataAccess.DataAccessException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import services.RegisterService;
 import requests.RegisterRequest;
 import results.RegisterResult;
+import services.ClearService;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static server.Server.db;
 
 public class RegisterTest {
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws DataAccessException {
         // Clear any existing data and set up a test environment
-        // Example: Clear the database if using persistent storage.
-        // db.clear();
+        ClearService clearService = new ClearService();
+        clearService.clear();
     }
 
     @Test

@@ -40,10 +40,6 @@ public class JoinGameTest {
         GameDao.getInstance().clear();
         AuthTokenDao.getInstance().clear();
         UserDao.getInstance().clear();
-
-        // Optionally, clear other DAOs if they are being modified by the tests
-        // Example: UserDao.getInstance().clear();
-        // Example: AuthTokenDao.getInstance().clear();
     }
 
     // Add this method to your JoinGameTest class
@@ -61,10 +57,8 @@ public class JoinGameTest {
     public void testJoinGameSuccess() {
         JoinGameService joinGameService = new JoinGameService();
         JoinGameRequest request = new JoinGameRequest("WHITE", 1);
-
         // Register a user and get a valid auth token
         String validAuthToken = registerUserAndGetAuthToken("testUser", "password", "email");
-
         JoinGameResult result = joinGameService.joinGame(request, validAuthToken);
         assertNull(result.getMessage());  // No error message indicates success.
     }
