@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 DROP TABLE IF EXISTS `games`;
 -- Create games table
 CREATE TABLE IF NOT EXISTS `games` (
-   `game_id` VARCHAR(255) NOT NULL,
+   `game_id` INT NOT NULL AUTO_INCREMENT,
    `game_name` VARCHAR(255) NOT NULL,
     `white_username` INT,
     `black_username` INT,
