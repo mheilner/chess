@@ -128,6 +128,7 @@ public class GameDao {
         String sql = "DELETE FROM games;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.executeUpdate();
+            nextGameID = 1;
         } catch (SQLException e) {
             throw new DataAccessException("Error encountered while clearing games");
         } finally {
