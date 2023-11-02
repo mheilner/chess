@@ -11,10 +11,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 DROP TABLE IF EXISTS `games`;
 -- Create games table
 CREATE TABLE IF NOT EXISTS `games` (
-   `game_id` INT NOT NULL AUTO_INCREMENT,
+   `game_id` INT NOT NULL,
    `game_name` VARCHAR(255) NOT NULL,
-    `white_username` INT,
-    `black_username` INT,
+    `white_username` VARCHAR(255),
+    `black_username` VARCHAR(255),
     `game_state` TEXT,
     PRIMARY KEY (`game_id`));
 

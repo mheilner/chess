@@ -11,7 +11,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/unitTests/CreateGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/CreateGameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +93,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreateGameTest.testCreateGameSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JoinGameTest.testJoinGameFailInvalidAuthToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
@@ -102,8 +102,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="unitTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.CreateGameTest" />
-      <option name="METHOD_NAME" value="testCreateGameSuccess" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.JoinGameTest" />
+      <option name="METHOD_NAME" value="testJoinGameFailInvalidAuthToken" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JoinGameTest.testJoinGameFailSpotTaken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unitTests" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.JoinGameTest" />
+      <option name="METHOD_NAME" value="testJoinGameFailSpotTaken" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -125,21 +141,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="unitTests in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
@@ -157,10 +158,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.unitTests in chess" />
-        <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.CreateGameTest.testCreateGameSuccess" />
+        <item itemvalue="JUnit.JoinGameTest.testJoinGameFailSpotTaken" />
+        <item itemvalue="JUnit.JoinGameTest.testJoinGameFailInvalidAuthToken" />
         <item itemvalue="JUnit.JoinGameTest.testJoinGameSuccess" />
-        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +188,7 @@
       <workItem from="1698723551969" duration="1222000" />
       <workItem from="1698762085392" duration="720000" />
       <workItem from="1698864425217" duration="6815000" />
-      <workItem from="1698871393296" duration="9984000" />
+      <workItem from="1698871393296" duration="12499000" />
     </task>
     <servers />
   </component>
@@ -212,15 +213,6 @@
           <url>file://$PROJECT_DIR$/src/test/passoffTests/chessTests/ChessGameTests.java</url>
           <line>850</line>
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/unitTests/JoinGameTest.java</url>
-          <line>56</line>
-          <properties class="unitTests.JoinGameTest" method="testJoinGameSuccess">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/unitTests/CreateGameTest.java</url>
