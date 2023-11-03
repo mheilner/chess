@@ -1,7 +1,9 @@
 package unitTests;
 
 import dataAccess.DataAccessException;
+import dataAccess.GameDao;
 import dataAccess.UserDao;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,9 +23,13 @@ public class LogoutTest {
     public void setUp() throws DataAccessException {
         AuthTokenDao.getInstance().clear(); // Clear any existing data
         UserDao.getInstance().clear();
-
-        // Optionally, setup a user and its authToken for testing
-        // Example: Insert a user and its authToken into the database
+    }
+    @AfterEach
+    public void tearDown() throws DataAccessException {
+        // Clear game data after each test
+        GameDao.getInstance().clear();
+        AuthTokenDao.getInstance().clear();
+        UserDao.getInstance().clear();
     }
 
     // Add this method to your LogoutTest class

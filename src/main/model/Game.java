@@ -12,7 +12,7 @@ public class Game {
     private String blackUsername;
     private String gameName;
     private CGame game;
-    public Game(int gameID, String whiteUsername, String blackUsername, String gameName, CGame game) {
+    public Game(int gameID, String gameName, String whiteUsername, String blackUsername, CGame game) {
         this.gameID = gameID;
         this.whiteUsername = whiteUsername;
         this.blackUsername = blackUsername;

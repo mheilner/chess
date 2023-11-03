@@ -1,5 +1,10 @@
 package unitTests;
 
+import dataAccess.AuthTokenDao;
+import dataAccess.DataAccessException;
+import dataAccess.GameDao;
+import dataAccess.UserDao;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +23,13 @@ public class LoginTest {
         // Clear any existing data and set up a test environment
         // Example: Clear the database if using persistent storage.
         // db.clear();
+    }
+    @AfterEach
+    public void tearDown() throws DataAccessException {
+        // Clear game data after each test
+        GameDao.getInstance().clear();
+        AuthTokenDao.getInstance().clear();
+        UserDao.getInstance().clear();
     }
 
     @Test

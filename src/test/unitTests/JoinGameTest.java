@@ -29,7 +29,7 @@ public class JoinGameTest {
         GameDao.getInstance().clear(); // Clear any existing data
 
         // Setup a test game for use in the tests
-        Game game = new Game(1,  null, null, "Test Game",null);
+        Game game = new Game(1, "Test Game", null, null, null);
         game.setGameID(1); // Set a valid game ID for testing
         GameDao.getInstance().insert(game);
 

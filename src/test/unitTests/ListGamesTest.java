@@ -1,8 +1,10 @@
 package unitTests;
 
+import dataAccess.AuthTokenDao;
 import dataAccess.DataAccessException;
 import dataAccess.GameDao;
 import dataAccess.UserDao;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +23,13 @@ public class ListGamesTest {
         GameDao.getInstance().clear();
         UserDao.getInstance().clear();
     }
-
+    @AfterEach
+    public void tearDown() throws DataAccessException {
+        // Clear game data after each test
+        GameDao.getInstance().clear();
+        AuthTokenDao.getInstance().clear();
+        UserDao.getInstance().clear();
+    }
     private String registerUserAndGetAuthToken(String user, String pw, String email) {
         // Use your registration service to register a user and get an auth token
         // Replace the following lines with your actual registration code
