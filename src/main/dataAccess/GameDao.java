@@ -42,6 +42,9 @@ public class GameDao {
         String sql = "INSERT INTO games (game_id, game_name, white_username, black_username, game_state) VALUES (?, ?, ?, ?, ?);";
         try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             game.setGameID(nextGameID++);
+            if(game.getGameName()==null){
+                game.setGameName("game"+ game.getGameID());
+            }
             stmt.setInt(1, game.getGameID());
             stmt.setString(2, game.getGameName());
             stmt.setString(3, game.getWhiteUsername());
