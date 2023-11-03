@@ -43,6 +43,9 @@ public class JoinGameService {
                     gameDao.getBlackPlayer(request.getGameID()) != null) {
                 return new JoinGameResult("Error: Black spot is already taken.");
             }
+            if (request.getPlayerColor()==null){
+                return new JoinGameResult();
+            }
 
             gameDao.claimSpot(request.getGameID(), username, request.getPlayerColor());
             return new JoinGameResult(); // Success
