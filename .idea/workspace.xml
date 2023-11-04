@@ -8,7 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/unitTests/daoTests/AuthTokenDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/unitTests/daoTests/UserDaoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +77,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AuthTokenDaoTest">
+  <component name="RunManager" selected="JUnit.UserDaoTest">
     <configuration name="AuthTokenDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
@@ -124,7 +124,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameDaoTest.testClaimSpotPositive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
@@ -133,14 +133,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.GameDaoTest" />
-      <option name="METHOD_NAME" value="testClaimSpotPositive" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.UserDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameDaoTest.testFindAllGamesWhenNoneExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserDaoTest.testRegisterServiceDuplicateUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
@@ -149,8 +148,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.GameDaoTest" />
-      <option name="METHOD_NAME" value="testFindAllGamesWhenNoneExist" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.UserDaoTest" />
+      <option name="METHOD_NAME" value="testRegisterServiceDuplicateUsername" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserDaoTest" />
+        <item itemvalue="JUnit.UserDaoTest.testRegisterServiceDuplicateUsername" />
         <item itemvalue="JUnit.AuthTokenDaoTest" />
         <item itemvalue="JUnit.AuthTokenDaoTest.testInsertDuplicateAuthToken" />
         <item itemvalue="JUnit.GameDaoTest" />
-        <item itemvalue="JUnit.GameDaoTest.testFindAllGamesWhenNoneExist" />
-        <item itemvalue="JUnit.GameDaoTest.testClaimSpotPositive" />
       </list>
     </recent_temporary>
   </component>
@@ -193,7 +192,7 @@
       <workItem from="1698936049369" duration="317000" />
       <workItem from="1698946405858" duration="1282000" />
       <workItem from="1699039953540" duration="6870000" />
-      <workItem from="1699126190327" duration="3048000" />
+      <workItem from="1699126190327" duration="3718000" />
     </task>
     <servers />
   </component>
