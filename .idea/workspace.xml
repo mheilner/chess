@@ -8,9 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/unitTests/daoTests/GameDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/unitTests/daoTests/AuthTokenDaoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +77,38 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameDaoTest">
+  <component name="RunManager" selected="JUnit.AuthTokenDaoTest">
+    <configuration name="AuthTokenDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unitTests.daoTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.AuthTokenDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthTokenDaoTest.testInsertDuplicateAuthToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unitTests.daoTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
+      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.AuthTokenDaoTest" />
+      <option name="METHOD_NAME" value="testInsertDuplicateAuthToken" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GameDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
@@ -126,45 +156,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameDaoTest.testGetBlackPlayerPositive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unitTests.daoTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.GameDaoTest" />
-      <option name="METHOD_NAME" value="testGetBlackPlayerPositive" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameDaoTest.testGetWhitePlayerPositive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unitTests.daoTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.GameDaoTest" />
-      <option name="METHOD_NAME" value="testGetWhitePlayerPositive" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AuthTokenDaoTest" />
+        <item itemvalue="JUnit.AuthTokenDaoTest.testInsertDuplicateAuthToken" />
         <item itemvalue="JUnit.GameDaoTest" />
         <item itemvalue="JUnit.GameDaoTest.testFindAllGamesWhenNoneExist" />
         <item itemvalue="JUnit.GameDaoTest.testClaimSpotPositive" />
-        <item itemvalue="JUnit.GameDaoTest.testGetBlackPlayerPositive" />
-        <item itemvalue="JUnit.GameDaoTest.testGetWhitePlayerPositive" />
       </list>
     </recent_temporary>
   </component>
@@ -195,7 +193,7 @@
       <workItem from="1698936049369" duration="317000" />
       <workItem from="1698946405858" duration="1282000" />
       <workItem from="1699039953540" duration="6870000" />
-      <workItem from="1699126190327" duration="2359000" />
+      <workItem from="1699126190327" duration="3048000" />
     </task>
     <servers />
   </component>
