@@ -51,13 +51,6 @@ public class GameDao {
             stmt.setString(4, game.getBlackUsername());
             stmt.setString(5, gameStateJSON); // Use the serialized game state
             stmt.executeUpdate();
-//            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-//                if (generatedKeys.next()) {
-//                    game.setGameID(generatedKeys.getInt(1)); // Set the game ID from the generated keys
-//                } else {
-//                    throw new DataAccessException("Creating game failed, no ID obtained.");
-//                }
-//            }
         } catch (SQLException e) {
             throw new DataAccessException("Error encountered while inserting into the database: " + e.getMessage());
         } finally {
