@@ -3,8 +3,6 @@ package dataAccess;
 import model.User;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.SQLException;
 
 import static server.Server.db;

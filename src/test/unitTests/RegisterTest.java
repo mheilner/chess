@@ -14,7 +14,6 @@ import results.RegisterResult;
 import services.ClearService;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static server.Server.db;
 
 public class RegisterTest {
 

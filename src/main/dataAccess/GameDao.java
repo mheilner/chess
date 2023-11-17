@@ -1,9 +1,6 @@
 package dataAccess;
 import java.sql.*;
-import java.util.Objects;
-import java.util.logging.Logger;
 
-import chess.ChessGame;
 import chessPkg.CGame;
 import com.google.gson.Gson;
 import model.Game;

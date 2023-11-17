@@ -2,8 +2,6 @@ package chessPkg;
 
 import chess.*;
 
-import java.util.Arrays;
-
 public class CBoard implements ChessBoard {
     //Instance Variables
     private ChessPiece[][] pArr;

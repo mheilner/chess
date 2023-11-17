@@ -8,8 +8,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/unitTests/daoTests/UserDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/ui/EscapeSequences.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/shared.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chess.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/model/AuthToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/requests/CreateGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/CreateGameRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/requests/JoinGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/JoinGameRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/requests/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/requests/LogoutRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/LogoutRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/requests/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/results/ClearResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/ClearResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/results/CreateGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/CreateGameResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/results/GeneralResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/GeneralResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/results/JoinGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/JoinGameResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/results/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/ListGamesResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/results/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/LoginResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/results/LogoutResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/LogoutResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/results/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/RegisterResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/InvalidMoveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/InvalidMoveException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/unitTests/RegisterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/RegisterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,30 +80,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/markheilner/Desktop/BYU F23/CS240/chess/src/test&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path": "/Users/markheilner/Desktop/BYU F23/CS240/chess/client",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "last_opened_file_path": "/Users/markheilner/Desktop/BYU F23/CS240/chess/src/test",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test" />
@@ -77,91 +121,79 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDaoTest">
-    <configuration name="AuthTokenDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Server">
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="chess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="unitTests.daoTests.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.AuthTokenDaoTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersistenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.PersistenceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthTokenDaoTest.testInsertDuplicateAuthToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="unitTests.daoTests.*" />
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.AuthTokenDaoTest" />
-      <option name="METHOD_NAME" value="testInsertDuplicateAuthToken" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unitTests.daoTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.GameDaoTest" />
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="unitTests in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="unitTests.daoTests.*" />
+          <option name="PATTERN" value="unitTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.UserDaoTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDaoTest.testRegisterServiceDuplicateUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unitTests.daoTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="unitTests.daoTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.daoTests.UserDaoTest" />
-      <option name="METHOD_NAME" value="testRegisterServiceDuplicateUsername" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="unitTests" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserDaoTest" />
-        <item itemvalue="JUnit.UserDaoTest.testRegisterServiceDuplicateUsername" />
-        <item itemvalue="JUnit.AuthTokenDaoTest" />
-        <item itemvalue="JUnit.AuthTokenDaoTest.testInsertDuplicateAuthToken" />
-        <item itemvalue="JUnit.GameDaoTest" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.All in chess" />
+        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="JUnit.PersistenceTest" />
+        <item itemvalue="JUnit.unitTests in chess" />
       </list>
     </recent_temporary>
   </component>
@@ -192,7 +224,10 @@
       <workItem from="1698936049369" duration="317000" />
       <workItem from="1698946405858" duration="1282000" />
       <workItem from="1699039953540" duration="6870000" />
-      <workItem from="1699126190327" duration="3718000" />
+      <workItem from="1699126190327" duration="3899000" />
+      <workItem from="1699372991337" duration="911000" />
+      <workItem from="1700193965439" duration="2461000" />
+      <workItem from="1700257443447" duration="1859000" />
     </task>
     <servers />
   </component>
