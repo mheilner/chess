@@ -4,6 +4,7 @@ import java.net.URL;
 import java.io.OutputStream;
 import com.google.gson.Gson;
 import requests.LoginRequest;
+import requests.RegisterRequest;
 import results.LoginResult;
 
 import java.io.BufferedReader;
@@ -38,6 +39,7 @@ public class Main {
                     break;
                 case "register":
                     // Implement register logic
+                    handleRegister(scanner);
                     break;
                 default:
                     System.out.println(ANSI_RED + "Unknown command. Type 'help' for a list of commands." + ANSI_RESET);
@@ -54,6 +56,45 @@ public class Main {
         System.out.println("login - Login to your account");
         System.out.println("register - Register a new account");
     }
+
+
+    private static void handleRegister(Scanner scanner) {
+        System.out.print(ANSI_GREEN + "Username: " + ANSI_RESET);
+        String username = scanner.nextLine();
+        System.out.print(ANSI_GREEN + "Password: " + ANSI_RESET);
+        String password = scanner.nextLine();
+        System.out.print(ANSI_GREEN + "Email: " + ANSI_RESET);
+        String email = scanner.nextLine();
+
+        // Create RegisterRequest object
+        RegisterRequest registerRequest = new RegisterRequest(username, password, email);
+        Gson gson = new Gson();
+        String jsonRequest = gson.toJson(registerRequest);
+
+        // Send POST request to server
+        try {
+            URL url = new URL("http://localhost:8080/user");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = jsonRequest.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Read and process the response
+            // ...
+
+        } catch (Exception e) {
+            System.out.println(ANSI_RED + "Error: " + e.getMessage() + ANSI_RESET);
+        }
+
+        // Check response and handle accordingly
+        // ...
+    }
+
 
     private static void handleLogin(Scanner scanner) {
         System.out.print(ANSI_GREEN + "Username: " + ANSI_RESET);
