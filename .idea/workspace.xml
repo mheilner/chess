@@ -8,50 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/ui/EscapeSequences.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/shared.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chess.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/CPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chessPkg/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Rook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthTokenDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/model/AuthToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/CreateGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/CreateGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/JoinGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/JoinGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/LogoutRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/LogoutRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/requests/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/requests/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/results/ClearResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/ClearResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/results/CreateGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/CreateGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/results/GeneralResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/GeneralResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/results/JoinGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/JoinGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/results/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/ListGamesResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/results/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/LoginResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/results/LogoutResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/LogoutResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/results/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/results/RegisterResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessPiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/InvalidMoveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/InvalidMoveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/unitTests/RegisterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTests/RegisterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +186,7 @@
       <workItem from="1699126190327" duration="3899000" />
       <workItem from="1699372991337" duration="911000" />
       <workItem from="1700193965439" duration="2461000" />
-      <workItem from="1700257443447" duration="1859000" />
+      <workItem from="1700257443447" duration="3877000" />
     </task>
     <servers />
   </component>
