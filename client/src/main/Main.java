@@ -10,6 +10,7 @@ import requests.LoginRequest;
 import requests.RegisterRequest;
 import results.LoginResult;
 import results.RegisterResult;
+import ui.PostLogin;
 
 
 public class Main {
@@ -132,12 +133,10 @@ public class Main {
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
-
             try (OutputStream os = conn.getOutputStream()) {
                 byte[] input = jsonRequest.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
-
             int responseCode = conn.getResponseCode();
             InputStream inputStream = responseCode == 200 ? conn.getInputStream() : conn.getErrorStream();
 
@@ -148,10 +147,8 @@ public class Main {
                     response.append(responseLine.trim());
                 }
             }
-
             // Deserialize the response
             LoginResult loginResult = gson.fromJson(response.toString(), LoginResult.class);
-
             // Process the login result
             if (loginResult.getMessage() != null) {
                 // Login failed
@@ -160,7 +157,8 @@ public class Main {
                 // Login successful
                 System.out.println(ANSI_GREEN + "Login successful for user: " + loginResult.getUsername() + ANSI_RESET);
                 // Transition to Postlogin UI
-                // ... [Code to switch to Postlogin UI, store authToken, etc.]
+                PostLogin postLogin = new PostLogin(scanner);
+                postLogin.displayMenu();
             }
 
         } catch (Exception e) {
