@@ -1,14 +1,16 @@
-import java.util.Scanner;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.OutputStream;
+import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 import com.google.gson.Gson;
 import requests.LoginRequest;
 import requests.RegisterRequest;
 import results.LoginResult;
+import results.RegisterResult;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class Main {
     // Define ANSI color code constants
@@ -71,7 +73,6 @@ public class Main {
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(registerRequest);
 
-        // Send POST request to server
         try {
             URL url = new URL("http://localhost:8080/user");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -84,17 +85,35 @@ public class Main {
                 os.write(input, 0, input.length);
             }
 
-            // Read and process the response
-            // ...
+            int responseCode = conn.getResponseCode();
+            InputStream inputStream = responseCode == 200 ? conn.getInputStream() : conn.getErrorStream();
+
+            StringBuilder response = new StringBuilder();
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "utf-8"))) {
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+            }
+
+            // Deserialize the response
+            RegisterResult registerResult = gson.fromJson(response.toString(), RegisterResult.class);
+
+            // Process the registration result
+            if (registerResult.getMessage() != null) {
+                // Registration failed
+                System.out.println(ANSI_RED + "Registration failed: " + registerResult.getMessage() + ANSI_RESET);
+            } else {
+                // Registration successful
+                System.out.println(ANSI_GREEN + "Registration successful for user: " + registerResult.getUsername() + ANSI_RESET);
+                // Optionally, automatically log the user in here and transition to Postlogin UI
+                // Store the authToken for future requests
+            }
 
         } catch (Exception e) {
             System.out.println(ANSI_RED + "Error: " + e.getMessage() + ANSI_RESET);
         }
-
-        // Check response and handle accordingly
-        // ...
     }
-
 
     private static void handleLogin(Scanner scanner) {
         System.out.print(ANSI_GREEN + "Username: " + ANSI_RESET);
