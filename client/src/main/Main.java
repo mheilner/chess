@@ -126,15 +126,23 @@ public class Main {
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(loginRequest);
 
-        // Send POST request to server
         try {
             URL url = new URL("http://localhost:8080/session");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            // ... [Set up the connection and send the request]
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
 
-            // Read the response
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = jsonRequest.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            int responseCode = conn.getResponseCode();
+            InputStream inputStream = responseCode == 200 ? conn.getInputStream() : conn.getErrorStream();
+
             StringBuilder response = new StringBuilder();
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "utf-8"))) {
                 String responseLine = null;
                 while ((responseLine = br.readLine()) != null) {
                     response.append(responseLine.trim());
@@ -147,22 +155,16 @@ public class Main {
             // Process the login result
             if (loginResult.getMessage() != null) {
                 // Login failed
-                System.out.println(ANSI_RED + loginResult.getMessage() + ANSI_RESET);
+                System.out.println(ANSI_RED + "Login failed: " + loginResult.getMessage() + ANSI_RESET);
             } else {
                 // Login successful
                 System.out.println(ANSI_GREEN + "Login successful for user: " + loginResult.getUsername() + ANSI_RESET);
                 // Transition to Postlogin UI
-                // ... [Code to switch to Postlogin UI]
+                // ... [Code to switch to Postlogin UI, store authToken, etc.]
             }
 
         } catch (Exception e) {
             System.out.println(ANSI_RED + "Error: " + e.getMessage() + ANSI_RESET);
         }
-
-
-
-
-
     }
-
 }
