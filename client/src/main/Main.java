@@ -10,8 +10,6 @@ import requests.LoginRequest;
 import requests.RegisterRequest;
 import results.LoginResult;
 import results.RegisterResult;
-import ui.PostLogin;
-
 
 public class Main {
     // Define ANSI color code constants
@@ -85,7 +83,6 @@ public class Main {
                 byte[] input = jsonRequest.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
-
             int responseCode = conn.getResponseCode();
             InputStream inputStream = responseCode == 200 ? conn.getInputStream() : conn.getErrorStream();
 
@@ -96,10 +93,8 @@ public class Main {
                     response.append(responseLine.trim());
                 }
             }
-
             // Deserialize the response
             RegisterResult registerResult = gson.fromJson(response.toString(), RegisterResult.class);
-
             // Process the registration result
             if (registerResult.getMessage() != null) {
                 // Registration failed
@@ -157,7 +152,7 @@ public class Main {
                 // Login successful
                 System.out.println(ANSI_GREEN + "Login successful for user: " + loginResult.getUsername() + ANSI_RESET);
                 // Transition to Postlogin UI
-                PostLogin postLogin = new PostLogin(scanner);
+                PostLogin postLogin = new PostLogin(scanner, loginResult.getAuthToken());
                 postLogin.displayMenu();
             }
 
