@@ -1,6 +1,10 @@
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
+
+import com.google.gson.reflect.TypeToken;
+import model.Game;
 import requests.CreateGameRequest;
 import requests.JoinGameRequest;
 import results.CreateGameResult;
@@ -10,6 +14,7 @@ import java.io.InputStreamReader;
 import com.google.gson.Gson;
 import requests.LogoutRequest;
 import results.JoinGameResult;
+import results.ListGamesResult;
 import results.LogoutResult;
 
 public class PostLogin {
@@ -55,8 +60,39 @@ public class PostLogin {
     }
 
     private void listGames() {
-        // Implementation to list games
-        System.out.println("Listing games...");
+        Gson gson = new Gson();
+
+        try {
+            URL url = new URL("http://localhost:8080/game"); // Replace with your server's list games URL
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", authToken); // Include authToken in request header
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200) {
+                ListGamesResult gamesResult = gson.fromJson(new InputStreamReader(conn.getInputStream()),
+                        new TypeToken<ListGamesResult>(){}.getType());
+                displayGames(gamesResult.getGames());
+            } else {
+                System.out.println("Failed to retrieve games list.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private void displayGames(List<Game> games) {
+        if (games == null || games.isEmpty()) {
+            System.out.println("No games available.");
+            return;
+        }
+
+        System.out.println("Available games:");
+        for (int i = 0; i < games.size(); i++) {
+            Game game = games.get(i);
+            System.out.printf("%d. %s - White: %s, Black: %s\n", i + 1,
+                    game.getGameName(), game.getWhiteUsername(), game.getBlackUsername());
+        }
     }
 
     private void createGame() {
