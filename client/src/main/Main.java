@@ -24,6 +24,7 @@ public class Main {
         boolean isRunning = true;
 
         while (isRunning) {
+            System.out.println(ANSI_BLUE + "WELCOME TO THE CHESS GAME LAUNCH MENU" + ANSI_RESET);
             System.out.print("Enter command: ");
             String command = scanner.nextLine();
 
