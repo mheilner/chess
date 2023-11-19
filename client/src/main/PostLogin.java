@@ -62,11 +62,9 @@ public class PostLogin {
     private void createGame() {
         System.out.print("Enter game name: ");
         String gameName = scanner.nextLine();
-
         CreateGameRequest createGameRequest = new CreateGameRequest(gameName);
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(createGameRequest);
-
         try {
             URL url = new URL("http://localhost:8080/game"); // Replace with your server's create game URL
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
