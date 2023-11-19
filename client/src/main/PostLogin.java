@@ -2,12 +2,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 import requests.CreateGameRequest;
+import requests.JoinGameRequest;
 import results.CreateGameResult;
 
 import java.io.OutputStream;
 import java.io.InputStreamReader;
 import com.google.gson.Gson;
 import requests.LogoutRequest;
+import results.JoinGameResult;
 import results.LogoutResult;
 
 public class PostLogin {
@@ -92,9 +94,46 @@ public class PostLogin {
     }
 
     private void joinGame() {
-        // Implementation to join a game
-        System.out.println("Joining a game...");
+        System.out.print("Enter game ID to join: ");
+        int gameID = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        System.out.print("Enter player color (WHITE/BLACK) or OBSERVER: ");
+        String playerColor = scanner.nextLine().toUpperCase();
+
+        JoinGameRequest joinGameRequest = new JoinGameRequest(playerColor, gameID);
+        Gson gson = new Gson();
+        String jsonRequest = gson.toJson(joinGameRequest);
+
+        try {
+            URL url = new URL("http://localhost:8080/game"); // Use your server's join game URL
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("PUT"); // As per your server's expectation
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Authorization", authToken); // Include authToken in request header
+            conn.setDoOutput(true);
+
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = jsonRequest.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200) {
+                System.out.println("Successfully joined game.");
+            } else {
+                // Read the error message from the response body
+                InputStreamReader isr = new InputStreamReader(conn.getErrorStream());
+                JoinGameResult joinGameResult = gson.fromJson(isr, JoinGameResult.class);
+                System.out.println(responseCode + ": " + joinGameResult.getMessage());
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
+
+
+
     private void logout() {
         try {
             URL url = new URL("http://localhost:8080/session"); // Use your server's logout URL
