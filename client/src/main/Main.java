@@ -10,6 +10,7 @@ import requests.LoginRequest;
 import requests.RegisterRequest;
 import results.LoginResult;
 import results.RegisterResult;
+import static ui.EscapeSequences.*;
 
 public class Main {
     // Define ANSI color code constants
@@ -24,8 +25,8 @@ public class Main {
         boolean isRunning = true;
 
         while (isRunning) {
-            System.out.println(ANSI_BLUE + "WELCOME TO THE CHESS GAME LAUNCH MENU" + ANSI_RESET);
-            System.out.print("Enter command: ");
+            System.out.println(ANSI_BLUE + SET_TEXT_BOLD + "MARK HEILNER CHESS GAME LAUNCH MENU" + ANSI_RESET);
+            System.out.print("Enter command: " + RESET_TEXT_BOLD_FAINT);
             String command = scanner.nextLine();
 
             switch (command.toLowerCase()) {
@@ -34,6 +35,7 @@ public class Main {
                     break;
                 case "quit":
                     isRunning = false;
+                    System.out.println(ANSI_GREEN + "Thank you for coming!" + ANSI_RESET);
                     break;
                 case "login":
                     // Call the login function
@@ -53,10 +55,10 @@ public class Main {
 
     private static void printHelp() {
         System.out.println(ANSI_YELLOW + "Available commands:" + ANSI_RESET);
-        System.out.println("help - Show this help message");
-        System.out.println("quit - Exit the program");
-        System.out.println("login - Login to your account");
-        System.out.println("register - Register a new account");
+        System.out.println(ANSI_GREEN +  "help " + ANSI_RESET + "- Show this help message");
+        System.out.println(ANSI_GREEN +  "quit " + ANSI_RESET + "- Exit the program");
+        System.out.println(ANSI_GREEN +  "login " + ANSI_RESET + "- Login to your account");
+        System.out.println(ANSI_GREEN +  "register " + ANSI_RESET + "- Register a new account");
     }
 
 

@@ -19,6 +19,7 @@ import requests.LogoutRequest;
 import results.JoinGameResult;
 import results.ListGamesResult;
 import results.LogoutResult;
+import static ui.EscapeSequences.*;
 
 public class PostLogin {
     private final String authToken;
@@ -32,12 +33,12 @@ public class PostLogin {
 
     public void displayMenu() {
         while (isLoggedIn) {
-            System.out.println("Post-login menu:");
+            System.out.println(SET_TEXT_BOLD + SET_TEXT_COLOR_BLUE +   "Post-login menu:");
             System.out.println("1. List Games");
             System.out.println("2. Create Game");
             System.out.println("3. Join Game");
             System.out.println("4. Logout");
-            System.out.print("Enter choice: ");
+            System.out.print("Enter choice: "+ SET_BG_COLOR_DARK_GREY + RESET_TEXT_BOLD_FAINT);
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline

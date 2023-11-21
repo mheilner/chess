@@ -240,7 +240,9 @@ public class GameDao {
 
 
     /**
-     *SERIALIZATION SECTION
+     * Serialize CGame object to JSON.
+     * @param cGame The CGame object to serialize.
+     * @return JSON representation of CGame.
      */
     private String serializeCGame(CGame cGame) {
         GsonBuilder builder = new GsonBuilder();
@@ -249,6 +251,11 @@ public class GameDao {
         return gson.toJson(cGame);
     }
 
+    /**
+     * Deserialize JSON to CGame object.
+     * @param json The JSON string.
+     * @return Deserialized CGame object.
+     */
     private CGame deserializeCGame(String json) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(ChessPiece.class, new ChessPieceDeserializer());
@@ -258,20 +265,17 @@ public class GameDao {
 
 
     public class ChessPieceSerializer implements JsonSerializer<ChessPiece> {
-
         @Override
         public JsonElement serialize(ChessPiece src, Type typeOfSrc, JsonSerializationContext context) {
             JsonObject result = new JsonObject();
-
             result.addProperty("type", src.getClass().getSimpleName());
             result.addProperty("teamColor", src.getTeamColor().toString());
             // Add other common properties if needed
-
             return result;
         }
-
     }
 
+    // Custom deserializer for ChessPiece objects
     public class ChessPieceDeserializer implements JsonDeserializer<ChessPiece> {
         @Override
         public ChessPiece deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -297,8 +301,4 @@ public class GameDao {
             }
         }
     }
-
-
-
-
 }
