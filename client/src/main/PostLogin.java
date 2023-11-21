@@ -3,7 +3,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
+import chessPkg.CBoard;
+import chessPkg.CGame;
 import com.google.gson.reflect.TypeToken;
+import dataAccess.GameDao;
 import model.Game;
 import requests.CreateGameRequest;
 import requests.JoinGameRequest;
@@ -155,6 +158,17 @@ public class PostLogin {
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
                 System.out.println("Successfully joined game.");
+                try {
+                    GameDao gameDao = GameDao.getInstance();
+                    Game joinedGame = gameDao.find(gameID);
+                    if (joinedGame != null) {
+                        ChessBoardDisplay.displayChessBoard((CBoard)joinedGame.getGame().getBoard());
+                    } else {
+                        System.out.println("Failed to retrieve the game details.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
             } else {
                 // Read the error message from the response body
                 InputStreamReader isr = new InputStreamReader(conn.getErrorStream());

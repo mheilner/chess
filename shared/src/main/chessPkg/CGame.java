@@ -13,7 +13,7 @@ public class CGame implements ChessGame {
         currentTurn = TeamColor.WHITE; // Start with White's turn
         board = new CBoard(); // Initialize the game board
         // You can set up the initial chessboard configuration here if needed
-
+        board.resetBoard();
     }
 
     @Override
@@ -129,7 +129,8 @@ public class CGame implements ChessGame {
             }
         }
         return false;
-    } //TODO
+    }
+
 
 
     @Override

@@ -8,7 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/main/ChessBoardDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/PostLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/PostLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chessPkg/CBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chessPkg/CGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,17 +113,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreateGameTest.testCreateGameSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests.goodWatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="unitTests.*" />
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="unitTests" />
-      <option name="MAIN_CLASS_NAME" value="unitTests.CreateGameTest" />
-      <option name="METHOD_NAME" value="testCreateGameSuccess" />
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="METHOD_NAME" value="goodWatch" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -140,10 +146,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.All in chess" />
+        <item itemvalue="JUnit.StandardAPITests.goodWatch" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.unitTests in chess" />
-        <item itemvalue="JUnit.CreateGameTest.testCreateGameSuccess" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +184,7 @@
       <workItem from="1699372991337" duration="911000" />
       <workItem from="1700193965439" duration="2461000" />
       <workItem from="1700257443447" duration="5218000" />
-      <workItem from="1700333656923" duration="10623000" />
+      <workItem from="1700333656923" duration="22831000" />
     </task>
     <servers />
   </component>
@@ -206,18 +212,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/handler/JoinGameHandler.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/handler/JoinGameHandler.java</url>
           <line>22</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/services/CreateGameService.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="33" />
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/PersistenceTest.java</url>
@@ -227,15 +223,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/handler/CreateGameHandler.java</url>
-          <line>32</line>
-          <properties class="handler.CreateGameHandler" method="handle">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

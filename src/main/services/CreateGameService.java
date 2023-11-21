@@ -22,9 +22,8 @@ public class CreateGameService {
             return new CreateGameResult("A game with this name already exists. Please choose another name.");
         }
 
-        Game newGame = new Game(0, request.getGameName(),null, null,  new CGame());  // gameID and players will be set later
+        Game newGame = new Game(0, request.getGameName(),null, null,  new CGame());// gameID and players will be set later
         int gameID = gameDao.insert(newGame);
-
         return new CreateGameResult(gameID);
     }
 

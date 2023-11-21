@@ -1,8 +1,11 @@
 package dataAccess;
+import java.lang.reflect.Type;
 import java.sql.*;
 
-import chessPkg.CGame;
-import com.google.gson.Gson;
+import chess.ChessGame;
+import chess.ChessPiece;
+import chessPkg.*;
+import com.google.gson.*;
 import model.Game;
 
 import java.util.ArrayList;
@@ -236,12 +239,66 @@ public class GameDao {
     }
 
 
+    /**
+     *SERIALIZATION SECTION
+     */
     private String serializeCGame(CGame cGame) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(ChessPiece.class, new ChessPieceSerializer());
+        Gson gson = builder.create();
         return gson.toJson(cGame);
     }
 
     private CGame deserializeCGame(String json) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(ChessPiece.class, new ChessPieceDeserializer());
+        Gson gson = builder.create();
         return gson.fromJson(json, CGame.class);
     }
+
+
+    public class ChessPieceSerializer implements JsonSerializer<ChessPiece> {
+
+        @Override
+        public JsonElement serialize(ChessPiece src, Type typeOfSrc, JsonSerializationContext context) {
+            JsonObject result = new JsonObject();
+
+            result.addProperty("type", src.getClass().getSimpleName());
+            result.addProperty("teamColor", src.getTeamColor().toString());
+            // Add other common properties if needed
+
+            return result;
+        }
+
+    }
+
+    public class ChessPieceDeserializer implements JsonDeserializer<ChessPiece> {
+        @Override
+        public ChessPiece deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            JsonObject jsonObject = json.getAsJsonObject();
+            String type = jsonObject.get("type").getAsString();
+            ChessGame.TeamColor teamColor = ChessGame.TeamColor.valueOf(jsonObject.get("teamColor").getAsString());
+
+            switch (type) {
+                case "Rook":
+                    return new Rook(teamColor);
+                case "Knight":
+                    return new Knight(teamColor);
+                case "Bishop":
+                    return new Bishop(teamColor);
+                case "Queen":
+                    return new Queen(teamColor);
+                case "King":
+                    return new King(teamColor);
+                case "Pawn":
+                    return new Pawn(teamColor);
+                default:
+                    throw new JsonParseException("Unknown chess piece type: " + type);
+            }
+        }
+    }
+
+
+
 
 }
