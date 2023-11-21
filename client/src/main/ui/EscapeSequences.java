@@ -21,6 +21,7 @@ public class EscapeSequences {
     public static final String SET_TEXT_BLINKING = UNICODE_ESCAPE + "[5m";
     public static final String RESET_TEXT_BLINKING = UNICODE_ESCAPE + "[25m";
 
+
     private static final String SET_TEXT_COLOR = UNICODE_ESCAPE + "[38;5;";
     private static final String SET_BG_COLOR = UNICODE_ESCAPE + "[48;5;";
 
@@ -62,4 +63,8 @@ public class EscapeSequences {
     public static final String EMPTY = " \u2003 ";
 
     public static String moveCursorToLocation(int x, int y) { return UNICODE_ESCAPE + "[" + y + ";" + x + "H"; }
+
+    public static final String BG_COLOR_DARK_SQUARE = SET_BG_COLOR_DARK_GREEN; // Dark square color (dark gray)
+    public static final String BG_COLOR_LIGHT_SQUARE = SET_BG_COLOR_DARK_GREY; // Light square color (light gray)
+
 }

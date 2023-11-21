@@ -14,23 +14,23 @@ public class ChessBoardDisplay {
     }
 
     private static void printChessBoard(CBoard board, boolean whiteAtBottom) {
-        // Loop through each row
         for (int row = 1; row <= 8; row++) {
-            // Adjust row index based on orientation
             int adjustedRow = whiteAtBottom ? row : 9 - row;
             for (int col = 1; col <= 8; col++) {
+                // Set background color based on the square's position
+                String bgColor = (row + col) % 2 == 0 ? EscapeSequences.BG_COLOR_LIGHT_SQUARE : EscapeSequences.BG_COLOR_DARK_SQUARE;
+                System.out.print(bgColor);
                 ChessPiece piece = board.getPiece(new CPosition(adjustedRow, col));
                 printChessPiece(piece);
+                System.out.print(EscapeSequences.RESET_BG_COLOR); // Reset background color
             }
             System.out.println(); // New line after each row
         }
     }
 
     private static void printChessPiece(ChessPiece piece) {
-        if (piece == null) {
-            System.out.print(EscapeSequences.EMPTY);
-        } else {
-            String pieceSymbol;
+        String pieceSymbol = EscapeSequences.EMPTY; // Default empty symbol
+        if (piece != null) {
             switch (piece.getPieceType()) {
                 case KING:
                     pieceSymbol = piece.getTeamColor() == ChessGame.TeamColor.WHITE ? EscapeSequences.WHITE_KING : EscapeSequences.BLACK_KING;
@@ -53,8 +53,8 @@ public class ChessBoardDisplay {
                 default:
                     pieceSymbol = EscapeSequences.EMPTY;
             }
-            System.out.print(pieceSymbol);
         }
+        System.out.print(pieceSymbol);
     }
 
 }
