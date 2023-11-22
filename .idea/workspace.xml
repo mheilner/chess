@@ -9,7 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/handler/ListGamesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/ListGamesHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +79,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in chess">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="client" />
@@ -141,9 +140,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in chess" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.All in chess" />
         <item itemvalue="JUnit.StandardAPITests.goodWatch" />
         <item itemvalue="JUnit.unitTests in chess" />
       </list>
@@ -180,7 +179,7 @@
       <workItem from="1699372991337" duration="911000" />
       <workItem from="1700193965439" duration="2461000" />
       <workItem from="1700257443447" duration="5218000" />
-      <workItem from="1700333656923" duration="37145000" />
+      <workItem from="1700333656923" duration="37867000" />
     </task>
     <servers />
   </component>

@@ -310,4 +310,12 @@ public class GameDao {
             }
         }
     }
+    public class GsonUtil {
+        public static Gson createGson() {
+            return new GsonBuilder()
+                    .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                    .create();
+        }
+    }
+
 }

@@ -64,7 +64,7 @@ public class PostLogin {
     }
 
     private void listGames() {
-        Gson gson = new Gson();
+        Gson gson = GameDao.GsonUtil.createGson();
 
         try {
             URL url = new URL("http://localhost:8080/game"); // Replace with your server's list games URL

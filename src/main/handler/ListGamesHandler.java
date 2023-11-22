@@ -24,7 +24,6 @@ public class ListGamesHandler implements Route {
         builder.registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer());
         this.gson = builder.create();
         listGamesService = new ListGamesService();
-
     }
 
     public static ListGamesHandler getInstance() {
@@ -57,7 +56,6 @@ public class ListGamesHandler implements Route {
         } else {
             response.status(500);
         }
-
         // return gson.toJson(result);
         String jsonResult = gson.toJson(result);
         System.out.println("JSON being sent to client: " + jsonResult);
