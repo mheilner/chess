@@ -6,10 +6,10 @@ import ui.EscapeSequences;
 public class ChessBoardDisplay {
 
     public static void displayChessBoard(CBoard board) {
-        System.out.println("Chessboard with White at Bottom:");
+        System.out.println(EscapeSequences.SET_TEXT_COLOR_BLUE + "Chessboard with White at Bottom:");
         printChessBoard(board, true);
 
-        System.out.println("\nChessboard with Black at Bottom:");
+        System.out.println(EscapeSequences.SET_TEXT_COLOR_BLUE + "\nChessboard with Black at Bottom:");
         printChessBoard(board, false);
     }
 
@@ -24,7 +24,7 @@ public class ChessBoardDisplay {
                 printChessPiece(piece);
                 System.out.print(EscapeSequences.RESET_BG_COLOR); // Reset background color
             }
-            System.out.println(); // New line after each row
+            System.out.println(EscapeSequences.RESET_BG_COLOR); // New line after each row
         }
     }
 

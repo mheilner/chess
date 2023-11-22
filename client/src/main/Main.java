@@ -13,20 +13,21 @@ import results.RegisterResult;
 import static ui.EscapeSequences.*;
 
 public class Main {
-    // Define ANSI color code constants
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
+    // ANSI color code constants
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String BORDER = ANSI_BLUE + "----------------------------------------------" + ANSI_RESET;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
         while (isRunning) {
-            System.out.println(ANSI_BLUE + SET_TEXT_BOLD + "MARK HEILNER CHESS GAME LAUNCH MENU" + ANSI_RESET);
-            System.out.print("Enter command: " + RESET_TEXT_BOLD_FAINT);
+            printMenuHeader("MARK HEILNER CHESS GAME LAUNCH MENU");
+            System.out.print(ANSI_YELLOW + "Enter command: " + ANSI_RESET);
             String command = scanner.nextLine();
 
             switch (command.toLowerCase()) {
@@ -35,32 +36,40 @@ public class Main {
                     break;
                 case "quit":
                     isRunning = false;
-                    System.out.println(ANSI_GREEN + "Thank you for coming!" + ANSI_RESET);
+                    System.out.println(ANSI_GREEN + "\nThank you for playing! Goodbye." + ANSI_RESET);
                     break;
                 case "login":
-                    // Call the login function
                     handleLogin(scanner);
                     break;
                 case "register":
-                    // Implement register logic
                     handleRegister(scanner);
                     break;
                 default:
-                    System.out.println(ANSI_RED + "Unknown command. Type 'help' for a list of commands." + ANSI_RESET);
+                    System.out.println(ANSI_RED + "\nUnknown command. Type 'help' for a list of commands.\n" + ANSI_RESET);
             }
         }
-
         scanner.close();
     }
 
-    private static void printHelp() {
-        System.out.println(ANSI_YELLOW + "Available commands:" + ANSI_RESET);
-        System.out.println(ANSI_GREEN +  "help " + ANSI_RESET + "- Show this help message");
-        System.out.println(ANSI_GREEN +  "quit " + ANSI_RESET + "- Exit the program");
-        System.out.println(ANSI_GREEN +  "login " + ANSI_RESET + "- Login to your account");
-        System.out.println(ANSI_GREEN +  "register " + ANSI_RESET + "- Register a new account");
+    private static void printMenuHeader(String title) {
+        clearScreen();
+        System.out.println(BORDER);
+        System.out.println(ANSI_BLUE + SET_TEXT_BOLD + title + ANSI_RESET);
+        System.out.println(BORDER + "\n");
     }
 
+    private static void clearScreen() {
+        System.out.print(ERASE_SCREEN);
+        System.out.flush();
+    }
+
+    private static void printHelp() {
+        System.out.println(ANSI_YELLOW + "\nAvailable commands:\n" + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "help" + ANSI_RESET + " - Show this help message");
+        System.out.println(ANSI_GREEN + "quit" + ANSI_RESET + " - Exit the program");
+        System.out.println(ANSI_GREEN + "login" + ANSI_RESET + " - Login to your account");
+        System.out.println(ANSI_GREEN + "register" + ANSI_RESET + " - Register a new account\n");
+    }
 
     private static void handleRegister(Scanner scanner) {
         System.out.print(ANSI_GREEN + "Username: " + ANSI_RESET);

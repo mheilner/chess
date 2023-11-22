@@ -1,30 +1,30 @@
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
+import java.io.OutputStream;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.List;
 
 import chessPkg.CBoard;
-import chessPkg.CGame;
 import com.google.gson.reflect.TypeToken;
-import dataAccess.GameDao;
+import com.google.gson.Gson;
+
 import model.Game;
 import requests.CreateGameRequest;
 import requests.JoinGameRequest;
 import results.CreateGameResult;
-
-import java.io.OutputStream;
-import java.io.InputStreamReader;
-import com.google.gson.Gson;
-import requests.LogoutRequest;
 import results.JoinGameResult;
 import results.ListGamesResult;
 import results.LogoutResult;
+
+import dataAccess.GameDao;
+
 import static ui.EscapeSequences.*;
 
 public class PostLogin {
     private final String authToken;
     private Scanner scanner;
-    private boolean isLoggedIn = true; // Flag to maintain login state
+    private boolean isLoggedIn = true;
 
     public PostLogin(Scanner scanner, String authToken) {
         this.scanner = scanner;
@@ -33,31 +33,30 @@ public class PostLogin {
 
     public void displayMenu() {
         while (isLoggedIn) {
-            System.out.println(SET_TEXT_BOLD + SET_TEXT_COLOR_BLUE +   "Post-login menu:");
+            System.out.println(SET_TEXT_BOLD + SET_BG_COLOR_DARK_GREY + SET_TEXT_COLOR_BLUE + "Post-login Menu:");
             System.out.println("1. List Games");
             System.out.println("2. Create Game");
             System.out.println("3. Join Game");
             System.out.println("4. Logout");
-            System.out.print("Enter choice: "+ SET_BG_COLOR_DARK_GREY + RESET_TEXT_BOLD_FAINT);
+            System.out.print(SET_TEXT_COLOR_YELLOW + "Enter choice: " + RESET_TEXT_COLOR + RESET_TEXT_BOLD_FAINT);
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            String choice = scanner.nextLine();
 
             switch (choice) {
-                case 1:
+                case "1":
                     listGames();
                     break;
-                case 2:
+                case "2":
                     createGame();
                     break;
-                case 3:
+                case "3":
                     joinGame();
                     break;
-                case 4:
+                case "4":
                     logout();
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println(SET_TEXT_COLOR_RED + "Invalid choice. Please try again." + RESET_TEXT_COLOR);
                     break;
             }
         }
@@ -67,40 +66,38 @@ public class PostLogin {
         Gson gson = GameDao.GsonUtil.createGson();
 
         try {
-            URL url = new URL("http://localhost:8080/game"); // Replace with your server's list games URL
+            URL url = new URL("http://localhost:8080/game");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-            conn.setRequestProperty("Authorization", authToken); // Include authToken in request header
+            conn.setRequestProperty("Authorization", authToken);
 
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
-                ListGamesResult gamesResult = gson.fromJson(new InputStreamReader(conn.getInputStream()),
-                        new TypeToken<ListGamesResult>(){}.getType());
+                ListGamesResult gamesResult = gson.fromJson(new InputStreamReader(conn.getInputStream()), new TypeToken<ListGamesResult>(){}.getType());
                 displayGames(gamesResult.getGames());
             } else {
-                System.out.println("Failed to retrieve games list.");
+                System.out.println(SET_TEXT_COLOR_RED + "Failed to retrieve games list." + RESET_TEXT_COLOR);
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + "Error: " + e.getMessage() + RESET_TEXT_COLOR);
         }
     }
 
     private void displayGames(List<Game> games) {
         if (games == null || games.isEmpty()) {
-            System.out.println("No games available.");
+            System.out.println(SET_TEXT_COLOR_YELLOW + "No games available." + RESET_TEXT_COLOR);
             return;
         }
 
-        System.out.println("Available games:");
+        System.out.println(SET_TEXT_COLOR_GREEN + "Available games:" + SET_TEXT_COLOR_GREEN);
         for (int i = 0; i < games.size(); i++) {
             Game game = games.get(i);
-            System.out.printf("%d. %s - White: %s, Black: %s\n", i + 1,
-                    game.getGameName(), game.getWhiteUsername(), game.getBlackUsername());
+            System.out.printf("%d. %s - White: %s, Black: %s\n", i + 1, game.getGameName(), game.getWhiteUsername(), game.getBlackUsername());
         }
     }
 
     private void createGame() {
-        System.out.print("Enter game name: ");
+        System.out.print(SET_TEXT_COLOR_WHITE + "Enter game name: ");
         String gameName = scanner.nextLine();
         CreateGameRequest createGameRequest = new CreateGameRequest(gameName);
         Gson gson = new Gson();
@@ -122,17 +119,17 @@ public class PostLogin {
             CreateGameResult createGameResult = gson.fromJson(new InputStreamReader(conn.getInputStream()), CreateGameResult.class);
 
             if (responseCode == 200) {
-                System.out.println("Game created successfully. Game ID: " + createGameResult.getGameID());
+                System.out.println(SET_TEXT_COLOR_GREEN + "Game created successfully. Game ID: " + createGameResult.getGameID());
             } else {
-                System.out.println("Failed to create game. " + createGameResult.getMessage());
+                System.out.println(SET_TEXT_COLOR_RED + "Failed to create game. " + createGameResult.getMessage());
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED+"Error: " + e.getMessage());
         }
     }
 
     private void joinGame() {
-        System.out.print("Enter game ID to join: ");
+        System.out.print(SET_TEXT_COLOR_WHITE + "Enter game ID to join: ");
         int gameID = scanner.nextInt();
         scanner.nextLine(); // Consume newline
 
