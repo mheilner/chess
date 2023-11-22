@@ -1,6 +1,9 @@
 package handler;
 
+import chess.ChessPiece;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import dataAccess.GameDao;
 import results.ListGamesResult;
 import services.ListGamesService;
 import spark.Request;
@@ -17,8 +20,11 @@ public class ListGamesHandler implements Route {
     private final ListGamesService listGamesService;
 
     private ListGamesHandler() {
-        gson = new Gson();
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer());
+        this.gson = builder.create();
         listGamesService = new ListGamesService();
+
     }
 
     public static ListGamesHandler getInstance() {
@@ -52,6 +58,9 @@ public class ListGamesHandler implements Route {
             response.status(500);
         }
 
-        return gson.toJson(result);
+        // return gson.toJson(result);
+        String jsonResult = gson.toJson(result);
+        System.out.println("JSON being sent to client: " + jsonResult);
+        return jsonResult;
     }
 }
