@@ -96,7 +96,7 @@ public class PostLogin {
         }
     }
 
-    private void createGame() {
+    public void createGame() {
         System.out.print(SET_TEXT_COLOR_WHITE + "Enter game name: ");
         String gameName = scanner.nextLine();
         CreateGameRequest createGameRequest = new CreateGameRequest(gameName);

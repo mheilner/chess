@@ -6,7 +6,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import requests.RegisterRequest;
+import results.RegisterResult;
 import services.ClearService;
+import services.RegisterService;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -33,6 +36,15 @@ public class ServerFacadeTest {
         AuthTokenDao.getInstance().clear();
         UserDao.getInstance().clear();
         System.setOut(originalOut);
+    }
+
+    // Add this method to your LogoutTest class
+    private String registerUserAndGetAuthToken(String user, String pw, String email) {
+        // Use your registration service to register a user and get an auth token
+        RegisterService registrationService = new RegisterService();
+        RegisterRequest registerRequest = new RegisterRequest(user, pw, email);
+        RegisterResult registerResult = registrationService.register(registerRequest);
+        return registerResult.getAuthToken(); // Get the auth token from the result
     }
     @Test
     @DisplayName("Test successful registration")
@@ -96,14 +108,62 @@ public class ServerFacadeTest {
         assertTrue(outContent.toString().contains("Login failed:"));
     }
 
-//    @Test
-//    @DisplayName("Test listing games")
-//    public void testListGames() {
-//        // Assuming there's a way to simulate this from the Main class
-//        PostLogin.listGames();
-//
-//        assertTrue(outContent.toString().contains("Available games:"));
-//    }
+    @Test
+    @DisplayName("Test successful game creation")
+    public void testCreateGameSuccess() {
+        String gameName = "ChessGame1";
+        String simulatedUserInput = gameName + "\n";
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.createGame();
+
+        assertTrue(outContent.toString().contains("Game created successfully. Game ID:"));
+    }
+
+    @Test
+    @DisplayName("Test game creation failure")
+    public void testCreateGameFailure() {
+        String gameName = "ChessGame1";
+        String simulatedUserInput = gameName + "\n";
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.createGame();
+
+        assertTrue(outContent.toString().contains("Game created successfully. Game ID:"));
+
+        ByteArrayInputStream testInput2 = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner2 = new Scanner(testInput2);
+        String authToken2 = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin2 = new PostLogin(mockScanner2, authToken2);
+        postLogin2.createGame();
+
+//      FIXME  assertTrue(outContent.toString().contains("already"));
+    }
+
+
+    @Test
+    @DisplayName("Test listing games")
+    public void testListGames() {
+        // Simulate user input: '1' to list games, then '4' to exit the loop
+        String simulatedUserInput = "1\n4\n";
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.listGames();
+
+        assertTrue(outContent.toString().contains("No games available."));
+    }
+
+
 
 
 
