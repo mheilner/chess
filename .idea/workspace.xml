@@ -8,8 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/test/ServerFacadeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ChessBoardDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ChessBoardDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/PostLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/PostLogin.java" afterDir="false" />
     </list>
@@ -81,14 +81,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="client" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ServerFacadeTest">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="chess" />
@@ -110,43 +103,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.goodWatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="goodWatch" />
+    <configuration name="ServerFacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerFacadeTest.testHandleLoginFailure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
+      <option name="METHOD_NAME" value="testHandleLoginFailure" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="unitTests in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="unitTests" />
-      <option name="TEST_OBJECT" value="package" />
+    <configuration name="ServerFacadeTest.testHandleLoginSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
+      <option name="METHOD_NAME" value="testHandleLoginSuccess" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.ServerFacadeTest" />
         <item itemvalue="JUnit.All in chess" />
-        <item itemvalue="JUnit.StandardAPITests.goodWatch" />
-        <item itemvalue="JUnit.unitTests in chess" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.ServerFacadeTest.testHandleLoginFailure" />
+        <item itemvalue="JUnit.ServerFacadeTest.testHandleLoginSuccess" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +173,7 @@
       <workItem from="1699372991337" duration="911000" />
       <workItem from="1700193965439" duration="2461000" />
       <workItem from="1700257443447" duration="5218000" />
-      <workItem from="1700333656923" duration="39943000" />
+      <workItem from="1700333656923" duration="45074000" />
     </task>
     <servers />
   </component>

@@ -63,7 +63,7 @@ public class Main {
         System.out.flush();
     }
 
-    private static void printHelp() {
+    public static void printHelp() {
         System.out.println(ANSI_YELLOW + "\nAvailable commands:\n" + ANSI_RESET);
         System.out.println(ANSI_GREEN + "help" + ANSI_RESET + " - Show this help message");
         System.out.println(ANSI_GREEN + "quit" + ANSI_RESET + " - Exit the program");
@@ -71,7 +71,7 @@ public class Main {
         System.out.println(ANSI_GREEN + "register" + ANSI_RESET + " - Register a new account\n");
     }
 
-    private static void handleRegister(Scanner scanner) {
+    public static void handleRegister(Scanner scanner) {
         System.out.print(ANSI_GREEN + "Username: " + ANSI_RESET);
         String username = scanner.nextLine();
         System.out.print(ANSI_GREEN + "Password: " + ANSI_RESET);
@@ -123,7 +123,7 @@ public class Main {
         }
     }
 
-    private static void handleLogin(Scanner scanner) {
+    public static void handleLogin(Scanner scanner) {
         System.out.print(ANSI_GREEN + "Username: " + ANSI_RESET);
         String username = scanner.nextLine();
         System.out.print(ANSI_GREEN + "Password: " + ANSI_RESET);

@@ -62,7 +62,7 @@ public class PostLogin {
         }
     }
 
-    private void listGames() {
+    public void listGames() {
         Gson gson = GameDao.GsonUtil.createGson();
 
         try {
@@ -103,11 +103,11 @@ public class PostLogin {
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(createGameRequest);
         try {
-            URL url = new URL("http://localhost:8080/game"); // Replace with your server's create game URL
+            URL url = new URL("http://localhost:8080/game");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Authorization", authToken); // Include authToken in request header
+            conn.setRequestProperty("Authorization", authToken);
             conn.setDoOutput(true);
 
             try (OutputStream os = conn.getOutputStream()) {
