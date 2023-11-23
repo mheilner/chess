@@ -1,3 +1,4 @@
+import chessPkg.CGame;
 import dataAccess.AuthTokenDao;
 import dataAccess.DataAccessException;
 import dataAccess.GameDao;
@@ -183,24 +184,51 @@ public class ServerFacadeTest {
         assertTrue(outContent.toString().contains("No games available."));
     }
 
-//    @Test
-//    @DisplayName("Test successful game join")
-//    public void testJoinGameSuccess() {
-//        String gameName = "frock";
-//        String gameID = "28"; // Assuming game ID is known
-//        String playerColor = "WHITE";
-//        String simulatedUserInput = "2\n" + gameName + "\n3\n" + gameID + "\n" + playerColor + "\n4\n";
-//        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
-//        Scanner mockScanner = new Scanner(testInput);
-//        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
-//
-//        PostLogin postLogin = new PostLogin(mockScanner, authToken);
-//        postLogin.displayMenu();
-//
-//        String output = outContent.toString();
-//        assertTrue(output.contains("Successfully joined game."));
-//    }
+    @Test
+    @DisplayName("Test successful game join")
+    public void testJoinGameSuccess() throws DataAccessException {
+        // Insert the game directly into the database
+        String gameName = "TestGame";
+        int gameID = 1;
+        Game game = new Game(gameID, gameName, null, null, new CGame());
+        GameDao.getInstance().insert(game);
 
+        // Simulate user input for joining the game
+        String playerColor = "WHITE";
+        String simulatedUserInput = "3\n" + gameID + "\n" + playerColor + "\n4\n"; // 3 to join game, 4 to logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Successfully joined game."));
+    }
+
+    @Test
+    @DisplayName("Test game join failure - spot already taken")
+    public void testJoinGameFailure() throws DataAccessException {
+        // Insert the game directly into the database
+        String gameName = "TestGame";
+        int gameID = 1;
+        Game game = new Game(gameID, gameName, null, null, new CGame());
+        GameDao.getInstance().insert(game);
+
+        // Simulate user input for joining the game twice
+        String playerColor = "WHITE";
+        String simulatedUserInput = "3\n" + gameID + "\n" + playerColor + "\n3\n" + gameID + "\n" + playerColor + "\n4\n"; // Join game twice and then logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Error: White spot is already taken"));
+    }
 
 
 
