@@ -2,6 +2,7 @@ import dataAccess.AuthTokenDao;
 import dataAccess.DataAccessException;
 import dataAccess.GameDao;
 import dataAccess.UserDao;
+import model.Game;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -144,13 +145,32 @@ public class ServerFacadeTest {
         PostLogin postLogin2 = new PostLogin(mockScanner2, authToken2);
         postLogin2.createGame();
 
-//      FIXME  assertTrue(outContent.toString().contains("already"));
+        assertTrue(outContent.toString().contains("Error"));
     }
 
+    @Test
+    @DisplayName("Test list games after game creation")
+    public void testListGamesAfterGameCreation() {
+        // Simulate user input for creating a game, listing games, and logging out
+        String gameName = "ChessGame1";
+        String simulatedUserInput = "2\n" + gameName + "\n1\n4\n"; // 2 to create game, 1 to list games, 4 to logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        // Check if the output contains the expected strings
+        String output = outContent.toString();
+        assertTrue(output.contains("Game created successfully. Game ID:"));
+        assertTrue(output.contains("Available games:"));
+        assertTrue(output.contains(gameName)); // Check if the created game name is listed
+    }
 
     @Test
-    @DisplayName("Test listing games")
-    public void testListGames() {
+    @DisplayName("Test listing games failure")
+    public void testListGamesFail() {
         // Simulate user input: '1' to list games, then '4' to exit the loop
         String simulatedUserInput = "1\n4\n";
         ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
@@ -162,6 +182,24 @@ public class ServerFacadeTest {
 
         assertTrue(outContent.toString().contains("No games available."));
     }
+
+//    @Test
+//    @DisplayName("Test successful game join")
+//    public void testJoinGameSuccess() {
+//        String gameName = "frock";
+//        String gameID = "28"; // Assuming game ID is known
+//        String playerColor = "WHITE";
+//        String simulatedUserInput = "2\n" + gameName + "\n3\n" + gameID + "\n" + playerColor + "\n4\n";
+//        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+//        Scanner mockScanner = new Scanner(testInput);
+//        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+//
+//        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+//        postLogin.displayMenu();
+//
+//        String output = outContent.toString();
+//        assertTrue(output.contains("Successfully joined game."));
+//    }
 
 
 

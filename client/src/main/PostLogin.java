@@ -83,7 +83,7 @@ public class PostLogin {
         }
     }
 
-    private void displayGames(List<Game> games) {
+    public void displayGames(List<Game> games) {
         if (games == null || games.isEmpty()) {
             System.out.println(SET_TEXT_COLOR_YELLOW + "No games available." + RESET_TEXT_COLOR);
             return;

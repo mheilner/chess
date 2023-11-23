@@ -80,7 +80,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerFacadeTest.testCreateGameFailure">
+  <component name="RunManager" selected="JUnit.ServerFacadeTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="client" />
@@ -88,34 +88,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Server" />
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="ServerFacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTest.testCreateGameFailure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFacadeTest.testJoinGameSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
-      <option name="METHOD_NAME" value="testCreateGameFailure" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerFacadeTest.testCreateGameSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
-      <option name="METHOD_NAME" value="testCreateGameSuccess" />
+      <option name="METHOD_NAME" value="testJoinGameSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -131,13 +117,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServerFacadeTest.testListGamesAfterGameCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
+      <option name="METHOD_NAME" value="testListGamesAfterGameCreation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ServerFacadeTest.testCreateGameFailure" />
-        <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.ServerFacadeTest.testCreateGameSuccess" />
-        <item itemvalue="JUnit.ServerFacadeTest.testListGames" />
+        <item itemvalue="JUnit.ServerFacadeTest" />
+        <item itemvalue="JUnit.ServerFacadeTest.testJoinGameSuccess" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ServerFacadeTest.testListGamesAfterGameCreation" />
+        <item itemvalue="JUnit.ServerFacadeTest.testListGames" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +168,7 @@
       <workItem from="1699372991337" duration="911000" />
       <workItem from="1700193965439" duration="2461000" />
       <workItem from="1700257443447" duration="5218000" />
-      <workItem from="1700333656923" duration="47434000" />
+      <workItem from="1700333656923" duration="52230000" />
     </task>
     <servers />
   </component>
