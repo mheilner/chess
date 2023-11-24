@@ -1,4 +1,5 @@
 import chessPkg.CGame;
+import chessPkg.CBoard;
 import dataAccess.AuthTokenDao;
 import dataAccess.DataAccessException;
 import dataAccess.GameDao;
@@ -12,11 +13,14 @@ import requests.RegisterRequest;
 import results.RegisterResult;
 import services.ClearService;
 import services.RegisterService;
+import ui.EscapeSequences;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ServerFacadeTest {
@@ -295,9 +299,97 @@ public class ServerFacadeTest {
         assertTrue(output.contains("Invalid choice. Please try again."));
     }
 
+    @Test
+    @DisplayName("Test printHelp method")
+    public void testPrintHelp() {
+        // Simulate user input to call 'help' and then 'quit'
+        String simulatedUserInput = "help\nquit\n";
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        System.setIn(testInput);
 
+        Main.main(new String[]{});
 
+        String output = outContent.toString();
+        assertTrue(output.contains("Available commands:"));
+    }
 
+    @Test
+    @DisplayName("Test printHelp method with incorrect input")
+    public void testPrintHelpNegative() {
+        // Simulate user input that is incorrect for the 'help' command
+        String simulatedUserInput = "help\ninvalidCommand\nquit\n";
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        System.setIn(testInput);
+
+        Main.main(new String[]{});
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Unknown command. Type 'help' for a list of commands."));
+    }
+
+    @Test
+    @DisplayName("Test main function")
+    public void testMainFunction() {
+        // Simulate user input for different commands and then 'quit'
+        String simulatedUserInput = "invalid\nhelp\nquit\n";
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        System.setIn(testInput);
+
+        Main.main(new String[]{});
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Unknown command. Type 'help' for a list of commands."));
+        assertTrue(output.contains("Available commands:"));
+        assertTrue(output.contains("Thank you for playing! Goodbye."));
+    }
+
+    @Test
+    @DisplayName("Test main function with invalid command")
+    public void testMainFunctionNegative() {
+        // Simulate user input with an invalid command
+        String simulatedUserInput = "invalidCommand\nquit\n";
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        System.setIn(testInput);
+
+        Main.main(new String[]{});
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Unknown command. Type 'help' for a list of commands."));
+    }
+
+    @Test
+    @DisplayName("Test displaying chessboard with standard setup")
+    public void testDisplayChessBoardStandardSetup() {
+        CBoard board = new CBoard();
+        board.resetBoard(); // Set up the board with the standard chess layout
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        ChessBoardDisplay.displayChessBoard(board);
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Chessboard with White at Bottom:"));
+        assertTrue(output.contains("Chessboard with Black at Bottom:"));
+        // Check for specific chess pieces if needed, e.g., white king, black queen, etc.
+    }
+    @Test
+    @DisplayName("Test displaying empty chessboard")
+    public void testDisplayEmptyChessBoard() {
+        CBoard board = new CBoard(); // Create an empty chessboard
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        ChessBoardDisplay.displayChessBoard(board);
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Chessboard with White at Bottom:"));
+        assertTrue(output.contains("Chessboard with Black at Bottom:"));
+        assertFalse(output.contains(EscapeSequences.WHITE_KING) || output.contains(EscapeSequences.BLACK_KING)); // Ensure no pieces are displayed
+    }
 
 
 }
