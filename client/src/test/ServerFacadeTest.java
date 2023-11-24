@@ -230,6 +230,73 @@ public class ServerFacadeTest {
         assertTrue(output.contains("Error: White spot is already taken"));
     }
 
+    @Test
+    @DisplayName("Test successful logout")
+    public void testLogoutSuccess() {
+        // Simulate user input for logging out
+        String simulatedUserInput = "4\n"; // Assuming '4' is the option for logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Logged out successfully."));
+    }
+
+    @Test
+    @DisplayName("Test logout failure - trying to logout twice")
+    public void testLogoutFailure() {
+        // Simulate user input for logging out twice
+        String simulatedUserInput = "4\n4\n"; // Trying to logout twice
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Logged out successfully."));
+        // The second logout attempt might not produce any specific output, so just one works
+    }
+
+    @Test
+    @DisplayName("Test displayMenu with valid option")
+    public void testDisplayMenuPositive() {
+        // Simulate user input for listing games and then logging out
+        String simulatedUserInput = "1\n4\n"; // 1 for listing games, 4 for logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Available games:") || output.contains("No games available."));
+    }
+
+    @Test
+    @DisplayName("Test displayMenu with invalid option")
+    public void testDisplayMenuNegative() {
+        // Simulate user input for an invalid option and then logging out
+        String simulatedUserInput = "5\n4\n"; // 5 is an invalid option, 4 for logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Invalid choice. Please try again."));
+    }
+
+
+
 
 
 

@@ -9,6 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/PostLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/PostLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/ServerFacadeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/ServerFacadeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,27 +80,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerFacadeTest">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="client" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Server" />
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ServerFacadeTest.testDisplayMenuNegative">
     <configuration name="ServerFacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
@@ -109,21 +90,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTest.testJoinGameFailure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFacadeTest.testDisplayMenuNegative" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
-      <option name="METHOD_NAME" value="testJoinGameFailure" />
+      <option name="METHOD_NAME" value="testDisplayMenuNegative" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTest.testJoinGameSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFacadeTest.testDisplayMenuPositive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
-      <option name="METHOD_NAME" value="testJoinGameSuccess" />
+      <option name="METHOD_NAME" value="testDisplayMenuPositive" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerFacadeTest.testLogoutFailure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
+      <option name="METHOD_NAME" value="testLogoutFailure" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerFacadeTest.testLogoutSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
+      <option name="METHOD_NAME" value="testLogoutSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -131,11 +132,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServerFacadeTest.testDisplayMenuNegative" />
+        <item itemvalue="JUnit.ServerFacadeTest.testDisplayMenuPositive" />
+        <item itemvalue="JUnit.ServerFacadeTest.testLogoutFailure" />
+        <item itemvalue="JUnit.ServerFacadeTest.testLogoutSuccess" />
         <item itemvalue="JUnit.ServerFacadeTest" />
-        <item itemvalue="JUnit.ServerFacadeTest.testJoinGameFailure" />
-        <item itemvalue="JUnit.ServerFacadeTest.testJoinGameSuccess" />
-        <item itemvalue="Application.Server" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +171,7 @@
       <workItem from="1699372991337" duration="911000" />
       <workItem from="1700193965439" duration="2461000" />
       <workItem from="1700257443447" duration="5218000" />
-      <workItem from="1700333656923" duration="54220000" />
+      <workItem from="1700333656923" duration="54947000" />
     </task>
     <servers />
   </component>

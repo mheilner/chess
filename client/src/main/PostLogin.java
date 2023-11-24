@@ -180,7 +180,7 @@ public class PostLogin {
 
 
 
-    private void logout() {
+    public void logout() {
         try {
             URL url = new URL("http://localhost:8080/session"); // Use your server's logout URL
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
