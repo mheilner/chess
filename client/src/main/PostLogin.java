@@ -37,7 +37,9 @@ public class PostLogin {
             System.out.println("1. List Games");
             System.out.println("2. Create Game");
             System.out.println("3. Join Game");
-            System.out.println("4. Logout");
+            System.out.println("4. Help");
+            System.out.println("5. Logout");
+            System.out.println("6. Quit Game");
             System.out.print(SET_TEXT_COLOR_YELLOW + "Enter choice: " + RESET_TEXT_COLOR + RESET_TEXT_BOLD_FAINT);
 
             String choice = scanner.nextLine();
@@ -53,13 +55,35 @@ public class PostLogin {
                     joinGame();
                     break;
                 case "4":
+                    printHelp();
+                    break;
+                case "5":
                     logout();
+                    break;
+                case "6":
+                    quitGame();
                     break;
                 default:
                     System.out.println(SET_TEXT_COLOR_RED + "Invalid choice. Please try again." + RESET_TEXT_COLOR);
                     break;
             }
         }
+    }
+
+    private void printHelp() {
+        System.out.println(SET_TEXT_COLOR_GREEN + "Help Menu:");
+        System.out.println("1. List Games - Lists all available games");
+        System.out.println("2. Create Game - Start a new game");
+        System.out.println("3. Join Game - Join an existing game");
+        System.out.println("4. Help - Display this help message");
+        System.out.println("5. Logout - Log out from the application");
+        System.out.println("6. Quit Game - Quit the current game" + RESET_TEXT_COLOR);
+    }
+
+    private void quitGame() {
+        // Implement the logic to quit a joined game
+        System.out.println(SET_TEXT_COLOR_GREEN + "You have quit the game." + RESET_TEXT_COLOR);
+        // Additional logic can go here, if necessary
     }
 
     public void listGames() {
