@@ -443,6 +443,20 @@ public class ServerFacadeTest {
         assertTrue(output.contains("You have quit the game."));
     }
 
+    @Test
+    @DisplayName("Test quit game when not in game")
+    public void testQuitGameFailure() {
+        String simulatedUserInput = "6\n5\n"; // 6 for quit game (when not in game), 5 for logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("You have quit the game.")); // Verifying quit game does not cause issues
+    }
 
 
 }

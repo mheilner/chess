@@ -80,7 +80,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerFacadeTest">
+  <component name="RunManager" selected="JUnit.ServerFacadeTest.testQuitGameFailure">
     <configuration name="ServerFacadeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
@@ -110,11 +110,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTest.testJoinGameFailure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFacadeTest.testQuitGameFailure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ServerFacadeTest" />
-      <option name="METHOD_NAME" value="testJoinGameFailure" />
+      <option name="METHOD_NAME" value="testQuitGameFailure" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -132,11 +132,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServerFacadeTest.testQuitGameFailure" />
         <item itemvalue="JUnit.ServerFacadeTest" />
         <item itemvalue="JUnit.ServerFacadeTest.testQuitGameSuccess" />
         <item itemvalue="JUnit.ServerFacadeTest.testHelpFunctionFailure" />
         <item itemvalue="JUnit.ServerFacadeTest.testHelpFunctionSuccess" />
-        <item itemvalue="JUnit.ServerFacadeTest.testJoinGameFailure" />
       </list>
     </recent_temporary>
   </component>
