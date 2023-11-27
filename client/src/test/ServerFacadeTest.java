@@ -158,7 +158,7 @@ public class ServerFacadeTest {
     public void testListGamesAfterGameCreation() {
         // Simulate user input for creating a game, listing games, and logging out
         String gameName = "ChessGame1";
-        String simulatedUserInput = "2\n" + gameName + "\n1\n4\n"; // 2 to create game, 1 to list games, 4 to logout
+        String simulatedUserInput = "2\n" + gameName + "\n1\n5\n"; // 2 to create game, 1 to list games, 5 to logout
         ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
         Scanner mockScanner = new Scanner(testInput);
         String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
@@ -222,7 +222,7 @@ public class ServerFacadeTest {
 
         // Simulate user input for joining the game twice
         String playerColor = "WHITE";
-        String simulatedUserInput = "3\n" + gameID + "\n" + playerColor + "\n3\n" + gameID + "\n" + playerColor + "\n4\n"; // Join game twice and then logout
+        String simulatedUserInput = "3\n" + gameID + "\n" + playerColor + "\nquit\n" +  "\n3\n" + gameID + "\n" + playerColor + "\n5\n"; // Join game twice and then logout
         ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
         Scanner mockScanner = new Scanner(testInput);
         String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
@@ -238,7 +238,7 @@ public class ServerFacadeTest {
     @DisplayName("Test successful logout")
     public void testLogoutSuccess() {
         // Simulate user input for logging out
-        String simulatedUserInput = "4\n"; // Assuming '4' is the option for logout
+        String simulatedUserInput = "5\n"; // Assuming '4' is the option for logout
         ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
         Scanner mockScanner = new Scanner(testInput);
         String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
@@ -254,7 +254,7 @@ public class ServerFacadeTest {
     @DisplayName("Test logout failure - trying to logout twice")
     public void testLogoutFailure() {
         // Simulate user input for logging out twice
-        String simulatedUserInput = "4\n4\n"; // Trying to logout twice
+        String simulatedUserInput = "5\n5\n"; // Trying to logout twice
         ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
         Scanner mockScanner = new Scanner(testInput);
         String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
@@ -271,7 +271,7 @@ public class ServerFacadeTest {
     @DisplayName("Test displayMenu with valid option")
     public void testDisplayMenuPositive() {
         // Simulate user input for listing games and then logging out
-        String simulatedUserInput = "1\n4\n"; // 1 for listing games, 4 for logout
+        String simulatedUserInput = "1\n5\n"; // 1 for listing games, 4 for logout
         ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
         Scanner mockScanner = new Scanner(testInput);
         String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
@@ -287,7 +287,7 @@ public class ServerFacadeTest {
     @DisplayName("Test displayMenu with invalid option")
     public void testDisplayMenuNegative() {
         // Simulate user input for an invalid option and then logging out
-        String simulatedUserInput = "5\n4\n"; // 5 is an invalid option, 4 for logout
+        String simulatedUserInput = "7\n5\n"; // 5 is an invalid option, 5 for logout
         ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
         Scanner mockScanner = new Scanner(testInput);
         String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
@@ -390,6 +390,60 @@ public class ServerFacadeTest {
         assertTrue(output.contains("Chessboard with Black at Bottom:"));
         assertFalse(output.contains(EscapeSequences.WHITE_KING) || output.contains(EscapeSequences.BLACK_KING)); // Ensure no pieces are displayed
     }
+    @Test
+    @DisplayName("Test success of help function")
+    public void testHelpFunctionSuccess() {
+        String simulatedUserInput = "4\n5\n"; // 4 for help, 5 for logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Help Menu:"));
+        assertTrue(output.contains("1. List Games"));
+        assertTrue(output.contains("6. Quit Game"));
+    }
+    @Test
+    @DisplayName("Test failure of help function")
+    public void testHelpFunctionFailure() {
+        String simulatedUserInput = "invalid\n5\n"; // Invalid command, 5 for logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Invalid choice. Please try again."));
+    }
+
+    @Test
+    @DisplayName("Test successful game quit")
+    public void testQuitGameSuccess() throws DataAccessException {
+        // Insert the game directly into the database for the user to join
+        String gameName = "TestGame";
+        int gameID = 1;
+        Game game = new Game(gameID, gameName, null, null, new CGame());
+        GameDao.getInstance().insert(game);
+
+        String playerColor = "WHITE";
+        String simulatedUserInput = "3\n" + gameID + "\n" + playerColor + "\nquit\n5\n"; // 3 to join game, 'quit' to leave game, 5 to logout
+        ByteArrayInputStream testInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        Scanner mockScanner = new Scanner(testInput);
+        String authToken = registerUserAndGetAuthToken("testUser", "password", "email");
+
+        PostLogin postLogin = new PostLogin(mockScanner, authToken);
+        postLogin.displayMenu();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("You have quit the game."));
+    }
+
 
 
 }
+

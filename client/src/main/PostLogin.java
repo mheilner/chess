@@ -25,6 +25,7 @@ public class PostLogin {
     private final String authToken;
     private Scanner scanner;
     private boolean isLoggedIn = true;
+    private boolean isInGame = false;
 
     public PostLogin(Scanner scanner, String authToken) {
         this.scanner = scanner;
@@ -32,7 +33,7 @@ public class PostLogin {
     }
 
     public void displayMenu() {
-        while (isLoggedIn) {
+        while (isLoggedIn && !isInGame){
             System.out.println(SET_TEXT_BOLD + SET_BG_COLOR_DARK_GREY + SET_TEXT_COLOR_BLUE + "Post-login Menu:");
             System.out.println("1. List Games");
             System.out.println("2. Create Game");
@@ -83,7 +84,7 @@ public class PostLogin {
     private void quitGame() {
         // Implement the logic to quit a joined game
         System.out.println(SET_TEXT_COLOR_GREEN + "You have quit the game." + RESET_TEXT_COLOR);
-        // Additional logic can go here, if necessary
+        isInGame = false;
     }
 
     public void listGames() {
@@ -180,16 +181,28 @@ public class PostLogin {
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
                 System.out.println("Successfully joined game.");
+                isInGame = true; // Set isInGame to true
+
                 try {
                     GameDao gameDao = GameDao.getInstance();
                     Game joinedGame = gameDao.find(gameID);
                     if (joinedGame != null) {
                         ChessBoardDisplay.displayChessBoard((CBoard)joinedGame.getGame().getBoard());
+
+                        // Game loop
+                        while (isInGame) {
+                            System.out.print("Enter 'quit' to exit game or other commands for game actions: ");
+                            String command = scanner.nextLine();
+                            if ("quit".equalsIgnoreCase(command)) {
+                                quitGame();
+                            }
+                            // Handle other game-related commands here
+                        }
                     } else {
                         System.out.println("Failed to retrieve the game details.");
                     }
                 } catch (Exception e) {
-                    System.out.println("Error: " + e.getMessage());
+                    System.out.println(SET_TEXT_COLOR_RED + "Error: " + e.getMessage() + RESET_TEXT_COLOR);
                 }
             } else {
                 // Read the error message from the response body
@@ -198,7 +211,7 @@ public class PostLogin {
                 System.out.println(responseCode + ": " + joinGameResult.getMessage());
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + "Error: " + e.getMessage() + RESET_TEXT_COLOR);
         }
     }
 
