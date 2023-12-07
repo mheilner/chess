@@ -179,6 +179,33 @@ public class GameDao {
         }
     }
 
+    /**
+     * Update the game state of a specific game.
+     * @param gameID The ID of the game to update.
+     * @param cGame The new state of the game.
+     * @throws DataAccessException If there is an issue accessing the data.
+     */
+    public void updateGameState(int gameID, CGame cGame) throws DataAccessException {
+        Connection conn = db.getConnection();
+        String sql = "UPDATE games SET game_state = ? WHERE game_id = ?;";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            String gameStateJSON = serializeCGame(cGame); // Serialize the CGame object
+            stmt.setString(1, gameStateJSON);
+            stmt.setInt(2, gameID);
+
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new DataAccessException("Update failed: no rows affected.");
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while updating game state: " + e.getMessage());
+        } finally {
+            db.returnConnection(conn);
+        }
+    }
+
+
 
     /**
      * Check if a game with the specified name already exists.
