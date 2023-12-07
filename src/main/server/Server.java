@@ -2,6 +2,8 @@ package server;
 
 import dataAccess.Database;
 import handler.*;
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 
 import javax.xml.crypto.Data;
 
@@ -13,11 +15,14 @@ public class Server {
         // Set the port number
         port(8080);
 
+        // Set up WebSocket connection
+        webSocket("/connect", WebSocketRequestHandler.class);
+
         // Set up static file handling
         externalStaticFileLocation("web");
 
-
         createRoutes();
+
 
         // Set up exception handling
         exception(Exception.class, (exception, request, response) -> {
@@ -48,7 +53,5 @@ public class Server {
         put("/game", new JoinGameHandler());
 
         delete("/db", ClearHandler.getInstance());
-
-
     }
 }
