@@ -8,17 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/glassfish_tyrus_bundles_standalone_client.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/ErrorMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/LoadGameMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/NotificationMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/JoinObserverCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/JoinPlayerCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/LeaveCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/MakeMoveCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/ResignCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/WebSocketClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/handler/WebSocketRequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/WebSocketRequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +173,7 @@
       <workItem from="1700333656923" duration="56674000" />
       <workItem from="1701102748186" duration="2804000" />
       <workItem from="1701105926217" duration="483000" />
-      <workItem from="1701907537224" duration="5944000" />
+      <workItem from="1701907537224" duration="11708000" />
     </task>
     <servers />
   </component>
