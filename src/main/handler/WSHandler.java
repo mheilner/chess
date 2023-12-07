@@ -10,17 +10,19 @@ import dataAccess.GameDao;
 import model.Game;
 import org.eclipse.jetty.websocket.api.annotations.*;
 import org.eclipse.jetty.websocket.api.*;
-import services.WSJoinObserverService;
-import services.WSJoinPlayerService;
-import services.WSMakeMoveService;
+import server.GameSessionManager;
 import webSocketMessages.userCommands.*;
 import webSocketMessages.serverMessages.*;
+
+import java.io.IOException;
 
 @WebSocket
 public class WSHandler {
     private GameDao gameDao = GameDao.getInstance();
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
     private final Gson gson = new Gson();
+    private final GameSessionManager sessionManager = GameSessionManager.getInstance();
+
 
     @OnWebSocketMessage
     public void onMessage(Session session, String message) throws Exception {
@@ -28,11 +30,8 @@ public class WSHandler {
         CommandTypeWrapper commandTypeWrapper = gson.fromJson(message, CommandTypeWrapper.class);
         UserGameCommand command = deserializeCommand(commandTypeWrapper, message);
 
-        // Process the command
-        ServerMessage response = processCommand(command);
-
-        // Serialize and send the response
-        session.getRemote().sendString(gson.toJson(response));
+        // Process the command and handle communication within the method
+        processCommand(command, session);
     }
 
     private UserGameCommand deserializeCommand(CommandTypeWrapper commandTypeWrapper, String json) {
@@ -53,21 +52,26 @@ public class WSHandler {
         }
     }
 
-    private ServerMessage processCommand(UserGameCommand command) {
-
+    private void processCommand(UserGameCommand command, Session session) throws IOException {
         switch (command.getCommandType()) {
             case JOIN_PLAYER:
-                return new WSJoinPlayerService().joinPlayer((JoinPlayerCommand) command);
+                joinPlayer((JoinPlayerCommand) command, session);
+                break;
             case JOIN_OBSERVER:
-                return new WSJoinObserverService().joinObserver((JoinObserverCommand) command);
+                joinObserver((JoinObserverCommand) command, session);
+                break;
             case MAKE_MOVE:
-                return new WSMakeMoveService().makeMove((MakeMoveCommand) command);
+                makeMove((MakeMoveCommand) command, session);
+                break;
+
 //            case LEAVE:
 //                ...
 //            case RESIGN:
 //                ...
+
             default:
-                return new ErrorMessage("Unknown command type");
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Unknown command type")));
+                break;
         }
     }
 
@@ -75,78 +79,92 @@ public class WSHandler {
     //-------------- PROCESS COMMAND FUNCTIONS ------------------------------
     //////////////////////////////////////////////////////////////////////////
 
-    public ServerMessage joinPlayer(JoinPlayerCommand command) {
+    public void joinPlayer(JoinPlayerCommand command, Session session) {
         try {
-            // Validate authentication and game existence
             if (!authTokenDao.tokenExists(command.getAuthString())) {
-                return new ErrorMessage("Error: Invalid authentication token.");
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: Invalid authentication token.")));
+                return;
             }
+
             Game game = gameDao.find(command.getGameID());
             if (game == null) {
-                return new ErrorMessage("Invalid GameID Error");
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
+                return;
             }
 
-            // Claim the spot in the game
-            gameDao.claimSpot(command.getGameID(), authTokenDao.findUserByToken(command.getAuthString()),
-                    command.getPlayerColor().toString());
+            String playerName = authTokenDao.findUserByToken(command.getAuthString());
+            gameDao.claimSpot(command.getGameID(), playerName, command.getPlayerColor().toString());
 
-            // Retrieve the updated game state
+            // Add player to the session manager
+            sessionManager.addPlayerToGame(command.getGameID(), playerName, session);
+
+            // Broadcast to all participants in the game
+            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " joined as " + command.getPlayerColor()));
+
+            // Send the updated game state to the player
             Game updatedGame = gameDao.find(command.getGameID());
-            if (updatedGame == null) {
-                return new ErrorMessage("Error: Game not found after updating.");
-            }
+            session.getRemote().sendString(gson.toJson(new LoadGameMessage(updatedGame.getGame())));
 
-            // Return the updated game state
-            return new LoadGameMessage(updatedGame.getGame());
-
-        } catch (DataAccessException e) {
-            return new ErrorMessage("Error: " + e.getMessage());
+        } catch (DataAccessException | IOException e) {
+            // Handle exceptions and send error message to the session
         }
     }
 
-    public ServerMessage joinObserver(JoinObserverCommand command) {
+
+    public void joinObserver(JoinObserverCommand command, Session session) throws IOException {
         try {
             Game game = gameDao.find(command.getGameID());
             if (game == null) {
-                return new ErrorMessage("Invalid GameID Error");
+                // Send error message directly to the session
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
+                return;
             }
-            // Observers don't affect game state, so just return the current state
-            return new LoadGameMessage(game.getGame());
+            sessionManager.addObserverToGame(command.getGameID(), "observer-name", session); // Replace "observer-name" with actual identifier
+            // Broadcast to all participants in the game
+            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage("Observer joined"));
+
+            // Return the current game state to the observer
+            new LoadGameMessage(game.getGame());
+
         } catch (DataAccessException e) {
-            return new ErrorMessage("Error: " + e.getMessage());
+            // Send error message directly to the session
+            session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
         }
     }
-    public ServerMessage makeMove(MakeMoveCommand command) {
+
+    public void makeMove(MakeMoveCommand command, Session session) throws IOException {
         try {
             Game game = gameDao.find(command.getGameID());
             if (game == null) {
-                return new ErrorMessage("Invalid GameID Error");
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
+                return;
             }
 
             CGame chessGame = game.getGame();
             CMove move = command.getMove();
 
-            // Check if it's the correct player's turn
             if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
-                return new ErrorMessage("It's not your turn");
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("It's not your turn")));
+                return;
             }
 
-            try {
-                chessGame.makeMove(move);
-            } catch (InvalidMoveException e) {
-                return new ErrorMessage("Invalid move: " + e.getMessage());
-            }
-
-            // Update the game state in the database
+            chessGame.makeMove(move);
             gameDao.updateGameState(game.getGameID(), chessGame);
 
-            // Return the updated game state
-            return new LoadGameMessage(chessGame);
+            // Broadcast the move to all participants in the game
+            String playerName = authTokenDao.findUserByToken(command.getAuthString());
+            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " made a move"));
 
-        } catch (DataAccessException e) {
-            return new ErrorMessage("Error: " + e.getMessage());
+            // Send the updated game state to all participants
+            sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
+
+        } catch (InvalidMoveException e) {
+            session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid move: " + e.getMessage())));
+        } catch (DataAccessException | IOException e) {
+            // Handle exceptions and send error message to the session
         }
     }
+
 
 
 

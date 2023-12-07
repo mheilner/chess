@@ -10,8 +10,20 @@ import java.util.concurrent.ConcurrentHashMap;
 import server.GameSession;
 
 public class GameSessionManager {
+    private static GameSessionManager instance = null;
     private final ConcurrentHashMap<Integer, GameSession> gameSessions = new ConcurrentHashMap<>();
     private final Gson gson = new Gson();
+
+    private GameSessionManager() {
+        //Private Constructor
+    }
+
+    public static GameSessionManager getInstance() {
+        if (instance == null) {
+            instance = new GameSessionManager();
+        }
+        return instance;
+    }
 
     public void addPlayerToGame(int gameID, String playerName, Session session) {
         gameSessions.computeIfAbsent(gameID, k -> new GameSession()).addPlayer(playerName, session);
@@ -24,23 +36,37 @@ public class GameSessionManager {
     public void removeParticipantFromGame(int gameID, String participantName) {
         GameSession gameSession = gameSessions.get(gameID);
         if (gameSession != null) {
-            gameSession.removeParticipant(participantName);
+            Session session = gameSession.getPlayers().remove(participantName);
+            if (session == null) {
+                session = gameSession.getObservers().remove(participantName);
+            }
+            if (session != null && session.isOpen()) {
+                    session.close();
+                }
+            }
         }
-    }
 
-    public void broadcastToGame(int gameID, String excludeParticipantName, ServerMessage message) throws IOException {
+
+
+    public void broadcastToGame(int gameID, Session excludeSession, ServerMessage message) {
         GameSession gameSession = gameSessions.get(gameID);
         if (gameSession != null) {
             String messageJson = gson.toJson(message);
-            broadcast(messageJson, gameSession.getPlayers(), excludeParticipantName);
-            broadcast(messageJson, gameSession.getObservers(), excludeParticipantName);
+            broadcast(messageJson, gameSession.getPlayers(), excludeSession);
+            broadcast(messageJson, gameSession.getObservers(), excludeSession);
         }
     }
 
-    private void broadcast(String message, ConcurrentHashMap<String, Session> sessions, String excludeParticipant) throws IOException {
+    private void broadcast(String message, ConcurrentHashMap<String, Session> sessions, Session excludeSession) {
         for (Map.Entry<String, Session> entry : sessions.entrySet()) {
-            if (!entry.getKey().equals(excludeParticipant) && entry.getValue().isOpen()) {
-                entry.getValue().getRemote().sendString(message);
+            Session currentSession = entry.getValue();
+            if (currentSession != excludeSession && currentSession.isOpen()) {
+                try {
+                    currentSession.getRemote().sendString(message);
+                } catch (IOException e) {
+                    // Handle exception, for example logging it
+                    // Consider what action to take if unable to send message
+                }
             }
         }
     }
