@@ -8,12 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/services/WSJoinObserverService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/WSJoinPlayerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/WSMakeMoveService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/server/GameSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/server/GameSessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/handler/WebSocketRequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/WebSocketRequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/handler/WebSocketRequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/WSHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +175,7 @@
       <workItem from="1700333656923" duration="56674000" />
       <workItem from="1701102748186" duration="2804000" />
       <workItem from="1701105926217" duration="483000" />
-      <workItem from="1701907537224" duration="19818000" />
+      <workItem from="1701907537224" duration="21433000" />
     </task>
     <servers />
   </component>
@@ -211,11 +210,6 @@
           <url>file://$PROJECT_DIR$/src/main/services/ListGamesService.java</url>
           <line>22</line>
           <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/dataAccess/GameDao.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/PersistenceTest.java</url>

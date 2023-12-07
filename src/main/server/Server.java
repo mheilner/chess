@@ -2,10 +2,6 @@ package server;
 
 import dataAccess.Database;
 import handler.*;
-import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
-
-import javax.xml.crypto.Data;
 
 import static spark.Spark.*;
 
@@ -16,7 +12,7 @@ public class Server {
         port(8080);
 
         // Set up WebSocket connection
-        webSocket("/connect", WebSocketRequestHandler.class);
+        webSocket("/connect", WSHandler.class);
 
         // Set up static file handling
         externalStaticFileLocation("web");

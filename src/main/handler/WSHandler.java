@@ -1,5 +1,8 @@
 package handler;
 
+import chess.InvalidMoveException;
+import chessPkg.CGame;
+import chessPkg.CMove;
 import com.google.gson.Gson;
 import dataAccess.AuthTokenDao;
 import dataAccess.DataAccessException;
@@ -14,7 +17,7 @@ import webSocketMessages.userCommands.*;
 import webSocketMessages.serverMessages.*;
 
 @WebSocket
-public class WebSocketRequestHandler {
+public class WSHandler {
     private GameDao gameDao = GameDao.getInstance();
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
     private final Gson gson = new Gson();
@@ -101,6 +104,49 @@ public class WebSocketRequestHandler {
         }
     }
 
+    public ServerMessage joinObserver(JoinObserverCommand command) {
+        try {
+            Game game = gameDao.find(command.getGameID());
+            if (game == null) {
+                return new ErrorMessage("Invalid GameID Error");
+            }
+            // Observers don't affect game state, so just return the current state
+            return new LoadGameMessage(game.getGame());
+        } catch (DataAccessException e) {
+            return new ErrorMessage("Error: " + e.getMessage());
+        }
+    }
+    public ServerMessage makeMove(MakeMoveCommand command) {
+        try {
+            Game game = gameDao.find(command.getGameID());
+            if (game == null) {
+                return new ErrorMessage("Invalid GameID Error");
+            }
+
+            CGame chessGame = game.getGame();
+            CMove move = command.getMove();
+
+            // Check if it's the correct player's turn
+            if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
+                return new ErrorMessage("It's not your turn");
+            }
+
+            try {
+                chessGame.makeMove(move);
+            } catch (InvalidMoveException e) {
+                return new ErrorMessage("Invalid move: " + e.getMessage());
+            }
+
+            // Update the game state in the database
+            gameDao.updateGameState(game.getGameID(), chessGame);
+
+            // Return the updated game state
+            return new LoadGameMessage(chessGame);
+
+        } catch (DataAccessException e) {
+            return new ErrorMessage("Error: " + e.getMessage());
+        }
+    }
 
 
 
