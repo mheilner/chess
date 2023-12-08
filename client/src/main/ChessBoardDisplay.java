@@ -5,8 +5,7 @@ import ui.EscapeSequences;
 
 public class ChessBoardDisplay {
 
-    public static void displayChessBoard(CBoard board, String playerColor) {
-        //FIXME add in the color logic
+    public static void displayChessBoard(CBoard board) {
         System.out.println(EscapeSequences.SET_TEXT_COLOR_BLUE + "Chessboard with White at Bottom:");
         printChessBoard(board, true);
 
@@ -14,7 +13,7 @@ public class ChessBoardDisplay {
         printChessBoard(board, false);
     }
 
-    private static void printChessBoard(CBoard board, boolean whiteAtBottom) {
+    public static void printChessBoard(CBoard board, boolean whiteAtBottom) {
         for (int row = 1; row <= 8; row++) {
             int adjustedRow = whiteAtBottom ? row : 9 - row;
             for (int col = 1; col <= 8; col++) {

@@ -277,8 +277,6 @@ public class GameDao {
         Gson gson = builder.create();
         String json = gson.toJson(cGame);
 
-        // Logging the serialized JSON
-        System.out.println("Serialized CGame: " + json);
         return json;
     }
 
@@ -294,7 +292,6 @@ public class GameDao {
         Gson gson = builder.create();
 
         // Logging the JSON string being deserialized
-        System.out.println("Deserializing JSON: " + json);
         return gson.fromJson(json, CGame.class);
     }
 

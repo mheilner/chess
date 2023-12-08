@@ -58,7 +58,7 @@ public class ListGamesHandler implements Route {
         }
         // return gson.toJson(result);
         String jsonResult = gson.toJson(result);
-        System.out.println("JSON being sent to client: " + jsonResult);
+//        System.out.println("JSON being sent to client: " + jsonResult);
         return jsonResult;
     }
 }

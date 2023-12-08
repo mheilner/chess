@@ -93,17 +93,18 @@ public class WSHandler {
             }
 
             String playerName = authTokenDao.findUserByToken(command.getAuthString());
-            gameDao.claimSpot(command.getGameID(), playerName, command.getPlayerColor().toString());
+//            gameDao.claimSpot(command.getGameID(), playerName, command.getPlayerColor().toString());
 
             // Add player to the session manager
             sessionManager.addPlayerToGame(command.getGameID(), playerName, session);
 
-            // Broadcast to all participants in the game
-            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " joined as " + command.getPlayerColor()));
-
             // Send the updated game state to the player
             Game updatedGame = gameDao.find(command.getGameID());
             session.getRemote().sendString(gson.toJson(new LoadGameMessage(updatedGame.getGame())));
+
+            // Broadcast to all participants in the game
+            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " joined as " + command.getPlayerColor()));
+
 
         } catch (DataAccessException | IOException e) {
             // Handle exceptions and send error message to the session

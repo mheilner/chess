@@ -4,11 +4,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @ClientEndpoint
-public class WebSocketClient {
+public class WSClient {
 
     private Session session;
+    private Gameplay gameplay;
 
-    public WebSocketClient() throws URISyntaxException, DeploymentException, IOException {
+    public WSClient(Gameplay gameplay) throws URISyntaxException, DeploymentException, IOException {
+        this.gameplay = gameplay;
         URI uri = new URI("ws://localhost:8080/connect");
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
         this.session = container.connectToServer(this, uri);
@@ -22,6 +24,7 @@ public class WebSocketClient {
     @OnMessage
     public void onMessage(String message) {
         // Handle incoming messages from server
+        gameplay.handleWebSocketMessage(message);
         System.out.println("Received from server: " + message);
     }
 

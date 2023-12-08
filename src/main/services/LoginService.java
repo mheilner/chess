@@ -16,7 +16,7 @@ public class LoginService {
 
     public LoginResult login(LoginRequest request) {
         try {
-            System.out.println("Starting login for user: " + request.getUsername());
+//            System.out.println("Starting login for user: " + request.getUsername());
 
             User user = userDao.find(request.getUsername());
 
