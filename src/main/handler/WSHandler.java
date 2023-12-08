@@ -1,5 +1,6 @@
 package handler;
 
+import chess.ChessGame;
 import chess.InvalidMoveException;
 import chessPkg.CGame;
 import chessPkg.CMove;
@@ -26,11 +27,16 @@ public class WSHandler {
 
     @OnWebSocketMessage
     public void onMessage(Session session, String message) throws Exception {
-        // Determine the command type and deserialize accordingly
+        // First, check if it's an error message
+//        if (message.contains("\"serverMessageType\":\"ERROR\"")) {
+//            ErrorMessage errorMessage = gson.fromJson(message, ErrorMessage.class);
+//            processErrorMessage(errorMessage, session);
+//            return;
+//        }
+
+        // If not an error message, proceed as before
         CommandTypeWrapper commandTypeWrapper = gson.fromJson(message, CommandTypeWrapper.class);
         UserGameCommand command = deserializeCommand(commandTypeWrapper, message);
-
-        // Process the command and handle communication within the method
         processCommand(command, session);
     }
 
@@ -85,12 +91,23 @@ public class WSHandler {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: Invalid authentication token.")));
                 return;
             }
+
             Game game = gameDao.find(command.getGameID());
             if (game == null) {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
                 return;
             }
+
+            ChessGame.TeamColor pColor = command.getPlayerColor();
             String playerName = authTokenDao.findUserByToken(command.getAuthString());
+            if ((game.getBlackUsername() != null && !(game.getBlackUsername().equals(playerName)) && pColor==ChessGame.TeamColor.BLACK)||
+                    (game.getWhiteUsername() != null  && !(game.getWhiteUsername().equals(playerName)) && pColor==ChessGame.TeamColor.WHITE) ) {
+                ErrorMessage errorMsg = new ErrorMessage("Spot already taken");
+                processErrorMessage(errorMsg, session); // session here is the root client's session
+                return;
+            }
+
+//            String playerName = authTokenDao.findUserByToken(command.getAuthString());
             // Add player to the session manager
             sessionManager.addPlayerToGame(command.getGameID(), playerName, session);
 
@@ -187,7 +204,15 @@ public class WSHandler {
             session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
         }
     }
+    //////////////////////////////////////////////////////////////////////////
+    //-------------- Server Message Functions ------------------------------
+    //////////////////////////////////////////////////////////////////////////
 
+    private void processErrorMessage(ErrorMessage errorMessage, Session rootClientSession) throws IOException {
+        if (rootClientSession != null && rootClientSession.isOpen()) {
+            rootClientSession.getRemote().sendString(gson.toJson(errorMessage));
+        }
+    }
 
 
 

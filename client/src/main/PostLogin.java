@@ -18,6 +18,7 @@ import results.ListGamesResult;
 import results.LogoutResult;
 
 import dataAccess.GameDao;
+import webSocketMessages.serverMessages.ErrorMessage;
 
 import static ui.EscapeSequences.*;
 
@@ -189,6 +190,15 @@ public class PostLogin {
                 InputStreamReader isr = new InputStreamReader(conn.getErrorStream());
                 JoinGameResult joinGameResult = gson.fromJson(isr, JoinGameResult.class);
                 System.out.println(SET_TEXT_COLOR_RED + responseCode + ": " + joinGameResult.getMessage() + RESET_TEXT_COLOR);
+
+                try {
+                    WSClient wsClient = new WSClient();
+                    ErrorMessage errorMsg = new ErrorMessage("Error joining the game.");
+                    String errorJson = gson.toJson(errorMsg);
+                    wsClient.sendMessage(errorJson);
+                } catch (Exception e) {
+                    System.out.println("Error sending WebSocket message: " + e.getMessage());
+                }
             }
         } catch (Exception e) {
             System.out.println(SET_TEXT_COLOR_RED + "Error: " + e.getMessage() + RESET_TEXT_COLOR);

@@ -9,8 +9,19 @@ public class WSClient {
     private Session session;
     private Gameplay gameplay;
 
+    // Existing constructor for when Gameplay is available
     public WSClient(Gameplay gameplay) throws URISyntaxException, DeploymentException, IOException {
         this.gameplay = gameplay;
+        connectToServer();
+    }
+
+    // New constructor for use without Gameplay instance
+    public WSClient() throws URISyntaxException, DeploymentException, IOException {
+        this.gameplay = null;
+        connectToServer();
+    }
+
+    private void connectToServer() throws URISyntaxException, DeploymentException, IOException {
         URI uri = new URI("ws://localhost:8080/connect");
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
         this.session = container.connectToServer(this, uri);
@@ -23,9 +34,12 @@ public class WSClient {
 
     @OnMessage
     public void onMessage(String message) {
-        // Handle incoming messages from server
-        gameplay.handleWebSocketMessage(message);
-        System.out.println("Received from server: " + message);
+        if (gameplay != null) {
+            gameplay.handleWebSocketMessage(message);
+        } else {
+            // Handle messages when Gameplay is not available
+            System.out.println("Received from server (no gameplay): " + message);
+        }
     }
 
     public void sendMessage(String message) throws Exception {
@@ -33,6 +47,5 @@ public class WSClient {
             session.getBasicRemote().sendText(message);
         }
     }
-
 
 }
