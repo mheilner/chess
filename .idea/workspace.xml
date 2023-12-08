@@ -9,6 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/MakeMoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/MakeMoveCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/handler/WSHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/WSHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +81,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WebSocketTests">
+  <component name="RunManager" selected="JUnit.WebSocketTests.invalidMoveGameOver">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="chess" />
@@ -109,7 +110,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WebSocketTests.invalidMoveBadMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WebSocketTests.invalidMoveGameOver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
@@ -119,13 +120,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
-      <option name="METHOD_NAME" value="invalidMoveBadMove" />
+      <option name="METHOD_NAME" value="invalidMoveGameOver" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WebSocketTests.joinPlayerEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WebSocketTests.invalidMoveOpponent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
       <extension name="coverage">
         <pattern>
@@ -135,7 +136,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
-      <option name="METHOD_NAME" value="joinPlayerEmpty" />
+      <option name="METHOD_NAME" value="invalidMoveOpponent" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -159,11 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.WebSocketTests" />
-        <item itemvalue="JUnit.WebSocketTests.validMove" />
-        <item itemvalue="JUnit.WebSocketTests.invalidMoveBadMove" />
+        <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.WebSocketTests.joinPlayerEmpty" />
+        <item itemvalue="JUnit.WebSocketTests" />
+        <item itemvalue="JUnit.WebSocketTests.invalidMoveOpponent" />
+        <item itemvalue="JUnit.WebSocketTests.validMove" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +204,7 @@
       <workItem from="1701105926217" duration="483000" />
       <workItem from="1701907537224" duration="21933000" />
       <workItem from="1701988675427" duration="8250000" />
-      <workItem from="1702003108363" duration="21766000" />
+      <workItem from="1702003108363" duration="23620000" />
     </task>
     <servers />
   </component>
@@ -235,19 +236,14 @@
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/WebSocketTests.java</url>
-          <line>617</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/handler/WSHandler.java</url>
           <line>152</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/handler/WSHandler.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="60" />
+          <line>158</line>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/PersistenceTest.java</url>

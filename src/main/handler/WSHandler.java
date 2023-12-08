@@ -156,11 +156,21 @@ public class WSHandler {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
                 return;
             }
-
             CGame chessGame = game.getGame();
             CMove move = command.getMove();
 
-            if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
+
+        //Check if the right player is making the turn
+        //Player attempting move
+        String playerName = authTokenDao.findUserByToken(command.getAuthString());
+        if(chessGame.getTeamTurn() == ChessGame.TeamColor.WHITE && !(game.getWhiteUsername().equals(playerName)) ||
+                chessGame.getTeamTurn() == ChessGame.TeamColor.BLACK && !(game.getBlackUsername().equals(playerName))){
+            session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + playerName + "is not allowed to play for this team")));
+            return;
+        }
+
+
+        if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("It's not your turn")));
                 return;
             }
@@ -172,7 +182,6 @@ public class WSHandler {
             sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
 
             // Broadcast the move to all participants in the game
-            String playerName = authTokenDao.findUserByToken(command.getAuthString());
             sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " made a move"));
 
 
