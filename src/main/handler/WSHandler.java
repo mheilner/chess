@@ -1,10 +1,12 @@
 package handler;
 
 import chess.ChessGame;
+import chess.ChessPosition;
 import chess.InvalidMoveException;
 import chessPkg.CGame;
 import chessPkg.CMove;
-import com.google.gson.Gson;
+import chessPkg.CPosition;
+import com.google.gson.*;
 import dataAccess.AuthTokenDao;
 import dataAccess.DataAccessException;
 import dataAccess.GameDao;
@@ -16,32 +18,26 @@ import webSocketMessages.userCommands.*;
 import webSocketMessages.serverMessages.*;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 @WebSocket
 public class WSHandler {
     private GameDao gameDao = GameDao.getInstance();
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
-    private final Gson gson = new Gson();
     private final GameSessionManager sessionManager = GameSessionManager.getInstance();
-
+    private final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(ChessPosition.class, new CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
+            .registerTypeAdapter(CPosition.class, new CPositionSerializer())
+            .create();
 
     @OnWebSocketMessage
     public void onMessage(Session session, String message) throws Exception {
-        // First, check if it's an error message
-//        if (message.contains("\"serverMessageType\":\"ERROR\"")) {
-//            ErrorMessage errorMessage = gson.fromJson(message, ErrorMessage.class);
-//            processErrorMessage(errorMessage, session);
-//            return;
-//        }
-
-        // If not an error message, proceed as before
         CommandTypeWrapper commandTypeWrapper = gson.fromJson(message, CommandTypeWrapper.class);
         UserGameCommand command = deserializeCommand(commandTypeWrapper, message);
         processCommand(command, session);
     }
 
     private UserGameCommand deserializeCommand(CommandTypeWrapper commandTypeWrapper, String json) {
-        // Based on the commandType, deserialize to the specific subclass
         switch (commandTypeWrapper.getCommandType()) {
             case JOIN_PLAYER:
                 return gson.fromJson(json, JoinPlayerCommand.class);
@@ -172,12 +168,13 @@ public class WSHandler {
             chessGame.makeMove(move);
             gameDao.updateGameState(game.getGameID(), chessGame);
 
+            // Send the updated game state to all participants
+            sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
+
             // Broadcast the move to all participants in the game
             String playerName = authTokenDao.findUserByToken(command.getAuthString());
             sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " made a move"));
 
-            // Send the updated game state to all participants
-            sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
 
         } catch (InvalidMoveException e) {
             session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid move: " + e.getMessage())));
@@ -249,6 +246,28 @@ public class WSHandler {
 //    }
 
 
+    public static class CPositionSerializer implements JsonSerializer<CPosition> {
+        @Override
+        public JsonElement serialize(CPosition src, Type typeOfSrc, JsonSerializationContext context) {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("row", src.getRow());
+            jsonObject.addProperty("column", src.getColumn());
+            return jsonObject;
+        }
+    }
+
+    public static class CPositionDeserializer implements JsonDeserializer<ChessPosition> {
+        @Override
+        public ChessPosition deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            JsonObject jsonObject = json.getAsJsonObject();
+            int row = jsonObject.get("row").getAsInt();
+            int col = jsonObject.get("col").getAsInt(); // Use "col" instead of "column"
+            return new CPosition(row, col);
+        }
+    }
+
+
+
 
     private static class CommandTypeWrapper {
         private UserGameCommand.CommandType commandType;
@@ -257,4 +276,7 @@ public class WSHandler {
             return commandType;
         }
     }
+
+
+
 }
