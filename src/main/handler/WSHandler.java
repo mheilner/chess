@@ -107,6 +107,13 @@ public class WSHandler {
                 return;
             }
 
+            //Throw error for join empty game
+            if (game.getBlackUsername() == null && game.getWhiteUsername() == null){
+                ErrorMessage errorMsg = new ErrorMessage("Spot already taken");
+                processErrorMessage(errorMsg, session); // session here is the root client's session
+                return;
+            }
+
 //            String playerName = authTokenDao.findUserByToken(command.getAuthString());
             // Add player to the session manager
             sessionManager.addPlayerToGame(command.getGameID(), playerName, session);

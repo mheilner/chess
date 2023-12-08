@@ -9,8 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/PostLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/PostLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/WSClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/WSClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/handler/WSHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/WSHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,7 +203,7 @@
       <workItem from="1701105926217" duration="483000" />
       <workItem from="1701907537224" duration="21933000" />
       <workItem from="1701988675427" duration="8250000" />
-      <workItem from="1702003108363" duration="17043000" />
+      <workItem from="1702003108363" duration="17865000" />
     </task>
     <servers />
   </component>
