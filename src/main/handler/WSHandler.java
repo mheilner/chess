@@ -85,16 +85,12 @@ public class WSHandler {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: Invalid authentication token.")));
                 return;
             }
-
             Game game = gameDao.find(command.getGameID());
             if (game == null) {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
                 return;
             }
-
             String playerName = authTokenDao.findUserByToken(command.getAuthString());
-//            gameDao.claimSpot(command.getGameID(), playerName, command.getPlayerColor().toString());
-
             // Add player to the session manager
             sessionManager.addPlayerToGame(command.getGameID(), playerName, session);
 
@@ -104,7 +100,6 @@ public class WSHandler {
 
             // Broadcast to all participants in the game
             sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " joined as " + command.getPlayerColor()));
-
 
         } catch (DataAccessException | IOException e) {
             // Handle exceptions and send error message to the session
@@ -120,12 +115,13 @@ public class WSHandler {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
                 return;
             }
-            sessionManager.addObserverToGame(command.getGameID(), "observer-name", session); // Replace "observer-name" with actual identifier
+            String playerName = authTokenDao.findUserByToken(command.getAuthString());
+            sessionManager.addObserverToGame(command.getGameID(), playerName, session); // Replace "observer-name" with actual identifier
+            // Send the updated game state to the player
+            Game updatedGame = gameDao.find(command.getGameID());
+            session.getRemote().sendString(gson.toJson(new LoadGameMessage(updatedGame.getGame())));
             // Broadcast to all participants in the game
             sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage("Observer joined"));
-
-            // Return the current game state to the observer
-            new LoadGameMessage(game.getGame());
 
         } catch (DataAccessException e) {
             // Send error message directly to the session

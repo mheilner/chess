@@ -183,34 +183,12 @@ public class PostLogin {
                 System.out.println("Successfully joined game.");
                 Gameplay gameplay = new Gameplay(scanner, authToken, gameID, playerColor);
                 gameplay.startGameplay();
-//                isInGame = true; // Set isInGame to true
-//
-//                try {
-//                    GameDao gameDao = GameDao.getInstance();
-//                    Game joinedGame = gameDao.find(gameID);
-//                    if (joinedGame != null) {
-//                        ChessBoardDisplay.displayChessBoard((CBoard)joinedGame.getGame().getBoard());
-//
-//                        // Game loop
-//                        while (isInGame) {
-//                            System.out.print("Enter 'quit' to exit game or other commands for game actions: ");
-//                            String command = scanner.nextLine();
-//                            if ("quit".equalsIgnoreCase(command)) {
-//                                quitGame();
-//                            }
-//                            // Handle other game-related commands here
-//                        }
-//                    } else {
-//                        System.out.println("Failed to retrieve the game details.");
-//                    }
-//                } catch (Exception e) {
-//                    System.out.println(SET_TEXT_COLOR_RED + "Error: " + e.getMessage() + RESET_TEXT_COLOR);
-//                }
+
             } else {
                 // Read the error message from the response body
                 InputStreamReader isr = new InputStreamReader(conn.getErrorStream());
                 JoinGameResult joinGameResult = gson.fromJson(isr, JoinGameResult.class);
-                System.out.println(responseCode + ": " + joinGameResult.getMessage());
+                System.out.println(SET_TEXT_COLOR_RED + responseCode + ": " + joinGameResult.getMessage() + RESET_TEXT_COLOR);
             }
         } catch (Exception e) {
             System.out.println(SET_TEXT_COLOR_RED + "Error: " + e.getMessage() + RESET_TEXT_COLOR);
