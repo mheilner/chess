@@ -8,12 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/main/Gameplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/PostLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/PostLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/handler/WSHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/WSHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/GameSessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/GameSessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/WSJoinObserverService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/WSJoinPlayerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/WSMakeMoveService.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +82,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="client" />
@@ -134,8 +132,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in chess" />
         <item itemvalue="JUnit.ServerFacadeTest" />
         <item itemvalue="JUnit.ServerFacadeTest.testQuitGameFailure" />
@@ -177,7 +175,7 @@
       <workItem from="1701102748186" duration="2804000" />
       <workItem from="1701105926217" duration="483000" />
       <workItem from="1701907537224" duration="21933000" />
-      <workItem from="1701988675427" duration="3996000" />
+      <workItem from="1701988675427" duration="7633000" />
     </task>
     <servers />
   </component>

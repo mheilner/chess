@@ -165,7 +165,59 @@ public class WSHandler {
         }
     }
 
+    public void leaveGame(LeaveCommand command, Session session) throws IOException {
+        try {
+            String participantName = authTokenDao.findUserByToken(command.getAuthString());
+            if (participantName == null) {
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: Invalid authentication token.")));
+                return;
+            }
 
+            Game game = gameDao.find(command.getGameID());
+            if (game == null) {
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
+                return;
+            }
+
+            // Remove the participant from the game session
+            sessionManager.removeParticipantFromGame(command.getGameID(), participantName);
+
+            // Broadcast the departure to all participants in the game
+            // Note: As the participant has left, no session is excluded from the broadcast
+            sessionManager.broadcastToGame(command.getGameID(), null, new NotificationMessage(participantName + " left the game"));
+
+        } catch (DataAccessException e) {
+            session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
+        }
+    }
+
+
+
+
+//    public void resignGame(ResignCommand command, Session session) throws IOException {
+//        try {
+//            String playerName = authTokenDao.findUserByToken(command.getAuthString());
+//            Game game = gameDao.find(command.getGameID());
+//            if (game == null) {
+//                session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
+//                return;
+//            }
+//
+//            // Update game state to reflect resignation
+//            CGame chessGame = game.getGame();
+//            chessGame.resign(playerName); // You might need to implement this method in your game logic
+//            gameDao.updateGameState(game.getGameID(), chessGame);
+//
+//            // Broadcast resignation to all participants
+//            sessionManager.broadcastToGame(command.getGameID(), null,
+//                    new NotificationMessage(playerName + " resigned from the game"));
+//
+//            // Additional logic for handling end of the game if necessary
+//
+//        } catch (DataAccessException | InvalidMoveException e) {
+//            session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
+//        }
+//    }
 
 
 
