@@ -64,8 +64,6 @@ public class GameSessionManager {
                 try {
                     currentSession.getRemote().sendString(message);
                 } catch (IOException e) {
-                    // Handle exception, for example logging it
-                    // Consider what action to take if unable to send message
                     System.out.println("My error is in here");
                 }
             }

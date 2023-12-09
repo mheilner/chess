@@ -67,10 +67,13 @@ public class WSHandler {
                 break;
             case LEAVE:
                 leaveGame((LeaveCommand) command, session);
+                break;
             case RESIGN:
                 resignGame((ResignCommand) command, session);
+                break;
             default:
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Unknown command type")));
+                System.out.println("Unknown Command");
                 break;
         }
     }
@@ -237,8 +240,18 @@ public class WSHandler {
                 return;
             }
 
+            if(!(playerName.equals(game.getBlackUsername()))&&!(playerName.equals(game.getWhiteUsername()))){
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Observers cannot resign")));
+                return;
+            }
+
             // Update game state to reflect resignation
             CGame chessGame = game.getGame();
+
+            if(chessGame.isFinished()){
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Game is already over")));
+                return;
+            }
 
             chessGame.markGameAsOver();
             gameDao.updateGameState(game.getGameID(), chessGame);
@@ -247,7 +260,6 @@ public class WSHandler {
             sessionManager.broadcastToGame(command.getGameID(), null,
                     new NotificationMessage(playerName + " resigned from the game"));
 
-            // Additional logic for handling end of the game if necessary
 
         } catch (DataAccessException e) {
             session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
