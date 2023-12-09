@@ -205,6 +205,34 @@ public class GameDao {
         }
     }
 
+    /**
+     * Update the player usernames for a specific game.
+     * @param gameID The ID of the game to update.
+     * @param whiteUsername The username of the white player (can be null if leaving or not assigned).
+     * @param blackUsername The username of the black player (can be null if leaving or not assigned).
+     * @throws DataAccessException If there is an issue accessing the data.
+     */
+    public void updateGamePlayers(int gameID, String whiteUsername, String blackUsername) throws DataAccessException {
+        Connection conn = db.getConnection();
+        String sql = "UPDATE games SET white_username = ?, black_username = ? WHERE game_id = ?;";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Set the parameters for the prepared statement
+            stmt.setString(1, whiteUsername);
+            stmt.setString(2, blackUsername);
+            stmt.setInt(3, gameID);
+
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new DataAccessException("Update failed: no rows affected.");
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while updating game players: " + e.getMessage());
+        } finally {
+            db.returnConnection(conn);
+        }
+    }
+
 
 
     /**

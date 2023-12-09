@@ -40,9 +40,9 @@ public class GameSessionManager {
             if (session == null) {
                 session = gameSession.getObservers().remove(participantName);
             }
-            if (session != null && session.isOpen()) {
-                    session.close();
-                }
+//            if (session != null && session.isOpen()) {
+//                    session.close();
+//                }
             }
         }
 
@@ -60,12 +60,13 @@ public class GameSessionManager {
     private void broadcast(String message, ConcurrentHashMap<String, Session> sessions, Session excludeSession) {
         for (Map.Entry<String, Session> entry : sessions.entrySet()) {
             Session currentSession = entry.getValue();
-            if (currentSession != excludeSession && currentSession.isOpen()) {
+        if (currentSession != excludeSession  && currentSession.isOpen()) { // && currentSession.isOpen()
                 try {
                     currentSession.getRemote().sendString(message);
                 } catch (IOException e) {
                     // Handle exception, for example logging it
                     // Consider what action to take if unable to send message
+                    System.out.println("My error is in here");
                 }
             }
         }

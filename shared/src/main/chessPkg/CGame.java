@@ -8,6 +8,7 @@ public class CGame implements ChessGame {
 
     private TeamColor currentTurn;
     private CBoard board;
+    private boolean isOver = false;
 
     public CGame() {
         currentTurn = TeamColor.WHITE; // Start with White's turn
@@ -240,4 +241,7 @@ public class CGame implements ChessGame {
     public ChessBoard getBoard() {
         return board;
     }
+
+    public boolean isFinished(){return isOver;}
+    public void markGameAsOver() {this.isOver=true;}
 }

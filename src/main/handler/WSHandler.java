@@ -65,12 +65,10 @@ public class WSHandler {
             case MAKE_MOVE:
                 makeMove((MakeMoveCommand) command, session);
                 break;
-
-//            case LEAVE:
-//                ...
-//            case RESIGN:
-//                ...
-
+            case LEAVE:
+                leaveGame((LeaveCommand) command, session);
+            case RESIGN:
+                resignGame((ResignCommand) command, session);
             default:
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Unknown command type")));
                 break;
@@ -110,7 +108,6 @@ public class WSHandler {
                 return;
             }
 
-//            String playerName = authTokenDao.findUserByToken(command.getAuthString());
             // Add player to the session manager
             sessionManager.addPlayerToGame(command.getGameID(), playerName, session);
 
@@ -159,8 +156,6 @@ public class WSHandler {
             CGame chessGame = game.getGame();
             CMove move = command.getMove();
 
-
-        //Check if the right player is making the turn
         //Player attempting move
         String playerName = authTokenDao.findUserByToken(command.getAuthString());
         if(chessGame.getTeamTurn() == ChessGame.TeamColor.WHITE && !(game.getWhiteUsername().equals(playerName)) ||
@@ -175,14 +170,20 @@ public class WSHandler {
                 return;
             }
 
-            chessGame.makeMove(move);
-            gameDao.updateGameState(game.getGameID(), chessGame);
+        //TODO check if the game is over
+        if(chessGame.isFinished()){
+            session.getRemote().sendString(gson.toJson(new ErrorMessage("Can't Make the move, the game is over")));
+            return;
+        }
 
-            // Send the updated game state to all participants
-            sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
+        chessGame.makeMove(move);
+        gameDao.updateGameState(game.getGameID(), chessGame);
 
-            // Broadcast the move to all participants in the game
-            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " made a move"));
+        // Send the updated game state to all participants
+        sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
+
+        // Broadcast the move to all participants in the game
+        sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " made a move"));
 
 
         } catch (InvalidMoveException e) {
@@ -206,17 +207,53 @@ public class WSHandler {
                 return;
             }
 
+            // Update game state: if a player is leaving, remove them from the game
+            boolean isPlayer = game.getWhiteUsername().equals(participantName) || game.getBlackUsername().equals(participantName);
+            if (isPlayer) {
+                // Update the relevant player field in the game to null
+                if (game.getWhiteUsername().equals(participantName)) {
+                    game.setWhiteUsername(null);
+                } else if (game.getBlackUsername().equals(participantName)) {
+                    game.setBlackUsername(null);
+                }
+                gameDao.updateGamePlayers(command.getGameID(), game.getWhiteUsername(),game.getBlackUsername());
+            }
+            // Broadcast the departure to all participants in the game
+            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(participantName + " left the game"));
+
             // Remove the participant from the game session
             sessionManager.removeParticipantFromGame(command.getGameID(), participantName);
+        } catch (DataAccessException e) {
+            session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
+        }
+    }
 
-            // Broadcast the departure to all participants in the game
-            // Note: As the participant has left, no session is excluded from the broadcast
-            sessionManager.broadcastToGame(command.getGameID(), null, new NotificationMessage(participantName + " left the game"));
+    public void resignGame(ResignCommand command, Session session) throws IOException {
+        try {
+            String playerName = authTokenDao.findUserByToken(command.getAuthString());
+            Game game = gameDao.find(command.getGameID());
+            if (game == null) {
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
+                return;
+            }
+
+            // Update game state to reflect resignation
+            CGame chessGame = game.getGame();
+
+            chessGame.markGameAsOver();
+            gameDao.updateGameState(game.getGameID(), chessGame);
+
+            // Broadcast resignation to all participants
+            sessionManager.broadcastToGame(command.getGameID(), null,
+                    new NotificationMessage(playerName + " resigned from the game"));
+
+            // Additional logic for handling end of the game if necessary
 
         } catch (DataAccessException e) {
             session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
         }
     }
+
     //////////////////////////////////////////////////////////////////////////
     //-------------- Server Message Functions ------------------------------
     //////////////////////////////////////////////////////////////////////////
@@ -226,34 +263,6 @@ public class WSHandler {
             rootClientSession.getRemote().sendString(gson.toJson(errorMessage));
         }
     }
-
-
-
-//    public void resignGame(ResignCommand command, Session session) throws IOException {
-//        try {
-//            String playerName = authTokenDao.findUserByToken(command.getAuthString());
-//            Game game = gameDao.find(command.getGameID());
-//            if (game == null) {
-//                session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
-//                return;
-//            }
-//
-//            // Update game state to reflect resignation
-//            CGame chessGame = game.getGame();
-//            chessGame.resign(playerName); // You might need to implement this method in your game logic
-//            gameDao.updateGameState(game.getGameID(), chessGame);
-//
-//            // Broadcast resignation to all participants
-//            sessionManager.broadcastToGame(command.getGameID(), null,
-//                    new NotificationMessage(playerName + " resigned from the game"));
-//
-//            // Additional logic for handling end of the game if necessary
-//
-//        } catch (DataAccessException | InvalidMoveException e) {
-//            session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
-//        }
-//    }
-
 
     public static class CPositionSerializer implements JsonSerializer<CPosition> {
         @Override
