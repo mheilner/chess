@@ -30,6 +30,9 @@ public class WSHandler {
             .registerTypeAdapter(CPosition.class, new CPositionSerializer())
             .create();
 
+    public WSHandler() throws DataAccessException {
+    }
+
     @OnWebSocketMessage
     public void onMessage(Session session, String message) throws Exception {
         CommandTypeWrapper commandTypeWrapper = gson.fromJson(message, CommandTypeWrapper.class);
@@ -73,11 +76,9 @@ public class WSHandler {
                 break;
             default:
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Unknown command type")));
-                System.out.println("Unknown Command");
                 break;
         }
     }
-
     //////////////////////////////////////////////////////////////////////////
     //-------------- PROCESS COMMAND FUNCTIONS ------------------------------
     //////////////////////////////////////////////////////////////////////////
@@ -173,7 +174,6 @@ public class WSHandler {
                 return;
             }
 
-        //TODO check if the game is over
         if(chessGame.isFinished()){
             session.getRemote().sendString(gson.toJson(new ErrorMessage("Can't Make the move, the game is over")));
             return;
@@ -203,7 +203,6 @@ public class WSHandler {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: Invalid authentication token.")));
                 return;
             }
-
             Game game = gameDao.find(command.getGameID());
             if (game == null) {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Invalid GameID Error")));
@@ -252,14 +251,12 @@ public class WSHandler {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Game is already over")));
                 return;
             }
-
             chessGame.markGameAsOver();
             gameDao.updateGameState(game.getGameID(), chessGame);
 
             // Broadcast resignation to all participants
             sessionManager.broadcastToGame(command.getGameID(), null,
                     new NotificationMessage(playerName + " resigned from the game"));
-
 
         } catch (DataAccessException e) {
             session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
@@ -297,11 +294,8 @@ public class WSHandler {
     }
 
 
-
-
     private static class CommandTypeWrapper {
         private UserGameCommand.CommandType commandType;
-
         public UserGameCommand.CommandType getCommandType() {
             return commandType;
         }

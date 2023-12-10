@@ -22,15 +22,35 @@ public class GameDao {
     private int nextGameID = 1;
     private final Gson gson = new Gson();
 
-    private GameDao() {} // Private constructor to prevent direct instantiation
+    private GameDao() throws DataAccessException {
+        initializeNextGameID();
+    } // Private constructor to prevent direct instantiation
 
     // Public method to get the Singleton instance
-    public static GameDao getInstance() {
+    public static GameDao getInstance() throws DataAccessException {
         if (instance == null) {
             instance = new GameDao();
         }
         return instance;
     }
+
+    // Method to initialize nextGameID
+    private void initializeNextGameID() throws DataAccessException {
+        Connection conn = db.getConnection();
+        String sql = "SELECT MAX(game_id) AS max_id FROM games;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    nextGameID = rs.getInt("max_id") + 1;
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while initializing nextGameID: " + e.getMessage());
+        } finally {
+            db.returnConnection(conn);
+        }
+    }
+
     /**
      * Insert a new game into the database.
      * @param game The game to insert.

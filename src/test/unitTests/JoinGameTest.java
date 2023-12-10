@@ -54,7 +54,7 @@ public class JoinGameTest {
 
     @Test
     @DisplayName("Test successful game join")
-    public void testJoinGameSuccess() {
+    public void testJoinGameSuccess() throws DataAccessException {
         JoinGameService joinGameService = new JoinGameService();
         JoinGameRequest request = new JoinGameRequest("WHITE", 1);
         // Register a user and get a valid auth token
@@ -65,7 +65,7 @@ public class JoinGameTest {
 
     @Test
     @DisplayName("Test game join failure due to invalid authToken")
-    public void testJoinGameFailInvalidAuthToken() {
+    public void testJoinGameFailInvalidAuthToken() throws DataAccessException {
         JoinGameService joinGameService = new JoinGameService();
         JoinGameRequest request = new JoinGameRequest("WHITE", 1);
 
@@ -75,7 +75,7 @@ public class JoinGameTest {
 
     @Test
     @DisplayName("Test game join failure due to spot already taken")
-    public void testJoinGameFailSpotTaken() {
+    public void testJoinGameFailSpotTaken() throws DataAccessException {
         JoinGameService joinGameService = new JoinGameService();
 
         // Register two users and get valid auth tokens

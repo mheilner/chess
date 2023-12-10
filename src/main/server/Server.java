@@ -1,5 +1,6 @@
 package server;
 
+import dataAccess.DataAccessException;
 import dataAccess.Database;
 import handler.*;
 
@@ -7,7 +8,7 @@ import static spark.Spark.*;
 
 public class Server {
     public static Database db = new Database();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DataAccessException {
         // Set the port number
         port(8080);
 
@@ -34,7 +35,7 @@ public class Server {
 
     }
 
-    private static void createRoutes() {
+    private static void createRoutes() throws DataAccessException {
 
         post("/user", RegisterHandler.getInstance());
 

@@ -2,13 +2,20 @@ import java.util.Scanner;
 
 import chess.ChessGame;
 import chessPkg.CBoard;
+import chessPkg.CGame;
+import chessPkg.CMove;
+import chessPkg.CPosition;
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
 import dataAccess.GameDao;
 import model.Game;
+import webSocketMessages.serverMessages.ErrorMessage;
+import webSocketMessages.serverMessages.LoadGameMessage;
+import webSocketMessages.serverMessages.NotificationMessage;
 import webSocketMessages.serverMessages.ServerMessage;
 import webSocketMessages.userCommands.JoinObserverCommand;
 import webSocketMessages.userCommands.JoinPlayerCommand;
+import webSocketMessages.userCommands.MakeMoveCommand;
 
 public class Gameplay {
     private final String authToken;
@@ -81,23 +88,44 @@ public class Gameplay {
         }
     }
 
-    public void handleWebSocketMessage(String message) {
-        // Deserialize the message into a ServerMessage object
-        ServerMessage serverMessage = new Gson().fromJson(message, ServerMessage.class);
+    public void handleWebSocketMessage(String message, Gson gson) throws DataAccessException {
+        ServerMessage serverMessage = gson.fromJson(message, ServerMessage.class);
 
         switch (serverMessage.getServerMessageType()) {
             case LOAD_GAME:
-                // Handle LOAD_GAME message
+                LoadGameMessage loadGameMessage = gson.fromJson(message, LoadGameMessage.class);
+                handleLoadGame(loadGameMessage);
                 break;
             case ERROR:
-                // Handle ERROR message
+                ErrorMessage errorMessage = gson.fromJson(message, ErrorMessage.class);
+                handleError(errorMessage);
                 break;
             case NOTIFICATION:
-                // Handle NOTIFICATION message
+                NotificationMessage notificationMessage = gson.fromJson(message, NotificationMessage.class);
+                handleNotification(notificationMessage);
                 break;
-            // Handle other types of messages
+            default:
+                System.out.println("Received unknown message type: " + message);
+                break;
         }
     }
+
+    private void handleLoadGame(LoadGameMessage loadGameMessage) throws DataAccessException {
+        // Update your game state and redraw the board
+        CGame game = loadGameMessage.getGame();
+        System.out.println("Game state updated.");
+        // Update your game state here with the game object
+        redrawBoard();
+    }
+
+    private void handleError(ErrorMessage errorMessage) {
+        System.out.println("Error: " + errorMessage.getErrorMessage());
+    }
+
+    private void handleNotification(NotificationMessage notificationMessage) {
+        System.out.println("Notification: " + notificationMessage.getMessage());
+    }
+
 
 
     private void displayHelp() {
@@ -105,8 +133,36 @@ public class Gameplay {
     }
 
     private void handleMove() {
-        // Implement move handling logic
+        System.out.print("Enter start position (e.g., e2): ");
+        String startPosition = scanner.nextLine();
+        System.out.print("Enter end position (e.g., e4): ");
+        String endPosition = scanner.nextLine();
+
+        // Parse positions
+        CPosition startCPosition = parseChessPosition(startPosition);
+        CPosition endCPosition = parseChessPosition(endPosition);
+
+        // Construct move command
+        CMove move = new CMove(startCPosition, endCPosition);
+        MakeMoveCommand makeMoveCommand = new MakeMoveCommand(authToken, gameId, move);
+
+        try {
+            String moveJson = new Gson().toJson(makeMoveCommand);
+            webSocketClient.sendMessage(moveJson);
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exceptions
+        }
     }
+
+    private CPosition parseChessPosition(String position) {
+        if (position.length() != 2) {
+            throw new IllegalArgumentException("Invalid position format");
+        }
+        int col = position.charAt(0) - 'a' + 1; // Convert 'a' to 1, 'b' to 2, etc.
+        int row = Integer.parseInt(position.substring(1)); // Convert the second character to an integer
+        return new CPosition(row, col);
+    }
+
 
     private void redrawBoard() throws DataAccessException {
         // Implement board redraw logic

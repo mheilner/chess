@@ -15,6 +15,9 @@ public class JoinGameService {
     private GameDao gameDao = GameDao.getInstance();
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
 
+    public JoinGameService() throws DataAccessException {
+    }
+
     /**
      * Attempts to add a user to a game based on the provided game ID and desired player color.
      * The user must have a valid authentication token to join a game.

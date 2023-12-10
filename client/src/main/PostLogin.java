@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.List;
 
-import chessPkg.CBoard;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -15,7 +14,6 @@ import requests.JoinGameRequest;
 import results.CreateGameResult;
 import results.JoinGameResult;
 import results.ListGamesResult;
-import results.LogoutResult;
 
 import dataAccess.GameDao;
 import webSocketMessages.serverMessages.ErrorMessage;
@@ -192,7 +190,7 @@ public class PostLogin {
                 System.out.println(SET_TEXT_COLOR_RED + responseCode + ": " + joinGameResult.getMessage() + RESET_TEXT_COLOR);
 
                 try {
-                    WSClient wsClient = new WSClient();
+                    WSClient wsClient = new WSClient(gson);
                     ErrorMessage errorMsg = new ErrorMessage("Error joining the game.");
                     String errorJson = gson.toJson(errorMsg);
                     wsClient.sendMessage(errorJson);

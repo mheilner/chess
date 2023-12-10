@@ -1,5 +1,6 @@
 package services;
 
+import dataAccess.DataAccessException;
 import dataAccess.GameDao;
 import dataAccess.AuthTokenDao;
 import model.Game;
@@ -11,6 +12,9 @@ public class ListGamesService {
 
     private GameDao gameDao = GameDao.getInstance();
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
+
+    public ListGamesService() throws DataAccessException {
+    }
 
     /**
      * Lists all games.

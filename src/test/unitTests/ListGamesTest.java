@@ -41,7 +41,7 @@ public class ListGamesTest {
 
     @Test
     @DisplayName("Test successful games list retrieval")
-    public void testListGamesSuccess() {
+    public void testListGamesSuccess() throws DataAccessException {
         String validAuthToken = registerUserAndGetAuthToken("testUser", "password", "email");
 
         ListGamesService listGamesService = new ListGamesService();
@@ -57,7 +57,7 @@ public class ListGamesTest {
 
     @Test
     @DisplayName("Test games list retrieval failure due to invalid authToken")
-    public void testListGamesFailInvalidAuthToken() {
+    public void testListGamesFailInvalidAuthToken() throws DataAccessException {
         ListGamesService listGamesService = new ListGamesService();
         String invalidAuthToken = "invalidToken";
         ListGamesResult result = listGamesService.listGames(invalidAuthToken);

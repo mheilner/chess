@@ -1,6 +1,7 @@
 package handler;
 
 import com.google.gson.Gson;
+import dataAccess.DataAccessException;
 import requests.JoinGameRequest;
 import results.JoinGameResult;
 import services.JoinGameService;
@@ -13,7 +14,7 @@ public class JoinGameHandler implements Route {
     private final Gson gson;
     private final JoinGameService joinGameService;
 
-    public JoinGameHandler() {
+    public JoinGameHandler() throws DataAccessException {
         gson = new Gson();
         joinGameService = new JoinGameService();
     }

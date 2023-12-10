@@ -3,6 +3,7 @@ package handler;
 import chess.ChessPiece;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dataAccess.DataAccessException;
 import dataAccess.GameDao;
 import results.ListGamesResult;
 import services.ListGamesService;
@@ -19,14 +20,14 @@ public class ListGamesHandler implements Route {
     private final Gson gson;
     private final ListGamesService listGamesService;
 
-    private ListGamesHandler() {
+    private ListGamesHandler() throws DataAccessException {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer());
         this.gson = builder.create();
         listGamesService = new ListGamesService();
     }
 
-    public static ListGamesHandler getInstance() {
+    public static ListGamesHandler getInstance() throws DataAccessException {
         if (instance == null) {
             instance = new ListGamesHandler();
         }

@@ -228,7 +228,7 @@ public class GameDaoTest {
 
     @Test
     @DisplayName("Negative: Get white player for a non-existing game ID")
-    public void testGetWhitePlayerNegative_NonExistingGameID() {
+    public void testGetWhitePlayerNegative_NonExistingGameID() throws DataAccessException {
         GameDao gameDao = GameDao.getInstance();
         // Try to get a white player for a game ID that does not exist
         Exception exception = assertThrows(DataAccessException.class, () -> gameDao.getWhitePlayer(Integer.MAX_VALUE));
@@ -240,7 +240,7 @@ public class GameDaoTest {
 
     @Test
     @DisplayName("Negative: Get black player for a non-existing game ID")
-    public void testGetBlackPlayerNegative_NonExistingGameID() {
+    public void testGetBlackPlayerNegative_NonExistingGameID() throws DataAccessException {
         GameDao gameDao = GameDao.getInstance();
         // Try to get a black player for a game ID that does not exist
         Exception exception = assertThrows(DataAccessException.class, () -> gameDao.getBlackPlayer(Integer.MAX_VALUE));

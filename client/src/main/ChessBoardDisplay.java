@@ -14,10 +14,12 @@ public class ChessBoardDisplay {
     }
 
     public static void printChessBoard(CBoard board, boolean whiteAtBottom) {
-        for (int row = 1; row <= 8; row++) {
+        // Display numbers on the side of the board
+        for (int row = 8; row >= 1; row--) {
             int adjustedRow = whiteAtBottom ? row : 9 - row;
+            System.out.print(adjustedRow + " "); // Add row number to the left side
+
             for (int col = 1; col <= 8; col++) {
-                // Set background color based on the square's position
                 String bgColor = (row + col) % 2 == 0 ? EscapeSequences.BG_COLOR_LIGHT_SQUARE : EscapeSequences.BG_COLOR_DARK_SQUARE;
                 System.out.print(bgColor);
                 ChessPiece piece = board.getPiece(new CPosition(adjustedRow, col));
@@ -26,7 +28,16 @@ public class ChessBoardDisplay {
             }
             System.out.println(EscapeSequences.RESET_BG_COLOR); // New line after each row
         }
+
+        // Display letters at the bottom of the board
+        System.out.print("  "); // Align with the board
+        for (int col = 1; col <= 8; col++) {
+            char letter = (char) (whiteAtBottom ? 'a' + col - 1 : 'h' - col + 1);
+            System.out.print(" " + letter + " ");
+        }
+        System.out.println();
     }
+
 
     private static void printChessPiece(ChessPiece piece) {
         String pieceSymbol = EscapeSequences.EMPTY; // Default empty symbol

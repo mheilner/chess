@@ -1,3 +1,9 @@
+import chess.ChessPiece;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import dataAccess.DataAccessException;
+import dataAccess.GameDao;
+
 import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
@@ -8,15 +14,21 @@ public class WSClient {
 
     private Session session;
     private Gameplay gameplay;
-
+    private final Gson gson;
     // Existing constructor for when Gameplay is available
     public WSClient(Gameplay gameplay) throws URISyntaxException, DeploymentException, IOException {
         this.gameplay = gameplay;
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                .create();
         connectToServer();
     }
 
     // New constructor for use without Gameplay instance
-    public WSClient() throws URISyntaxException, DeploymentException, IOException {
+    public WSClient(Gson gson) throws URISyntaxException, DeploymentException, IOException {
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                .create();
         this.gameplay = null;
         connectToServer();
     }
@@ -33,11 +45,10 @@ public class WSClient {
     }
 
     @OnMessage
-    public void onMessage(String message) {
+    public void onMessage(String message) throws DataAccessException {
         if (gameplay != null) {
-            gameplay.handleWebSocketMessage(message);
+            gameplay.handleWebSocketMessage(message, gson);
         } else {
-            // Handle messages when Gameplay is not available
             System.out.println("Received from server (no gameplay): " + message);
         }
     }
