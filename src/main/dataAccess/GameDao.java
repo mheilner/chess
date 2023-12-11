@@ -140,16 +140,19 @@ public class GameDao {
      * Clear all games.
      */
     public void clear() throws DataAccessException {
-        Connection conn = db.getConnection();
-        String sql = "DELETE FROM games;";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.executeUpdate();
-            nextGameID = 1;
-        } catch (SQLException e) {
-            throw new DataAccessException("Error encountered while clearing games");
-        } finally {
-            db.returnConnection(conn);
+        try (Connection conn = db.getConnection()){
+            String sql = "DELETE FROM games;";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.executeUpdate();
+                nextGameID = 1;
+            }
         }
+         catch (SQLException e) {
+             System.out.println(e);
+            throw new DataAccessException("Error encountered while clearing games");
+        }// finally {
+//            db.returnConnection(conn);
+//        }
     }
 
 

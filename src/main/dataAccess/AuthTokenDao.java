@@ -110,7 +110,7 @@ public class AuthTokenDao {
      * Clear all authTokens.
      */
     public void clear() throws DataAccessException {
-        Database db = new Database();
+//        Database db = new Database();
         Connection conn = db.getConnection();
         String sql = "DELETE FROM auth_tokens;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {

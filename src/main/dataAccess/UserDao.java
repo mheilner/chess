@@ -76,16 +76,15 @@ public class UserDao {
      * Clear all users.
      */
     public void clear() throws DataAccessException {
-        Connection conn = db.getConnection();
-        String sql = "DELETE FROM users;";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
-            throw new DataAccessException("Error encountered while clearing users");
-        } finally {
-            db.returnConnection(conn);
-        }
+        try (Connection conn = db.getConnection()) {
+            String sql = "DELETE FROM users;";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.executeUpdate();
+            }
+        }catch (SQLException e) {
+                System.out.println(e);
+                throw new DataAccessException("Error encountered while clearing users");
+            }
     }
 
 }
