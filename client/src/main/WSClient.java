@@ -1,8 +1,11 @@
 import chess.ChessPiece;
+import chess.ChessPosition;
+import chessPkg.CPosition;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dataAccess.DataAccessException;
 import dataAccess.GameDao;
+import handler.WSHandler;
 
 import javax.websocket.*;
 import java.io.IOException;
@@ -20,6 +23,8 @@ public class WSClient {
         this.gameplay = gameplay;
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
+                .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
                 .create();
         connectToServer();
     }
@@ -28,6 +33,8 @@ public class WSClient {
     public WSClient(Gson gson) throws URISyntaxException, DeploymentException, IOException {
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
+                .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
                 .create();
         this.gameplay = null;
         connectToServer();

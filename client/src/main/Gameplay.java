@@ -129,8 +129,16 @@ public class Gameplay {
 
 
     private void displayHelp() {
-        // Implement help display logic
+        System.out.println("Available Commands:");
+        System.out.println("  help       - Displays this help information.");
+        System.out.println("  redraw     - Redraws the chess board.");
+        System.out.println("  leave      - Removes you from the game and returns to the Post-Login UI.");
+        System.out.println("  move       - Allows you to make a move. Follow the prompt to input your move.");
+        System.out.println("  resign     - Allows you to resign from the game after confirmation.");
+        System.out.println("  highlight  - Highlights legal moves for a selected piece. Input the piece to see legal moves.");
     }
+
+
 
     private void handleMove() {
         System.out.print("Enter start position (e.g., e2): ");

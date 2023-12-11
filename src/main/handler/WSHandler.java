@@ -168,7 +168,6 @@ public class WSHandler {
             return;
         }
 
-
         if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("It's not your turn")));
                 return;
@@ -209,8 +208,13 @@ public class WSHandler {
                 return;
             }
 
-            // Update game state: if a player is leaving, remove them from the game
-            boolean isPlayer = game.getWhiteUsername().equals(participantName) || game.getBlackUsername().equals(participantName);
+            boolean isPlayer = false;
+            if (game.getWhiteUsername() != null && game.getWhiteUsername().equals(participantName)) {
+                isPlayer = true;
+            }
+            if (game.getBlackUsername() != null && game.getBlackUsername().equals(participantName)) {
+                isPlayer = true;
+            }
             if (isPlayer) {
                 // Update the relevant player field in the game to null
                 if (game.getWhiteUsername().equals(participantName)) {
@@ -220,11 +224,12 @@ public class WSHandler {
                 }
                 gameDao.updateGamePlayers(command.getGameID(), game.getWhiteUsername(),game.getBlackUsername());
             }
+            // Remove the participant from the game session
+            sessionManager.removeParticipantFromGame(command.getGameID(), participantName);
+
             // Broadcast the departure to all participants in the game
             sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(participantName + " left the game"));
 
-            // Remove the participant from the game session
-            sessionManager.removeParticipantFromGame(command.getGameID(), participantName);
         } catch (DataAccessException e) {
             session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + e.getMessage())));
         }
