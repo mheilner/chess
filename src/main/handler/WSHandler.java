@@ -1,6 +1,7 @@
 package handler;
 
 import chess.ChessGame;
+import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.InvalidMoveException;
 import chessPkg.CGame;
@@ -28,6 +29,8 @@ public class WSHandler {
     private final Gson gson = new GsonBuilder()
             .registerTypeAdapter(ChessPosition.class, new CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
             .registerTypeAdapter(CPosition.class, new CPositionSerializer())
+            .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer())
+            .registerTypeAdapter(ChessPiece.class, new GameDao.ChessGameDeserializer())
             .create();
 
     public WSHandler() throws DataAccessException {

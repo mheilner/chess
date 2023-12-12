@@ -1,13 +1,17 @@
 import java.util.Scanner;
 
 import chess.ChessGame;
+import chess.ChessPiece;
+import chess.ChessPosition;
 import chessPkg.CBoard;
 import chessPkg.CGame;
 import chessPkg.CMove;
 import chessPkg.CPosition;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dataAccess.DataAccessException;
 import dataAccess.GameDao;
+import handler.WSHandler;
 import model.Game;
 import webSocketMessages.serverMessages.ErrorMessage;
 import webSocketMessages.serverMessages.LoadGameMessage;
@@ -71,7 +75,12 @@ public class Gameplay {
     private void initializeWebSocket() {
         try {
             webSocketClient = new WSClient(this);
-            Gson gson = new Gson();
+            Gson gson =  new GsonBuilder()
+                    .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                    .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
+                    .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
+                    .registerTypeAdapter(ChessGame.class, new GameDao.ChessGameDeserializer())
+                    .create();
 
             if (!playerColor.equalsIgnoreCase("OBSERVER")) {
                 ChessGame.TeamColor teamColor = ChessGame.TeamColor.valueOf(playerColor);
@@ -93,6 +102,9 @@ public class Gameplay {
 
         switch (serverMessage.getServerMessageType()) {
             case LOAD_GAME:
+//                CGame g = gson.fromJson(message, ChessGame.class);
+//                LoadGameMessage loadGameMessage = new LoadGameMessage(g);
+//                CGame g = GameDao.getInstance().deserializeCGame(message);
                 LoadGameMessage loadGameMessage = gson.fromJson(message, LoadGameMessage.class);
                 handleLoadGame(loadGameMessage);
                 break;

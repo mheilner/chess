@@ -331,7 +331,6 @@ public class GameDao {
         return json;
     }
 
-
     /**
      * Deserialize JSON to CGame object.
      * @param json The JSON string.
@@ -346,6 +345,12 @@ public class GameDao {
         return gson.fromJson(json, CGame.class);
     }
 
+    public static class ChessGameDeserializer implements JsonDeserializer<ChessGame>{
+        @Override
+        public ChessGame deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+            return jsonDeserializationContext.deserialize(jsonElement, CGame.class);
+        }
+    }
 
 
     public static class ChessPieceSerializer implements JsonSerializer<ChessPiece> {
