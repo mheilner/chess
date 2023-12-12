@@ -41,7 +41,7 @@ public class Gameplay {
 
     public void startGameplay() throws DataAccessException {
         // Connect to WebSocket and initialize game state
-        redrawBoard();
+//        redrawBoard();
 
         while (isInGame) {
             System.out.print("Enter command ('help', 'move', 'redraw', 'leave', 'resign', 'highlight'): ");
