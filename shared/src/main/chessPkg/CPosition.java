@@ -42,4 +42,10 @@ public class CPosition implements ChessPosition {
                 ", col=" + col +
                 '}';
     }
+
+    public String getBoardPosition() {
+        char columnLetter = (char) ('a' + col - 1); // Convert column number to corresponding letter
+        return "" + columnLetter + row;
+    }
+
 }

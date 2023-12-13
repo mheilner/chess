@@ -181,24 +181,29 @@ public class WSHandler {
             }
 
 
-            if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
-                session.getRemote().sendString(gson.toJson(new ErrorMessage("It's not your turn")));
+
+            if(chessGame.isFinished()){
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: Can't Make the move, the game is over")));
                 return;
             }
 
-        if(chessGame.isFinished()){
-            session.getRemote().sendString(gson.toJson(new ErrorMessage("Can't Make the move, the game is over")));
-            return;
-        }
+            if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: It's not your turn")));
+                return;
+            }
+            chessGame.makeMove(move);
+            gameDao.updateGameState(game.getGameID(), chessGame);
 
-        chessGame.makeMove(move);
-        gameDao.updateGameState(game.getGameID(), chessGame);
+            // Send the updated game state to all participants
+            sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
 
-        // Send the updated game state to all participants
-        sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
+            //Get start and end position
+            CPosition start = (CPosition)move.getStartPosition();
+            CPosition end = (CPosition)move.getEndPosition();
 
-        // Broadcast the move to all participants in the game
-        sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " made a move"));
+            // Broadcast the move to all participants in the game
+            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " moved their piece from " +
+                    start.getBoardPosition() + " to " + end.getBoardPosition()));
 
 
         } catch (InvalidMoveException e) {

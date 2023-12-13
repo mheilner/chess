@@ -134,7 +134,8 @@ public class Gameplay {
     }
 
     private void handleError(ErrorMessage errorMessage) {
-        System.out.println("Error: " + errorMessage.getErrorMessage());
+        // Print this in red
+        System.out.println(errorMessage.getErrorMessage());
     }
 
     private void handleNotification(NotificationMessage notificationMessage) {
