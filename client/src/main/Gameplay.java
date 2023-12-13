@@ -180,22 +180,13 @@ public class Gameplay {
         if (position.length() != 2) {
             throw new IllegalArgumentException("Invalid position format");
         }
-
-        // Row calculation remains the same for both players
+        //Make Row and Col Calculations
         int row = Integer.parseInt(position.substring(1)); // Convert the second character to an integer
+        int col = position.charAt(0) - 'a';
 
-        // Column calculation must account for the player's perspective
-        int col;
-        if (!playerColor.equalsIgnoreCase("BLACK")) {
-            // For white player: 'a' = 1, 'b' = 2, ..., 'h' = 8
-            col = position.charAt(0) - 'a' + 1;
-        } else {
-            // For black player: 'h' = 1, 'g' = 2, ..., 'a' = 8
-            col = 'h' - position.charAt(0) + 1;
-        }
-
-        return new CPosition(row, col);
+        return new CPosition(row, col + 1); // Adjusting to 1-based indexing
     }
+
 
 
 

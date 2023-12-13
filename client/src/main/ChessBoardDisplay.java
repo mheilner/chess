@@ -42,36 +42,43 @@ public class ChessBoardDisplay {
     }
 
 
-        public static void printChessBoardWithHighlights(CBoard board, boolean whiteAtBottom, Set<CPosition> highlightPositions) {
-            // similar structure to printChessBoard method
-            for (int row = 8; row >= 1; row--) {
-                int adjustedRow = whiteAtBottom ? row : 9 - row;
-                System.out.print(adjustedRow + " ");
-                for (int col = 1; col <= 8; col++) {
-                    String bgColor = determineBackgroundColor(row, col, highlightPositions, whiteAtBottom);
-                    System.out.print(bgColor);
-                    ChessPiece piece = board.getPiece(new CPosition(adjustedRow, col));
-                    printChessPiece(piece);
-                    System.out.print(EscapeSequences.RESET_BG_COLOR); // Reset background color
-                }
-                System.out.println(EscapeSequences.RESET_BG_COLOR); // New line after each row
-            }
-            System.out.print("  "); // Align with the board
+    public static void printChessBoardWithHighlights(CBoard board, boolean whiteAtBottom, Set<CPosition> highlightPositions) {
+        for (int row = 8; row >= 1; row--) {
+            System.out.print((whiteAtBottom ? row : 9 - row) + " "); // Adjusted row number
+
             for (int col = 1; col <= 8; col++) {
-                char letter = (char) (whiteAtBottom ? 'a' + col - 1 : 'h' - col + 1);
-                System.out.print(" " + letter + " ");
+                int adjustedRow = whiteAtBottom ? row : 9 - row;
+                int adjustedCol = whiteAtBottom ? col : 9 - col;
+                String bgColor = determineBackgroundColor(adjustedRow, adjustedCol, highlightPositions, whiteAtBottom);
+                System.out.print(bgColor);
+                ChessPiece piece = board.getPiece(new CPosition(adjustedRow, adjustedCol));
+                printChessPiece(piece);
+                System.out.print(EscapeSequences.RESET_BG_COLOR); // Reset background color
             }
-            System.out.println();
+            System.out.println(EscapeSequences.RESET_BG_COLOR); // New line after each row
         }
 
-        private static String determineBackgroundColor(int row, int col, Set<CPosition> highlightPositions, boolean whiteAtBottom) {
-            CPosition currentPos = new CPosition(whiteAtBottom ? row : 9 - row, whiteAtBottom ? col : 9 - col);
-            if (highlightPositions.contains(currentPos)) {
-                return EscapeSequences.SET_BG_COLOR_YELLOW; // BG color for highlighted positions
-            } else {
-                return (row + col) % 2 == 0 ? EscapeSequences.BG_COLOR_LIGHT_SQUARE : EscapeSequences.BG_COLOR_DARK_SQUARE;
-            }
+        System.out.print("  "); // Align with the board
+        for (int col = 1; col <= 8; col++) {
+            char letter = (char) (whiteAtBottom ? 'a' + col - 1 : 'h' - col + 1);
+            System.out.print(" " + letter + " ");
         }
+        System.out.println();
+    }
+
+
+    private static String determineBackgroundColor(int row, int col, Set<CPosition> highlightPositions, boolean whiteAtBottom) {
+        int adjustedRow = whiteAtBottom ? row : 9 - row;
+        int adjustedCol = whiteAtBottom ? col : 9 - col;
+        CPosition currentPos = new CPosition(adjustedRow, adjustedCol);
+
+        if (highlightPositions.contains(currentPos)) {
+            return EscapeSequences.SET_BG_COLOR_YELLOW; // BG color for highlighted positions
+        } else {
+            return (row + col) % 2 == 0 ? EscapeSequences.BG_COLOR_LIGHT_SQUARE : EscapeSequences.BG_COLOR_DARK_SQUARE;
+        }
+    }
+
 
 
     private static void printChessPiece(ChessPiece piece) {

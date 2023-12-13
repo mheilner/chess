@@ -9,8 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/handler/WSHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/handler/WSHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ChessBoardDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ChessBoardDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/Gameplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +81,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StandardAPITests">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="client" />
@@ -148,10 +148,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StandardAPITests" />
-        <item itemvalue="JUnit.WebSocketTests" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="JUnit.WebSocketTests" />
         <item itemvalue="JUnit.unitTests in chess" />
       </list>
     </recent_temporary>
@@ -196,7 +196,7 @@
       <workItem from="1702312622959" duration="11655000" />
       <workItem from="1702335516971" duration="434000" />
       <workItem from="1702402578063" duration="27776000" />
-      <workItem from="1702443034825" duration="8534000" />
+      <workItem from="1702443034825" duration="12556000" />
     </task>
     <servers />
   </component>
@@ -293,11 +293,6 @@
           <option name="timeStamp" value="149" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/dataAccess/GameDao.java</url>
-          <line>370</line>
-          <option name="timeStamp" value="150" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/handler/WSHandler.java</url>
           <line>160</line>
           <option name="timeStamp" value="151" />
@@ -306,6 +301,11 @@
           <url>file://$PROJECT_DIR$/client/src/main/Gameplay.java</url>
           <line>36</line>
           <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/Gameplay.java</url>
+          <line>179</line>
+          <option name="timeStamp" value="155" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/PersistenceTest.java</url>
