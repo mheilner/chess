@@ -17,10 +17,7 @@ import webSocketMessages.serverMessages.ErrorMessage;
 import webSocketMessages.serverMessages.LoadGameMessage;
 import webSocketMessages.serverMessages.NotificationMessage;
 import webSocketMessages.serverMessages.ServerMessage;
-import webSocketMessages.userCommands.JoinObserverCommand;
-import webSocketMessages.userCommands.JoinPlayerCommand;
-import webSocketMessages.userCommands.LeaveCommand;
-import webSocketMessages.userCommands.MakeMoveCommand;
+import webSocketMessages.userCommands.*;
 
 public class Gameplay {
     private final String authToken;
@@ -44,10 +41,8 @@ public class Gameplay {
 
     public void startGameplay() throws DataAccessException {
         // Connect to WebSocket and initialize game state
-//        redrawBoard();
-
         while (isInGame) {
-            System.out.print("Enter command ('help', 'move', 'redraw', 'leave', 'resign', 'highlight'): ");
+            System.out.println("Enter command ('help', 'move', 'redraw', 'leave', 'resign', 'highlight'): ");
             String command = scanner.nextLine();
             switch (command.toLowerCase()) {
                 case "help":
@@ -129,9 +124,9 @@ public class Gameplay {
     private void handleLoadGame(LoadGameMessage loadGameMessage) throws DataAccessException {
         // Update your game state and redraw the board
         CGame game = loadGameMessage.getGame();
-        System.out.println("Game state updated.");
         // Update your game state here with the game object
         redrawBoard();
+        System.out.println("Game state updated.");
     }
 
     private void handleError(ErrorMessage errorMessage) {
@@ -217,7 +212,14 @@ public class Gameplay {
     }
 
     private void handleResign() {
-        // Implement resign logic
+        ResignCommand resignCommand = new ResignCommand(authToken, gameId);
+        try{
+            String resignJson = gson.toJson(resignCommand):
+            webSocketClient.sendMessage(resignJson);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     private void highlightMoves() {
