@@ -207,5 +207,5 @@ public class Gameplay {
         // Implement move highlighting logic
     }
 
-    // Additional methods for handling WebSocket messages, updating game state, etc.
+
 }

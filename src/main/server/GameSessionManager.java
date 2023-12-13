@@ -1,5 +1,12 @@
 package server;
 
+import chess.ChessGame;
+import chess.ChessPiece;
+import chess.ChessPosition;
+import chessPkg.CPosition;
+import com.google.gson.GsonBuilder;
+import dataAccess.GameDao;
+import handler.WSHandler;
 import org.eclipse.jetty.websocket.api.Session;
 import webSocketMessages.serverMessages.ServerMessage;
 import com.google.gson.Gson;
@@ -12,7 +19,13 @@ import server.GameSession;
 public class GameSessionManager {
     private static GameSessionManager instance = null;
     private final ConcurrentHashMap<Integer, GameSession> gameSessions = new ConcurrentHashMap<>();
-    private final Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+            .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer())
+            .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
+            .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
+            .registerTypeAdapter(ChessGame.class, new GameDao.ChessGameDeserializer())
+            .create();
 
     private GameSessionManager() {
         //Private Constructor

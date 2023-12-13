@@ -123,7 +123,7 @@ public class WSHandler {
             Game updatedGame = gameDao.find(command.getGameID());
             session.getRemote().sendString(gson.toJson(new LoadGameMessage(updatedGame.getGame())));
 
-            // Broadcast to all participants in the game
+            // Broadcast to all participants in the game, except joining player
             sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " joined as " + command.getPlayerColor()));
 
         } catch (DataAccessException | IOException e) {
@@ -144,8 +144,10 @@ public class WSHandler {
             sessionManager.addObserverToGame(command.getGameID(), playerName, session); // Replace "observer-name" with actual identifier
             // Send the updated game state to the player
             Game updatedGame = gameDao.find(command.getGameID());
+
             session.getRemote().sendString(gson.toJson(new LoadGameMessage(updatedGame.getGame())));
-            // Broadcast to all participants in the game
+
+            // Broadcast to all participants in the game, except joining observer
             sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage("Observer joined"));
 
         } catch (DataAccessException e) {
