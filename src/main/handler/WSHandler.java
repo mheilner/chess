@@ -168,6 +168,7 @@ public class WSHandler {
 
             // Player attempting move
             String playerName = authTokenDao.findUserByToken(command.getAuthString());
+            ChessGame.TeamColor teamTurn = chessGame.getTeamTurn();
 
             // Check if it's the turn of the white team and the player is not the white player
             boolean isWhiteTurnButNotWhitePlayer = chessGame.getTeamTurn() == ChessGame.TeamColor.WHITE &&
@@ -176,11 +177,9 @@ public class WSHandler {
             boolean isBlackTurnButNotBlackPlayer = chessGame.getTeamTurn() == ChessGame.TeamColor.BLACK &&
                     (game.getBlackUsername() == null || !game.getBlackUsername().equals(playerName));
             if (isWhiteTurnButNotWhitePlayer || isBlackTurnButNotBlackPlayer) {
-                session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + playerName + " is not allowed to play for this team")));
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + "It is " +teamTurn + "'s Team turn. " + playerName + " is not allowed to play for " + teamTurn + ".")));
                 return;
             }
-
-
 
             if(chessGame.isFinished()){
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: Can't Make the move, the game is over")));
@@ -193,6 +192,16 @@ public class WSHandler {
             }
             chessGame.makeMove(move);
             gameDao.updateGameState(game.getGameID(), chessGame);
+            teamTurn = chessGame.getTeamTurn();
+
+            //Check if the game is in check
+            if(chessGame.isInCheck(teamTurn)){
+                sessionManager.broadcastToGame(command.getGameID(), null, new NotificationMessage(teamTurn +" is in Check."));
+            }
+            //Check if the game is in checkmate
+            if(chessGame.isInCheckmate(teamTurn)){
+                sessionManager.broadcastToGame(command.getGameID(), null, new NotificationMessage(teamTurn +" is in Checkmate. GAME OVER!"));
+            }
 
             // Send the updated game state to all participants
             sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));

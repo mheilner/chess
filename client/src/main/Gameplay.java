@@ -22,6 +22,10 @@ import webSocketMessages.serverMessages.LoadGameMessage;
 import webSocketMessages.serverMessages.NotificationMessage;
 import webSocketMessages.serverMessages.ServerMessage;
 import webSocketMessages.userCommands.*;
+import ui.EscapeSequences;
+
+import static ui.EscapeSequences.RESET_TEXT_COLOR;
+import static ui.EscapeSequences.SET_TEXT_COLOR_RED;
 
 public class Gameplay {
     private final String authToken;
@@ -179,7 +183,9 @@ public class Gameplay {
 
     private CPosition parseChessPosition(String position) {
         if (position.length() != 2) {
-            throw new IllegalArgumentException("Invalid position format");
+//            throw new IllegalArgumentException("Invalid position format");
+            System.out.println("Invalid position format");
+            return null;
         }
         //Make Row and Col Calculations
         int row = Integer.parseInt(position.substring(1)); // Convert the second character to an integer
