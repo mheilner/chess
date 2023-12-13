@@ -19,6 +19,7 @@ import webSocketMessages.serverMessages.NotificationMessage;
 import webSocketMessages.serverMessages.ServerMessage;
 import webSocketMessages.userCommands.JoinObserverCommand;
 import webSocketMessages.userCommands.JoinPlayerCommand;
+import webSocketMessages.userCommands.LeaveCommand;
 import webSocketMessages.userCommands.MakeMoveCommand;
 
 public class Gameplay {
@@ -180,10 +181,18 @@ public class Gameplay {
         if (position.length() != 2) {
             throw new IllegalArgumentException("Invalid position format");
         }
-        int col = position.charAt(0) - 'a' + 1; // Convert 'a' to 1, 'b' to 2, etc.
+        int col;
         int row = Integer.parseInt(position.substring(1)); // Convert the second character to an integer
+
+        if (!playerColor.equalsIgnoreCase("BLACK")) {
+            col = position.charAt(0) - 'a' + 1; // Convert 'a' to 1, 'b' to 2, etc.
+        } else {
+            col = 'h' - position.charAt(0) + 1; // Convert 'h' to 1, 'g' to 2, etc.
+        }
+
         return new CPosition(row, col);
     }
+
 
 
     private void redrawBoard() throws DataAccessException {
@@ -195,7 +204,15 @@ public class Gameplay {
     }
 
     private void handleLeave() {
-        // Implement leave game logic
+
+        LeaveCommand leaveCommand = new LeaveCommand(authToken, gameId);
+
+        try {
+            String leaveJson = gson.toJson(leaveCommand);
+            webSocketClient.sendMessage(leaveJson);
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exceptions
+        }
         isInGame = false;
     }
 
