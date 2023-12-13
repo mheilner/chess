@@ -231,9 +231,9 @@ public class Gameplay {
             // Retrieve valid moves for the selected piece
             Collection<ChessMove> validMoves = getValidMoves(position);
             Set<CPosition> highlightPositions = new HashSet<>();
-            highlightPositions.add(position);
+            highlightPositions.add(adjustPositionForPerspective(position));
             for (ChessMove move : validMoves) {
-                highlightPositions.add((CPosition) move.getEndPosition());
+                highlightPositions.add(adjustPositionForPerspective((CPosition) move.getEndPosition()));
             }
             // Redraw the board with highlighted positions
             redrawBoardWithHighlights(highlightPositions);
@@ -241,6 +241,13 @@ public class Gameplay {
             System.out.println("Invalid input. Please try again.");
         }
     }
+
+    private CPosition adjustPositionForPerspective(CPosition position) {
+        int adjustedRow = playerColor.equalsIgnoreCase("WHITE") ? position.getRow() : 9 - position.getRow();
+        int adjustedCol = playerColor.equalsIgnoreCase("WHITE") ? position.getColumn() : 9 - position.getColumn();
+        return new CPosition(adjustedRow, adjustedCol);
+    }
+
 
     private Collection<ChessMove> getValidMoves(CPosition position) throws DataAccessException {
         GameDao gameDao = GameDao.getInstance();

@@ -68,16 +68,20 @@ public class ChessBoardDisplay {
 
 
     private static String determineBackgroundColor(int row, int col, Set<CPosition> highlightPositions, boolean whiteAtBottom) {
-        int adjustedRow = whiteAtBottom ? row : 9 - row;
-        int adjustedCol = whiteAtBottom ? col : 9 - col;
-        CPosition currentPos = new CPosition(adjustedRow, adjustedCol);
+        // Convert row and column to board coordinates
+        int boardRow = whiteAtBottom ? row : 9 - row;
+        int boardCol = whiteAtBottom ? col : 9 - col;
+
+        // Create CPosition based on the actual board coordinates
+        CPosition currentPos = new CPosition(boardRow, boardCol);
 
         if (highlightPositions.contains(currentPos)) {
-            return EscapeSequences.SET_BG_COLOR_YELLOW; // BG color for highlighted positions
+            return EscapeSequences.SET_BG_COLOR_YELLOW; // Highlight color
         } else {
-            return (row + col) % 2 == 0 ? EscapeSequences.BG_COLOR_LIGHT_SQUARE : EscapeSequences.BG_COLOR_DARK_SQUARE;
+            return (row + col) % 2 == 0 ? EscapeSequences.BG_COLOR_LIGHT_SQUARE : EscapeSequences.BG_COLOR_DARK_SQUARE; // Regular color
         }
     }
+
 
 
 
