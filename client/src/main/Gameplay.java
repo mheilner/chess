@@ -1,6 +1,10 @@
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import chess.ChessGame;
+import chess.ChessMove;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chessPkg.CBoard;
@@ -214,7 +218,7 @@ public class Gameplay {
     private void handleResign() {
         ResignCommand resignCommand = new ResignCommand(authToken, gameId);
         try{
-            String resignJson = gson.toJson(resignCommand):
+            String resignJson = gson.toJson(resignCommand);
             webSocketClient.sendMessage(resignJson);
         }catch (Exception e){
             e.printStackTrace();
@@ -223,8 +227,36 @@ public class Gameplay {
     }
 
     private void highlightMoves() {
-        // Implement move highlighting logic
+        System.out.print("Enter the position of the piece to highlight (e.g., e2): ");
+        String piecePosition = scanner.nextLine();
+        try {
+            CPosition position = parseChessPosition(piecePosition);
+            // Retrieve valid moves for the selected piece
+            Collection<ChessMove> validMoves = getValidMoves(position);
+            Set<CPosition> highlightPositions = new HashSet<>();
+            highlightPositions.add(position);
+            for (ChessMove move : validMoves) {
+                highlightPositions.add((CPosition) move.getEndPosition());
+            }
+            // Redraw the board with highlighted positions
+            redrawBoardWithHighlights(highlightPositions);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please try again.");
+        }
     }
+
+    private Collection<ChessMove> getValidMoves(CPosition position) throws DataAccessException {
+        GameDao gameDao = GameDao.getInstance();
+        Game game = gameDao.find(gameId);
+        return game.getGame().validMoves(position);
+    }
+
+    private void redrawBoardWithHighlights(Set<CPosition> highlightPositions) throws DataAccessException {
+        GameDao gameDao = GameDao.getInstance();
+        Game game = gameDao.find(gameId);
+        ChessBoardDisplay.printChessBoardWithHighlights((CBoard)game.getGame().getBoard(), !(playerColor.equals("BLACK")), highlightPositions);
+    }
+
 
 
 }

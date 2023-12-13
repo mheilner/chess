@@ -9,7 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ChessBoardDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ChessBoardDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/Gameplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chessPkg/CGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +196,7 @@
       <workItem from="1702003108363" duration="51301000" />
       <workItem from="1702312622959" duration="11655000" />
       <workItem from="1702335516971" duration="434000" />
-      <workItem from="1702402578063" duration="25438000" />
+      <workItem from="1702402578063" duration="27275000" />
     </task>
     <servers />
   </component>
@@ -267,7 +269,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/client/src/main/Gameplay.java</url>
-          <line>168</line>
+          <line>172</line>
           <option name="timeStamp" value="139" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -35,7 +35,6 @@ public class CGame implements ChessGame {
             Collection<ChessMove> moves = piece.pieceMoves(board, startPosition);
             List<ChessMove> valids = new ArrayList<>();
             for(ChessMove move : moves){
-                System.out.println(move);
                 ChessPiece potentiallyCapturedPiece = board.getPiece(move.getEndPosition());
 
                 board.addPiece(move.getEndPosition(), piece);
@@ -53,7 +52,6 @@ public class CGame implements ChessGame {
             }
 
 
-            System.out.println(valids);
             return valids;
         }
         return null;
