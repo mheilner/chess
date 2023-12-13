@@ -4,8 +4,10 @@ import java.sql.*;
 
 import chess.ChessGame;
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chessPkg.*;
 import com.google.gson.*;
+import handler.WSHandler;
 import model.Game;
 
 import java.util.ArrayList;
@@ -150,9 +152,7 @@ public class GameDao {
          catch (SQLException e) {
              System.out.println(e);
             throw new DataAccessException("Error encountered while clearing games");
-        }// finally {
-//            db.returnConnection(conn);
-//        }
+        }
     }
 
 
@@ -369,8 +369,18 @@ public class GameDao {
         @Override
         public ChessPiece deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             JsonObject jsonObject = json.getAsJsonObject();
-            String type = jsonObject.get("type").getAsString();
-            ChessGame.TeamColor teamColor = ChessGame.TeamColor.valueOf(jsonObject.get("teamColor").getAsString());
+
+            JsonElement typeElement = jsonObject.get("type");
+            if (typeElement == null || typeElement.isJsonNull()) {
+                throw new JsonParseException("Chess piece type is missing or null");
+            }
+            String type = typeElement.getAsString();
+
+            JsonElement teamColorElement = jsonObject.get("teamColor");
+            if (teamColorElement == null || teamColorElement.isJsonNull()) {
+                throw new JsonParseException("Team color is missing or null");
+            }
+            ChessGame.TeamColor teamColor = ChessGame.TeamColor.valueOf(teamColorElement.getAsString());
 
             switch (type) {
                 case "Rook":
@@ -390,10 +400,15 @@ public class GameDao {
             }
         }
     }
+
     public class GsonUtil {
         public static Gson createGson() {
             return new GsonBuilder()
                     .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                    .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer())
+                    .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
+                    .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
+                    .registerTypeAdapter(ChessGame.class, new GameDao.ChessGameDeserializer())
                     .create();
         }
     }

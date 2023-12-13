@@ -1,3 +1,4 @@
+import chess.ChessGame;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chessPkg.CPosition;
@@ -23,9 +24,12 @@ public class WSClient {
         this.gameplay = gameplay;
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer())
                 .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
                 .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
+                .registerTypeAdapter(ChessGame.class, new GameDao.ChessGameDeserializer())
                 .create();
+
         connectToServer();
     }
 
@@ -35,6 +39,7 @@ public class WSClient {
                 .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
                 .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
                 .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
+                .registerTypeAdapter(ChessGame.class, new GameDao.ChessGameDeserializer())
                 .create();
         this.gameplay = null;
         connectToServer();

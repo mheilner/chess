@@ -29,6 +29,8 @@ public class Gameplay {
     private boolean isInGame;
     private WSClient webSocketClient;
 
+    private Gson gson;
+
     public Gameplay(Scanner scanner, String authToken, int gameId, String playerColor) {
         this.scanner = scanner;
         this.authToken = authToken;
@@ -75,12 +77,16 @@ public class Gameplay {
     private void initializeWebSocket() {
         try {
             webSocketClient = new WSClient(this);
-            Gson gson =  new GsonBuilder()
+
+            gson = new GsonBuilder()
                     .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
+                    .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer())
                     .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
                     .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
                     .registerTypeAdapter(ChessGame.class, new GameDao.ChessGameDeserializer())
                     .create();
+
+
 
             if (!playerColor.equalsIgnoreCase("OBSERVER")) {
                 ChessGame.TeamColor teamColor = ChessGame.TeamColor.valueOf(playerColor);
@@ -102,9 +108,6 @@ public class Gameplay {
 
         switch (serverMessage.getServerMessageType()) {
             case LOAD_GAME:
-//                CGame g = gson.fromJson(message, ChessGame.class);
-//                LoadGameMessage loadGameMessage = new LoadGameMessage(g);
-//                CGame g = GameDao.getInstance().deserializeCGame(message);
                 LoadGameMessage loadGameMessage = gson.fromJson(message, LoadGameMessage.class);
                 handleLoadGame(loadGameMessage);
                 break;
@@ -139,7 +142,6 @@ public class Gameplay {
     }
 
 
-
     private void displayHelp() {
         System.out.println("Available Commands:");
         System.out.println("  help       - Displays this help information.");
@@ -167,7 +169,7 @@ public class Gameplay {
         MakeMoveCommand makeMoveCommand = new MakeMoveCommand(authToken, gameId, move);
 
         try {
-            String moveJson = new Gson().toJson(makeMoveCommand);
+            String moveJson = gson.toJson(makeMoveCommand);
             webSocketClient.sendMessage(moveJson);
         } catch (Exception e) {
             e.printStackTrace(); // Handle exceptions

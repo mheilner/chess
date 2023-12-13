@@ -27,10 +27,11 @@ public class WSHandler {
     private AuthTokenDao authTokenDao = AuthTokenDao.getInstance();
     private final GameSessionManager sessionManager = GameSessionManager.getInstance();
     private final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(ChessPosition.class, new CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
-            .registerTypeAdapter(CPosition.class, new CPositionSerializer())
+            .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())
             .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceSerializer())
-            .registerTypeAdapter(ChessPiece.class, new GameDao.ChessGameDeserializer())
+            .registerTypeAdapter(ChessPosition.class, new WSHandler.CPositionDeserializer()) // Use CPositionDeserializer for ChessPosition
+            .registerTypeAdapter(CPosition.class, new WSHandler.CPositionSerializer())
+            .registerTypeAdapter(ChessGame.class, new GameDao.ChessGameDeserializer())
             .create();
 
     public WSHandler() throws DataAccessException {
@@ -60,7 +61,7 @@ public class WSHandler {
         }
     }
 
-    private void processCommand(UserGameCommand command, Session session) throws IOException {
+    private void processCommand(UserGameCommand command, Session session) throws IOException, NullPointerException {
         switch (command.getCommandType()) {
             case JOIN_PLAYER:
                 joinPlayer((JoinPlayerCommand) command, session);
@@ -163,15 +164,22 @@ public class WSHandler {
             CGame chessGame = game.getGame();
             CMove move = command.getMove();
 
-        //Player attempting move
-        String playerName = authTokenDao.findUserByToken(command.getAuthString());
-        if(chessGame.getTeamTurn() == ChessGame.TeamColor.WHITE && !(game.getWhiteUsername().equals(playerName)) ||
-                chessGame.getTeamTurn() == ChessGame.TeamColor.BLACK && !(game.getBlackUsername().equals(playerName))){
-            session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + playerName + "is not allowed to play for this team")));
-            return;
-        }
+            // Player attempting move
+            String playerName = authTokenDao.findUserByToken(command.getAuthString());
 
-        if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
+            // Check if it's the turn of the white team and the player is not the white player
+            boolean isWhiteTurnButNotWhitePlayer = chessGame.getTeamTurn() == ChessGame.TeamColor.WHITE &&
+                    (game.getWhiteUsername() == null || !game.getWhiteUsername().equals(playerName));
+            // Check if it's the turn of the black team and the player is not the black player
+            boolean isBlackTurnButNotBlackPlayer = chessGame.getTeamTurn() == ChessGame.TeamColor.BLACK &&
+                    (game.getBlackUsername() == null || !game.getBlackUsername().equals(playerName));
+            if (isWhiteTurnButNotWhitePlayer || isBlackTurnButNotBlackPlayer) {
+                session.getRemote().sendString(gson.toJson(new ErrorMessage("Error: " + playerName + " is not allowed to play for this team")));
+                return;
+            }
+
+
+            if (chessGame.getTeamTurn() != chessGame.getBoard().getPiece(move.getStartPosition()).getTeamColor()) {
                 session.getRemote().sendString(gson.toJson(new ErrorMessage("It's not your turn")));
                 return;
             }
@@ -286,7 +294,7 @@ public class WSHandler {
         public JsonElement serialize(CPosition src, Type typeOfSrc, JsonSerializationContext context) {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("row", src.getRow());
-            jsonObject.addProperty("column", src.getColumn());
+            jsonObject.addProperty("col", src.getColumn());
             return jsonObject;
         }
     }
