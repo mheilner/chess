@@ -22,9 +22,10 @@ public class ChessBoardDisplay {
             System.out.print(adjustedRow + " "); // Add row number to the left side
 
             for (int col = 1; col <= 8; col++) {
+                int adjustedCol = whiteAtBottom ? col : 9 - col;
                 String bgColor = (row + col) % 2 == 0 ? EscapeSequences.BG_COLOR_LIGHT_SQUARE : EscapeSequences.BG_COLOR_DARK_SQUARE;
                 System.out.print(bgColor);
-                ChessPiece piece = board.getPiece(new CPosition(adjustedRow, col));
+                ChessPiece piece = board.getPiece(new CPosition(adjustedRow, adjustedCol));
                 printChessPiece(piece);
                 System.out.print(EscapeSequences.RESET_BG_COLOR); // Reset background color
             }
