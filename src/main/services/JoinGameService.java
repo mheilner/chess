@@ -46,7 +46,8 @@ public class JoinGameService {
                     gameDao.getBlackPlayer(request.getGameID()) != null) {
                 return new JoinGameResult("Error: Black spot is already taken.");
             }
-            if (request.getPlayerColor()==null){
+            // If the user wants to join as an observer, we don't need to check if the spot is taken
+            if (request.getPlayerColor()==null || "OBSERVER".equalsIgnoreCase(request.getPlayerColor())){
                 return new JoinGameResult();
             }
 

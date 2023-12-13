@@ -148,7 +148,7 @@ public class WSHandler {
             session.getRemote().sendString(gson.toJson(new LoadGameMessage(updatedGame.getGame())));
 
             // Broadcast to all participants in the game, except joining observer
-            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage("Observer joined"));
+            sessionManager.broadcastToGame(command.getGameID(), session, new NotificationMessage(playerName + " joined as observer"));
 
         } catch (DataAccessException e) {
             // Send error message directly to the session
