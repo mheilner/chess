@@ -89,7 +89,7 @@ public class CGame implements ChessGame {
                 // Switch the turn to the other team
                 currentTurn = (currentTurn == TeamColor.WHITE) ? TeamColor.BLACK : TeamColor.WHITE;
             } else {
-                throw new InvalidMoveException("Invalid moveie");
+                throw new InvalidMoveException("Invalid move");
             }
         } else {
             throw new InvalidMoveException("Invalid move");
@@ -155,6 +155,7 @@ public class CGame implements ChessGame {
                             if(isInCheck(teamColor)){
                                 board.addPiece(move.getStartPosition(), piece);
                                 board.addPiece(move.getEndPosition(), potentiallyCapturedPiece);
+                                isOver = true;
                                 return true;
                             }else{
                                 board.addPiece(move.getStartPosition(), piece);
@@ -165,6 +166,7 @@ public class CGame implements ChessGame {
                 }
             }
             // If no move gets the player out of check, it's checkmate
+            isOver = true;
             return true;
         }
         // Player is not in check, so it's not checkmate
