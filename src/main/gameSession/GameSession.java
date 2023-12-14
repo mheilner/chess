@@ -1,4 +1,4 @@
-package server;
+package gameSession;
 
 import org.eclipse.jetty.websocket.api.Session;
 import java.util.concurrent.ConcurrentHashMap;

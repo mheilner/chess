@@ -97,7 +97,7 @@
       <module name="chess" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="gameSession.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

@@ -14,7 +14,7 @@ import dataAccess.GameDao;
 import model.Game;
 import org.eclipse.jetty.websocket.api.annotations.*;
 import org.eclipse.jetty.websocket.api.*;
-import server.GameSessionManager;
+import gameSession.GameSessionManager;
 import webSocketMessages.userCommands.*;
 import webSocketMessages.serverMessages.*;
 

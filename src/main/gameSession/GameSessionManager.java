@@ -1,4 +1,4 @@
-package server;
+package gameSession;
 
 import chess.ChessGame;
 import chess.ChessPiece;
@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import server.GameSession;
 
 public class GameSessionManager {
     private static GameSessionManager instance = null;
