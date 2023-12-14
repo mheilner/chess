@@ -4,6 +4,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.OutputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import static ui.EscapeSequences.*;
 
 public class PostLogin {
     private final String authToken;
-    private Scanner scanner;
+    private final Scanner scanner;
     private boolean isLoggedIn = true;
     private boolean isInGame = false;
 
@@ -35,7 +36,7 @@ public class PostLogin {
     }
 
     public void displayMenu() {
-        while (isLoggedIn && !isInGame){
+        while (isLoggedIn && !isInGame) {
             System.out.println(SET_TEXT_BOLD + SET_BG_COLOR_DARK_GREY + SET_TEXT_COLOR_BLUE + "Post-login Menu:");
             System.out.println("1. List Games");
             System.out.println("2. Create Game");
@@ -100,7 +101,8 @@ public class PostLogin {
 
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
-                ListGamesResult gamesResult = gson.fromJson(new InputStreamReader(conn.getInputStream()), new TypeToken<ListGamesResult>(){}.getType());
+                ListGamesResult gamesResult = gson.fromJson(new InputStreamReader(conn.getInputStream()), new TypeToken<ListGamesResult>() {
+                }.getType());
                 displayGames(gamesResult.getGames());
             } else {
                 System.out.println(SET_TEXT_COLOR_RED + "Failed to retrieve games list." + RESET_TEXT_COLOR);
@@ -138,7 +140,7 @@ public class PostLogin {
             conn.setDoOutput(true);
 
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonRequest.getBytes("utf-8");
+                byte[] input = jsonRequest.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
             }
 
@@ -151,7 +153,7 @@ public class PostLogin {
                 System.out.println(SET_TEXT_COLOR_RED + "Failed to create game. " + createGameResult.getMessage());
             }
         } catch (Exception e) {
-            System.out.println(SET_TEXT_COLOR_RED+"Error: " + e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + "Error: " + e.getMessage());
         }
     }
 
@@ -176,7 +178,7 @@ public class PostLogin {
             conn.setDoOutput(true);
 
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonRequest.getBytes("utf-8");
+                byte[] input = jsonRequest.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
             }
 
@@ -205,7 +207,6 @@ public class PostLogin {
             System.out.println(SET_TEXT_COLOR_RED + "Error: " + e.getMessage() + RESET_TEXT_COLOR);
         }
     }
-
 
 
     public void logout() {

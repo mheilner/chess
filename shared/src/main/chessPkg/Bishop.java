@@ -38,7 +38,7 @@ public class Bishop implements ChessPiece {
 
         // Check each diagonal direction for valid moves
         for (int[] dir : directions) {
-            for (int step = 1; step <= 7; step++) { // chessPkg.Bishop can move up to 7 squares diagonally
+            for (int step = 1; step <= 7; step++) {
                 int newRow = myRow + dir[0] * step;
                 int newColumn = myColumn + dir[1] * step;
 
@@ -57,7 +57,7 @@ public class Bishop implements ChessPiece {
                         break;
                     }
                 } else {
-                    break; // Stop checking in this direction if out of bounds
+                    break;
                 }
             }
         }

@@ -123,7 +123,7 @@ public class CGame implements ChessGame {
 
             for (ChessMove move : validMoves) {
                 if (move.getEndPosition().equals(kingPosition)) {
-                    return true; // King is in check
+                    return true;
                 }
             }
         }
@@ -169,7 +169,6 @@ public class CGame implements ChessGame {
             isOver = true;
             return true;
         }
-        // Player is not in check, so it's not checkmate
         return false;
     }
 

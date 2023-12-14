@@ -78,17 +78,6 @@ public class Pawn implements ChessPiece {
         }
 
 
-//        //Checking Upgrading Pawn
-//        if ((teamColor == ChessGame.TeamColor.WHITE && myRow == 7) || (teamColor == ChessGame.TeamColor.BLACK && myRow == 2)) {
-//            newRow = myRow +  forwardDirection;
-//            if (isValidPosition(newRow, myColumn) && board.getPiece(new CPosition(newRow, myColumn)) == null) {
-//                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.KNIGHT));
-//                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.KING));
-//                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.ROOK));
-//                validMoves.add(new CMove(myPosition, new CPosition(newRow, myColumn), PieceType.QUEEN));
-//            }
-//        }
-
         return validMoves;
     }
 

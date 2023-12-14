@@ -8,14 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9bde963-3c91-46b3-928a-30e357299e87" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ChessBoardDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessBoardDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/gameplay/Gameplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/PostLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/serverFacade/PostLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/WSClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/websocket/WSClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/ServerFacadeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/ServerFacadeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/serverFacade/PostLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/serverFacade/PostLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chessPkg/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chessPkg/CGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chessPkg/CPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/CPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chessPkg/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chessPkg/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chessPkg/Pawn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +214,7 @@
       <workItem from="1702312622959" duration="11655000" />
       <workItem from="1702335516971" duration="434000" />
       <workItem from="1702402578063" duration="27776000" />
-      <workItem from="1702443034825" duration="26994000" />
+      <workItem from="1702443034825" duration="27460000" />
     </task>
     <servers />
   </component>
@@ -288,27 +286,17 @@
           <option name="timeStamp" value="132" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/websocket/WSClient.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="140" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/websocket/WSClient.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="144" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/handler/WSHandler.java</url>
           <line>42</line>
           <option name="timeStamp" value="146" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/gameplay/Gameplay.java</url>
+          <url>file://$PROJECT_DIR$/client/src/main/serverFacade/Gameplay.java</url>
           <line>38</line>
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/gameplay/Gameplay.java</url>
+          <url>file://$PROJECT_DIR$/client/src/main/serverFacade/Gameplay.java</url>
           <line>182</line>
           <option name="timeStamp" value="155" />
         </line-breakpoint>
