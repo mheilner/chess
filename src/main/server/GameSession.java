@@ -15,12 +15,6 @@ public class GameSession {
         observers.put(observerName, session);
     }
 
-    public void removeParticipant(String participantName) {
-        // Participant could be a player or an observer
-        players.remove(participantName);
-        observers.remove(participantName);
-    }
-
     public ConcurrentHashMap<String, Session> getPlayers() {
         return players;
     }
