@@ -1,3 +1,5 @@
+package ui;
+
 import chessPkg.CBoard;
 import chessPkg.CPosition;
 import chess.*;

@@ -1,3 +1,5 @@
+package serverFacade;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -17,15 +19,13 @@ import dataAccess.DataAccessException;
 import dataAccess.GameDao;
 import handler.WSHandler;
 import model.Game;
+import ui.ChessBoardDisplay;
 import webSocketMessages.serverMessages.ErrorMessage;
 import webSocketMessages.serverMessages.LoadGameMessage;
 import webSocketMessages.serverMessages.NotificationMessage;
 import webSocketMessages.serverMessages.ServerMessage;
 import webSocketMessages.userCommands.*;
-import ui.EscapeSequences;
-
-import static ui.EscapeSequences.RESET_TEXT_COLOR;
-import static ui.EscapeSequences.SET_TEXT_COLOR_RED;
+import websocket.WSClient;
 
 public class Gameplay {
     private final String authToken;

@@ -11,8 +11,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import requests.RegisterRequest;
 import results.RegisterResult;
+import serverFacade.PostLogin;
 import services.ClearService;
 import services.RegisterService;
+import ui.ChessBoardDisplay;
 import ui.EscapeSequences;
 
 import java.io.ByteArrayInputStream;

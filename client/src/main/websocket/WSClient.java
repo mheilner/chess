@@ -1,3 +1,5 @@
+package websocket;
+
 import chess.ChessGame;
 import chess.ChessPiece;
 import chess.ChessPosition;
@@ -12,6 +14,7 @@ import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import serverFacade.Gameplay;
 
 @ClientEndpoint
 public class WSClient {
@@ -19,7 +22,7 @@ public class WSClient {
     private Session session;
     private Gameplay gameplay;
     private final Gson gson;
-    // Existing constructor for when Gameplay is available
+    // Existing constructor for when serverFacade.Gameplay is available
     public WSClient(Gameplay gameplay) throws URISyntaxException, DeploymentException, IOException {
         this.gameplay = gameplay;
         this.gson = new GsonBuilder()
@@ -33,7 +36,7 @@ public class WSClient {
         connectToServer();
     }
 
-    // New constructor for use without Gameplay instance
+    // New constructor for use without serverFacade.Gameplay instance
     public WSClient(Gson gson) throws URISyntaxException, DeploymentException, IOException {
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(ChessPiece.class, new GameDao.ChessPieceDeserializer())

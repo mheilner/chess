@@ -1,3 +1,5 @@
+package serverFacade;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.OutputStream;
@@ -17,6 +19,7 @@ import results.ListGamesResult;
 
 import dataAccess.GameDao;
 import webSocketMessages.serverMessages.ErrorMessage;
+import websocket.WSClient;
 
 import static ui.EscapeSequences.*;
 

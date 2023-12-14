@@ -10,6 +10,8 @@ import requests.LoginRequest;
 import requests.RegisterRequest;
 import results.LoginResult;
 import results.RegisterResult;
+import serverFacade.PostLogin;
+
 import static ui.EscapeSequences.*;
 
 public class Main {
