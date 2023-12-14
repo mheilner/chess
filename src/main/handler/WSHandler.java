@@ -191,15 +191,18 @@ public class WSHandler {
                 return;
             }
             chessGame.makeMove(move);
-            gameDao.updateGameState(game.getGameID(), chessGame);
             teamTurn = chessGame.getTeamTurn();
 
             //Check if the game is in checkmate
             if(chessGame.isInCheckmate(teamTurn)){
                 sessionManager.broadcastToGame(command.getGameID(), null, new NotificationMessage(teamTurn +" is in Checkmate. GAME OVER!"));
+                chessGame.markGameAsOver();
             } else if (chessGame.isInCheck(teamTurn)){ //Check if the game is in check
                 sessionManager.broadcastToGame(command.getGameID(), null, new NotificationMessage(teamTurn +" is in Check."));
             }
+
+            gameDao.updateGameState(game.getGameID(), chessGame);
+
 
             // Send the updated game state to all participants
             sessionManager.broadcastToGame(command.getGameID(), null, new LoadGameMessage(chessGame));
